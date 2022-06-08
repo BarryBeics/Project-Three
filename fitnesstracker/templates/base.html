@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Fitness</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/ce58c24f18.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+  <title>Fitness Tracker</title>
 </head>
+
 <body>
-    <h1>Hello World</h1>
+  <!-- Side Navigation-->
+  <header>
+    <nav class="navbar navbar-light bg-warning fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"> <h2>Community Fitness</h2></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Main Navigation</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                  <!-- Only visable to logged IN users -->
+                  {% if session.user %}
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}"> <i class="fa fa-globe"
+                            aria-hidden="true"></i> Map View </a>
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-list-ul" aria-hidden="true"></i>
+                          View Activity</a>
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-link" aria-hidden="true"></i>
+                          Connections</a>
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fa-solid fa-plus"
+                            aria-hidden="true"></i> Post Manually</a>
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fa-solid fa-user-gear"
+                            aria-hidden="true"></i> Settings</a>
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-people-group"
+                            aria-hidden="true"></i> Create a Group</a>
+                           
+                        <a class="nav-link active" aria-current="page" href=""> <i
+                            class="fas fa-map-pin" aria-hidden="true"></i> Landmarks</a>
+                            
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fas fa-power-off"
+                            aria-hidden="true"></i> Log Out</a>
+                    {% else %}
+                            <!-- Only visable to logged OUT users -->
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fas fa-user-cog"
+                              aria-hidden="true"></i> Log In</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i class="fas fa-power-off"
+                            aria-hidden="true"></i> Register</a>
+                    {% endif %}
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section class="flash">
+    <!-- Display flash message here -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages%}
+          <div class="row flashes">
+            <h4>{{ message }}</h4>
+          </div>
+        {% endfor %}
+      {% endif %}
+  </section>
+  <section class="container-fluid main">
+    {% block content %}
+    {% endblock %}
+  {% endwith %}
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>

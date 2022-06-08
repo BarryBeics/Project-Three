@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,200&family=Teko:wght@300&display=swap');
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+h3,
+.title,
+.data span,
+.popover-header,
+.main-menuitem span,
+.title,
+.value,
+.results,
+.dashboard,
+.data p,
+.data span {
+  font-family: 'Teko', sans-serif;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    margin-bottom: 60px; /* Margin bottom by footer height */ 
+    background-color: #F3F3F4;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #48515B;
+  }
+
+  .flashes h4 {
+    line-height: 2;
+    color: red;
+  }
+
+.flash {
+  margin-top: 50px;
+}
+
+.main {
+  margin-top: 83px;
+}
+
+.form-box {
+  max-width: 315px;
+  min-height: 530px;
+}
