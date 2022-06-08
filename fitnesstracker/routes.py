@@ -15,13 +15,13 @@ def register():
     if request.method == "POST":
         # check email to see if user already exisits in db
         email = request.form.get("email")
-        existing_user = Users_info.query.filter_by(email=email).first()
+        existing_user = Users.query.filter_by(email=email).first()
 
         if existing_user:
             flash("Email already exists")
             return redirect(url_for("register"))
 
-        register_user = Users_info(
+        register_user = Users(
             first_name=request.form.get("first_name"),
             last_name=request.form.get("last_name"),
             email=request.form.get("email"),
