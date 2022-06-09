@@ -7,6 +7,8 @@ p {
 h1,
 h2,
 h3,
+.popover-header,
+.main-menuitem span
 .flashes {
   font-family: 'Teko', sans-serif;
 }
@@ -47,4 +49,58 @@ html {
 .form-box {
   max-width: 315px;
   min-height: 530px;
+}
+
+/* ------------- Internal navigation -----*/
+
+.main-menuitem a i {
+  display: block;
+  font-size: 22px;
+}
+
+.main-menuitem span {
+  font-size: 10px;
+}
+
+.list-inline-item:not(:last-child) {
+  margin: 0;
+}
+
+.menucontainer {
+  font-size: 0;
+}
+
+#mob-nav,
+#nav {
+  z-index: 1;
+}
+
+.main-menuitem {
+  padding: 10px 0px 0px 0px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.main-menuitem a {
+  text-decoration: none;
+}
+
+.main-menuitem a,
+.main-menuitem a i,
+body {
+   color: #48515B;
+}
+
+.selected:before,
+.link-text i:hover {
+   color: #FDDA0D;
+}
+
+.hvr-underline-from-center:before,
+.radio-toolbar label:hover {
+   background-color: #FDDA0D;
+}
+
+.popover-header {
+   background-color: #FDDA0D;
 }
