@@ -53,7 +53,7 @@
                             aria-hidden="true"></i> Log Out</a>
                     {% else %}
                             <!-- Only visable to logged OUT users -->
-                        <a class="nav-link active" aria-current="page" href=""> <i class="fas fa-user-cog"
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}"> <i class="fas fa-user-cog"
                               aria-hidden="true"></i> Log In</a>
                         <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i class="fas fa-power-off"
                             aria-hidden="true"></i> Register</a>
