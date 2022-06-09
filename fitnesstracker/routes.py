@@ -93,3 +93,18 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/post_activity", methods=["GET", "POST"])
+def post_activity():
+    if request.method == "POST":
+        activity = Activity_log(
+            user_id=session["user"],
+            distance=request.form.get("distance"),
+            activity_type=request.form.get("activity_type"),
+            commute=request.form.get('commute') == 'on',
+            date=request.form.get("datetime")
+        )
+        db.session.add(activity)
+        db.session.commit()
+    return render_template("post_activity.html")
