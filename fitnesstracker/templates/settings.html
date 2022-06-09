@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h3 class="d-flex justify-content-center">Settings</h3>
+ <!-- Card Example -->
+
+  <div class="row card">
+    <form method="POST" action="{{ url_for('settings', user_id=session['user']) }}">
+        <!-- Landmark Name -->
+        <div class="mb-3">
+            <input id="icon_url" name="icon_url" value="{{ settings.icon_url }}" minlength="3" maxlength="25" type="text" class="form-control" required>
+            <label for="icon_url" class="form-label">Icon Url:</label>
+        </div>
+        <!-- Modal Link -->
+        <div class="mb-3">
+            <input id="email" name="email" value="{{ settings.email }}" minlength="1" maxlength="3" type="text" class="form-control" required>
+            <label for="email" class="form-label">Email:</label>
+        </div>
+        <!-- Main Image -->
+        <div class="mb-3">
+            <input id="group_name" name="group_name" value="{{ settings.group_name }}" type="text" class="form-control" required>
+            <label for="group_name" class="form-label">Group Name:</label>
+        </div>
+         
+         <!-- Submit Button -->
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning">
+                Edit Settings <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+        </div>
+      </form>
+  </div>
+
+{% endblock %}

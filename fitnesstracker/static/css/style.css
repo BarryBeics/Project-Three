@@ -7,16 +7,7 @@ p {
 h1,
 h2,
 h3,
-.title,
-.data span,
-.popover-header,
-.main-menuitem span,
-.title,
-.value,
-.results,
-.dashboard,
-.data p,
-.data span {
+.flashes {
   font-family: 'Teko', sans-serif;
 }
 
@@ -45,11 +36,12 @@ html {
   }
 
 .flash {
-  margin-top: 50px;
+  margin-top: 80px;
+  text-align: center;
 }
 
 .main {
-  margin-top: 83px;
+  margin-top: 20px;
 }
 
 .form-box {

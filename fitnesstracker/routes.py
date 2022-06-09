@@ -107,6 +107,7 @@ def post_activity():
         )
         db.session.add(activity)
         db.session.commit()
+        flash("Activity Successfully added")
     return render_template("post_activity.html")
 
 
@@ -193,3 +194,18 @@ def register_group():
                             request.form.get("name")))
 
     return render_template("register_group.html")
+
+
+# Setting Edit
+@app.route("/settings/<int:user_id>", methods=["GET", "POST"])
+def settings(user_id):
+    settings = Users.query.get_or_404(user_id)
+    if request.method == "POST":
+        settings.icon_url = request.form.get("icon_url"),
+        settings.email = request.form.get("email"),
+        settings.group_name = request.form.get("group_name")
+        
+        db.session.commit()
+        return redirect(url_for(
+                            "profile", user_id=session["user"]))
+    return render_template("settings.html", settings=settings)
