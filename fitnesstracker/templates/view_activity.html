@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="center-align light-blue-text text-darken-4">View Activities</h3>
+<div class="row">
+    {% for activity in activities %}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{ activity.distance }}</h5>
+        <p class="card-text">{{ activity.activity_type }}</p>
+        <p class="card-text">{{ activity.user_id }}</p>
+        <p class="card-text">{{ activity.commute }}</p>
+        <p class="card-text">{{ activity.date }}</p>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    
+    
+
+
+{% endblock %}

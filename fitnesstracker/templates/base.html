@@ -35,7 +35,7 @@
                   {% if session.user %}
                         <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}"> <i class="fa fa-globe"
                             aria-hidden="true"></i> Map View </a>
-                        <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-list-ul" aria-hidden="true"></i>
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i class="fa fa-list-ul" aria-hidden="true"></i>
                           View Activity</a>
                         <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-link" aria-hidden="true"></i>
                           Connections</a>

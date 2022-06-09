@@ -108,3 +108,10 @@ def post_activity():
         db.session.add(activity)
         db.session.commit()
     return render_template("post_activity.html")
+
+
+@app.route("/view_activity")
+def view_activity():
+    activities = Activity_log.query.filter_by(user_id=session["user"]).all()
+    #access = Users_info.query.filter_by(user_id=session["user"]).all()
+    return render_template("view_activity.html", activities=activities)
