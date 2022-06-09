@@ -97,7 +97,7 @@ class Groups(db.Model):
     group_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
     name = db.Column(db.String(20), unique=True, nullable=False)
-    size = db.Column(db.Integer, nullable=False)
+    size = db.Column(db.Integer, nullable=False, default=20)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
 
     def __repr__(self):

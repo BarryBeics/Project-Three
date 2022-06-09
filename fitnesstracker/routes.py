@@ -169,3 +169,27 @@ def delete_landmark(landmark_id):
     db.session.delete(landmark)
     db.session.commit()
     return redirect(url_for("landmarks"))
+
+
+# Register a new group
+@app.route("/register_group", methods=["GET", "POST"])
+def register_group():
+    if request.method == "POST":
+        # check group name to see if user already exisits in db
+        existing_group = Groups.query.filter(
+            Groups.name == request.form.get("name").lower()).all()
+
+        if existing_group:
+            flash("Group Name already exists")
+            return redirect(url_for("register_group"))
+
+        register_group = Groups(
+            name=request.form.get("name").lower(),
+            user_id=session["user"]
+        )
+        db.session.add(register_group)
+        db.session.commit()
+        flash("Successfully created, {}".format(
+                            request.form.get("name")))
+
+    return render_template("register_group.html")
