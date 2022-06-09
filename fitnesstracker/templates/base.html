@@ -49,7 +49,7 @@
                         <a class="nav-link active" aria-current="page" href=""> <i
                             class="fas fa-map-pin" aria-hidden="true"></i> Landmarks</a>
                             
-                        <a class="nav-link active" aria-current="page" href=""> <i class="fas fa-power-off"
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}"> <i class="fas fa-power-off"
                             aria-hidden="true"></i> Log Out</a>
                     {% else %}
                             <!-- Only visable to logged OUT users -->
