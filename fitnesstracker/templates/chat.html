@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="center-align light-blue-text text-darken-4">Chat</h3>
+<!-- Loop to Display data for the comments -->
+<div>
+    {% for comment in comments %}
+    <div class="row data-block">
+        <div class="col-6"><span>{{ comment.user_id }}</span></div>
+        <div class="col-6 data_dark">
+          <p>Date: {{ comment.date }}</p>
+        </div> <!-- data-dark -->
+        <div class="col-12">
+          <p> {{ comment.comment }}</p>
+        </div>
+    </div>  <!-- row -->
+  </div>  <!-- options-form-item-full -->
+  {% endfor %}
+
+
+<div class="row">
+    <div class="col">
+
+        <form method="POST" action="{{ url_for('chat') }}">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <!-- distance -->
+                    <div class="mb-3">
+                        <label for="comment">Comment</label>
+                        <input type="text" name="comment" minlength="3" maxlength="150"
+                         class="form-control" id="comment" aria-describedby="comment" required>     
+                    </div>
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-warning">Comment<i class="fas fa-comment-dots"
+                            aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    
+    
+
+
+{% endblock %}

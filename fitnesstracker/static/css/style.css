@@ -104,3 +104,12 @@ body {
 .popover-header {
    background-color: #FDDA0D;
 }
+
+
+.data_dark p {
+  color: #859583;
+}
+
+.data-block {
+  border: solid 1px #197b7b;
+}

@@ -114,7 +114,7 @@ def post_activity():
 @app.route("/view_activity")
 def view_activity():
     activities = Activity_log.query.filter_by(user_id=session["user"]).all()
-    #access = Users_info.query.filter_by(user_id=session["user"]).all()
+    #access = Users.query.filter_by(user_id=session["user"]).all()
     return render_template("view_activity.html", activities=activities)
 
 
@@ -209,3 +209,26 @@ def settings(user_id):
         return redirect(url_for(
                             "profile", user_id=session["user"]))
     return render_template("settings.html", settings=settings)
+
+
+# comments
+@app.route("/chat", methods=["GET", "POST"])
+def chat():
+    group = Users.query.filter_by(user_id=session["user"]).all()
+    group_name=group[0].group_name
+    comments = Chat_log.query.filter_by(group_name=group_name).all()
+    if request.method == "POST":
+        # check group name to see if user already exisits in db
+        group = Users.query.filter_by(user_id=session["user"]).all()
+
+        comment = Chat_log(
+            user_id=session["user"],
+            comment=request.form.get("comment"),
+            group_name=group_name
+        )
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for("chat"))
+    return render_template("chat.html", comments=comments)
+
+    
