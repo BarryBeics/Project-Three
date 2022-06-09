@@ -115,3 +115,57 @@ def view_activity():
     activities = Activity_log.query.filter_by(user_id=session["user"]).all()
     #access = Users_info.query.filter_by(user_id=session["user"]).all()
     return render_template("view_activity.html", activities=activities)
+
+
+# landmarks list
+@app.route("/landmarks")
+def landmarks():
+    landmarks = list(Map_data.query.order_by(Map_data.landmark_name).all())
+    return render_template("landmarks.html", landmarks=landmarks)
+
+# Landmarks Add New
+@app.route("/add_landmark", methods=["GET", "POST"])
+def add_landmark():
+    if request.method == "POST":
+        landmark = Map_data(
+            landmark_name=request.form.get("landmark_name"),
+            modal_link=request.form.get("modal_link"),
+            main_image=request.form.get("main_image"),
+            video_link=request.form.get("video_link"),
+            body_text=request.form.get("body_text"),
+            user_id=session["user"],
+            longitude=request.form.get("longitude"),
+            latitude=request.form.get("latitude")
+        )
+        db.session.add(landmark)
+        db.session.commit()
+        return redirect(url_for("landmarks"))
+    return render_template("add_landmark.html")
+
+
+# Landmark Edit
+@app.route("/edit_landmark/<int:landmark_id>", methods=["GET", "POST"])
+def edit_landmark(landmark_id):
+    landmark = Map_data.query.get_or_404(landmark_id)
+    if request.method == "POST":
+        landmark.landmark_name = request.form.get("landmark_name")
+        landmark.modal_link=request.form.get("modal_link"),
+        landmark.main_image=request.form.get("main_image"),
+        landmark.video_link=request.form.get("video_link"),
+        landmark.body_text=request.form.get("body_text"),
+        user_id=session["user"],
+        landmark.longitude=request.form.get("longitude"),
+        landmark.latitude=request.form.get("latitude")
+        db.session.commit()
+        return redirect(url_for("landmarks"))
+    return render_template("edit_landmark.html", landmark=landmark)
+
+
+
+# Landmark Delete
+@app.route("/delete_landmark/<int:landmark_id>")
+def delete_landmark(landmark_id):
+    landmark = Map_data.query.get_or_404(landmark_id)
+    db.session.delete(landmark)
+    db.session.commit()
+    return redirect(url_for("landmarks"))

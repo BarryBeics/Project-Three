@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Map</h1>
+<h3 class="d-flex justify-content-center">Add Landmarks</h3>
+<!-- Card Example -->
+
+<div class="row card">
+    <form method="POST" action="{{ url_for('add_landmark') }}">
+        <!-- Landmark Name -->
+        <div class="mb-3">
+            <input id="landmark_name" name="landmark_name" minlength="3" maxlength="25" type="text" class="form-control"
+                required>
+            <label for="landmark_name" class="form-label">Landmark Name:</label>
+        </div>
+        <!-- Modal Link -->
+        <div class="mb-3">
+            <input id="modal_link" name="modal_link" minlength="1" maxlength="3" type="text" class="form-control"
+                required>
+            <label for="modal_link" class="form-label">Modal Link:</label>
+        </div>
+        <!-- Main Image -->
+        <div class="mb-3">
+            <input id="main_image" name="main_image" type="text" class="form-control" required>
+            <label for="main_image" class="form-label">Main Image:</label>
+        </div>
+        <!-- Video Link -->
+        <div class="mb-3">
+            <input id="video_link" name="video_link" type="text" class="form-control" required>
+            <label for="video_link" class="form-label">Video Link:</label>
+        </div>
+        <!-- Body Text-->
+        <div class="mb-3">
+            <input id="body_text" name="body_text" type="textarea" class="form-control" required>
+            <label for="body_text" class="form-label">Body Text:</label>
+        </div>
+        <!-- Longitude -->
+        <div class="mb-3">
+            <input id="longitude" name="longitude" type="text" class="form-control" required>
+            <label for="longitude" class="form-label">longitude:</label>
+        </div>
+        <!-- Latitude -->
+        <div class="mb-3">
+            <input id="latitude" name="latitude" type="text" class="form-control" required>
+            <label for="latitude" class="form-label">Latitude:</label>
+        </div>
+        <!-- Submit Button -->
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning">
+                Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
