@@ -1,7 +1,9 @@
 from flask import render_template, request, redirect, url_for, flash, session
+from sqlalchemy import func
 from fitnesstracker import app, db
 from fitnesstracker.models import Users, Map_data, Notifications, Chat_log, Activity_log, Groups
 from werkzeug.security import generate_password_hash, check_password_hash
+import math
 
 
 # Home page end point
@@ -232,3 +234,29 @@ def chat():
     return render_template("chat.html", comments=comments)
 
     
+# get sum of distnace traveled
+@app.route("/map_link", methods=["GET"])
+def map_link():
+    update = Users.query.get_or_404(session["user"])
+    # get sum total of all activity for a user
+    total_distance = Activity_log.query.with_entities(
+             func.sum(Activity_log.distance).label("mySum")).filter_by(user_id=session["user"]).first()
+    
+    
+    lap_distance = 130
+    # calculate current distance
+    round_down = math.floor(total_distance[0])
+    carry_decimal = total_distance[0] - round_down
+    current_distance = round((round_down % lap_distance) + carry_decimal,1)
+    # calculate number of laps
+    laps_calc = total_distance[0] / lap_distance
+    laps = math.floor(laps_calc)
+
+    update.total_distance = total_distance[0]
+    update.current_distance = current_distance
+    update.laps = laps
+    flash("Total distance is, {} your curent distance is {} and your on lap {}".format(total_distance[0], current_distance, laps))
+    db.session.commit()
+
+    return render_template("map_link.html")
+
