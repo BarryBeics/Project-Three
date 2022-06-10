@@ -124,3 +124,9 @@ body {
 .data-block {
   border: solid 1px #197b7b;
 }
+
+.checkered-icon {
+  background-image: url(images/markers/checkered-flag.png);
+	width: 36px;
+	height: 36px;
+}

@@ -13,3 +13,10 @@ fetch('https://api.maptiler.com/data/b92719af-8d5b-4006-9631-3d8b13eaa1c6/featur
       L.geoJSON(data).addTo(map);
 	});
   
+  var checkerd = L.icon ({
+    iconUrl: "static/images/markers/checkered-flag.png",
+    iconSize: [60, 60],
+    iconAnchor: [5, 60]
+  });
+
+  var start = L.marker([53.2648, -4.0897],{icon:checkerd}).addTo(map);
