@@ -5,5 +5,11 @@ attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&cop
 });
 osm.addTo(map);
 
-
+fetch('https://api.maptiler.com/data/b92719af-8d5b-4006-9631-3d8b13eaa1c6/features.json?key=g9ErshPDnj0LYYtEd10o')
+	.then(function (responce) {
+	return responce.json();
+	})
+	.then(function (data) {
+      L.geoJSON(data).addTo(map);
+	});
   
