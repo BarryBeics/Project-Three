@@ -51,6 +51,10 @@ html {
   min-height: 530px;
 }
 
+#map {
+  height: 500px;
+}
+
 /* ------------- Internal navigation -----*/
 
 .main-menuitem a i {
@@ -81,6 +85,13 @@ html {
   text-transform: uppercase;
 }
 
+ol, ul {
+  padding-left: 0rem;
+}
+
+.col-4-xs {
+  width: 32%;
+}
 .main-menuitem a {
   text-decoration: none;
 }

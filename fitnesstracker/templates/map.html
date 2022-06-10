@@ -1,30 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-
-
+<!-- get leaflet JS to build map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" crossorigin=""></script>
 <!-- Internal Navigation Buttons -->
 <div class="d-md-block">
     <ul id="nav" class="main-list-inline main-menucontainer">
-        <li class="col-4 list-inline-item main-menuitem">
+        <li class="col-4-xs list-inline-item main-menuitem">
             <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal"
                     aria-hidden="true"></i><span>Leaderboard</span></a>
         </li>
-        <li class="col-4 list-inline-item main-menuitem">
+        <li class="col-4-xs list-inline-item main-menuitem">
             <a href="" class="hvr-push"><i class="fas fa-bell"
                     aria-hidden="true"></i>
-                <div class="d-none d-sm-block"><span>Notifications</span></div>
+                <div><span>Notifications</span></div>
             </a>
         </li>
-        <li class="col-3  list-inline-item main-menuitem">
+        <li class="col-4-xs  list-inline-item main-menuitem">
             <a href="{{ url_for('chat') }}" class="hvr-push"><i class="fas fa-comment-dots"
                     aria-hidden="true"></i>
-                <div class="d-none d-sm-block"><span>Comments</span></div>
+                <div><span>Comments</span></div>
             </a>
         </li>
     </ul>
 </div>
 <div id="map"></div>
 <span class="text-muted">Leaflet js map goes here.</span>
+
 {% endblock %}
 
 
