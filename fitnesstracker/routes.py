@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, session
+from flask import render_template, request, redirect, url_for, flash, session, jsonify
 from sqlalchemy import func
 from fitnesstracker import app, db
 from fitnesstracker.models import Users, Map_data, Notifications, Chat_log, Activity_log, Groups
@@ -273,10 +273,37 @@ def map_link():
             update.latitude = latitude
             db.session.commit()
             
-            flash("your longitude is: {} and latitude is {}".format(longitude, latitude))
-            flash("Total distance is, {} your curent distance is {} and your on lap {}".format(total_distance[0], current_distance, laps))
        
-            
-
     return render_template("map_link.html")
+
+
+@app.route("/user_json")
+def user_json():
+    #identify all the users who share the same group as the session user in order to retrieve only their data
+    group = Users.query.filter_by(user_id=session["user"]).all()
+    group_name=group[0].group_name
+    count = Users.query.filter_by(group_name=group_name).count()
+    the_data = Users.query.filter_by(group_name=group_name).all()
+    
+    all_users = []
+    for x in range(count):
+        user_id = the_data[x].user_id
+        first_name = the_data[x].first_name
+        last_name = the_data[x].last_name
+        current_distance = the_data[x].current_distance
+        total_distance = the_data[x].total_distance
+        longitude = the_data[x].longitude
+        latitude= the_data[x].latitude
+        dict = {"id" : user_id, 
+              "first" : first_name, 
+              "last" : last_name,
+              "current": current_distance,
+              "total" : total_distance,
+              "longitude" : longitude,
+              "latitude" : latitude}
+        all_users.append(dict)
+
+    with open('fitnesstracker/static/JSON/user_data.json', 'w') as outfile:
+        json.dump(all_users, outfile)
+    return render_template("user_json.html")
 
