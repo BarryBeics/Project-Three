@@ -3,7 +3,7 @@ from sqlalchemy import func
 from fitnesstracker import app, db
 from fitnesstracker.models import Users, Map_data, Notifications, Chat_log, Activity_log, Groups
 from werkzeug.security import generate_password_hash, check_password_hash
-import math
+import math, json
 
 
 # Home page end point
@@ -234,14 +234,13 @@ def chat():
     return render_template("chat.html", comments=comments)
 
     
-# get sum of distnace traveled
+# get sum of distance traveled
 @app.route("/map_link", methods=["GET"])
 def map_link():
     update = Users.query.get_or_404(session["user"])
     # get sum total of all activity for a user
     total_distance = Activity_log.query.with_entities(
              func.sum(Activity_log.distance).label("mySum")).filter_by(user_id=session["user"]).first()
-    
     
     lap_distance = 130
     # calculate current distance
@@ -252,11 +251,32 @@ def map_link():
     laps_calc = total_distance[0] / lap_distance
     laps = math.floor(laps_calc)
 
-    update.total_distance = total_distance[0]
-    update.current_distance = current_distance
-    update.laps = laps
-    flash("Total distance is, {} your curent distance is {} and your on lap {}".format(total_distance[0], current_distance, laps))
-    db.session.commit()
+    # load the JSON files containing the map reference data 
+    landmarks = json.load(open("fitnesstracker/static/JSON/map_landmarks.json"))
+    zones = json.load(open("fitnesstracker/static/JSON/map_zones.json"))
+    coordinates = json.load(open("fitnesstracker/static/JSON/map_coordinates.json"))
+    longitude = 0
+    latitude = 0
+    flash("current distance {}" .format(current_distance))
+    
+    for x in range(1,len(zones)):
+        ref = str(x)
+        # Get the ref for which lankmark you near.   and 
+       
+        if (current_distance >= zones[ref][0] and current_distance <= zones[ref][1]):
+            longitude = coordinates[ref][0]
+            latitude = coordinates[ref][1]
+            update.total_distance = total_distance[0]
+            update.current_distance = current_distance
+            update.laps = laps
+            update.longitude = longitude
+            update.latitude = latitude
+            db.session.commit()
+            
+            flash("your longitude is: {} and latitude is {}".format(longitude, latitude))
+            flash("Total distance is, {} your curent distance is {} and your on lap {}".format(total_distance[0], current_distance, laps))
+       
+            
 
     return render_template("map_link.html")
 
