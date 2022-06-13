@@ -307,3 +307,33 @@ def user_json():
         json.dump(all_users, outfile)
     return render_template("user_json.html")
 
+
+@app.route("/landmark_json")
+def landmark_json():
+    map_data = Map_data.query.all()
+    count = Map_data.query.count()
+    
+    all_landmarks = []
+    for x in range(count):
+        landmark_id = map_data[x].landmark_id
+        landmark_name = map_data[x].landmark_name
+        modal_link = map_data[x].modal_link
+        video_link = map_data[x].video_link
+        main_image = map_data[x].main_image
+        body_text = map_data[x].body_text
+        longitude = map_data[x].longitude
+        latitude= map_data[x].latitude
+        dict = {"landmark_id" : landmark_id, 
+              "landmark_name" : landmark_name, 
+              "modal_link" : modal_link,
+              "video_link": video_link,
+              "main_image" : main_image,
+              "body_text" : body_text,
+              "longitude" : longitude,
+              "latitude" : latitude}
+        all_landmarks.append(dict)
+
+    with open('fitnesstracker/static/JSON/landmark_data.json', 'w') as outfile:
+        json.dump(all_landmarks, outfile)
+    flash("Landmark data added to map")
+    return render_template("landmark_json.html")

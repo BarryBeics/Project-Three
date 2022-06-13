@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Map</h1>
-
 
 <h3 class="d-flex justify-content-center">Landmarks</h3>
 <div class="row">
@@ -47,10 +45,13 @@
 </div>
 
 
-
 <div class="d-flex justify-content-center">
+   
     <a href="{{ url_for('add_landmark') }}" class="btn btn-warning btn-lg">
         Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    </a>
+    <a href="{{ url_for('landmark_json') }}" class="btn btn-secondary btn-lg">
+        Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
     </a>
 </div>
 {% endblock %}
