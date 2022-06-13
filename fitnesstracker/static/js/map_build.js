@@ -117,3 +117,30 @@ fetch('https://api.maptiler.com/data/b92719af-8d5b-4006-9631-3d8b13eaa1c6/featur
          popupAnchor: [5, 5]
     })
 ];
+
+
+async function getUsers() {
+  // load JSON File
+    const response = await fetch("static/JSON/user_data.json");
+    const user_data = await response.json();
+    console.log(user_data);
+  
+  // Loop JSON to get users data
+    for (item of user_data) {
+      console.log(item.first);
+      console.log(item.icon_num);
+      for( var i = 0;  i < mapMarkers.length;  i++ ) {
+        
+   if(item.icon_num == i){
+     console.log(i);
+  var marker = L.marker(
+      [ item.latitude, item.longitude ],
+      { icon: mapMarkers[i] }
+  ).addTo( map );
+     const txt = `${item.first} ${item.last}: Your Total Distance is ${item.total} miles. You have completed ${item.laps} laps and have covered ${item.current} miles on your current lap.`;
+      marker.bindPopup(txt);
+}}
+    }
+  }
+
+  getUsers();

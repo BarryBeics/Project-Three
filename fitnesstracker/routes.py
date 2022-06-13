@@ -204,6 +204,7 @@ def settings(user_id):
     settings = Users.query.get_or_404(user_id)
     if request.method == "POST":
         settings.icon_url = request.form.get("icon_url"),
+        settings.icon_num = request.form.get("icon_num"),
         settings.email = request.form.get("email"),
         settings.group_name = request.form.get("group_name")
         
@@ -290,6 +291,7 @@ def user_json():
         user_id = the_data[x].user_id
         first_name = the_data[x].first_name
         last_name = the_data[x].last_name
+        icon_num = the_data[x].icon_num
         current_distance = the_data[x].current_distance
         total_distance = the_data[x].total_distance
         longitude = the_data[x].longitude
@@ -297,6 +299,7 @@ def user_json():
         dict = {"id" : user_id, 
               "first" : first_name, 
               "last" : last_name,
+              "icon_num" : icon_num,
               "current": current_distance,
               "total" : total_distance,
               "longitude" : longitude,
