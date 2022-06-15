@@ -33,7 +33,7 @@
               <li class="nav-item">
                   <!-- Only visable to logged IN users -->
                   {% if session.user %}
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}"> <i class="fa fa-globe"
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fa fa-globe"
                             aria-hidden="true"></i> Map View </a>
                         <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i class="fa fa-list-ul" aria-hidden="true"></i>
                           View Activity</a>
@@ -41,7 +41,7 @@
                           Connections</a>
                         <a class="nav-link active" aria-current="page" href="{{ url_for('post_activity') }}"> <i class="fa-solid fa-plus"
                             aria-hidden="true"></i> Post Manually</a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('settings', user_id=session['user']) }}"> <i class="fa-solid fa-user-gear"
+                        <a class="nav-link active" aria-current="page" href=""> <i class="fa-solid fa-user-gear"
                             aria-hidden="true"></i> Settings</a>
                         <a class="nav-link active" aria-current="page" href="{{ url_for('register_group') }}"> <i class="fa fa-people-group"
                             aria-hidden="true"></i> Create a Group</a>
@@ -96,7 +96,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/map_build.js') }}"></script>
+  
 </body>
 
 </html>

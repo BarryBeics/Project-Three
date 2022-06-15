@@ -1,4 +1,3 @@
-// Create the map
 var map = L.map('map').setView([53.299697,-4.387321], 10);
 
 osm = L.tileLayer('https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=LHlqrAvd3VUM4yZjqFDy', {
@@ -128,7 +127,6 @@ async function getUsers() {
   // Loop JSON to get users data
     for (item of user_data) {
       console.log(item.first);
-      console.log(item.icon_num);
       for( var i = 0;  i < mapMarkers.length;  i++ ) {
         
    if(item.icon_num == i){
@@ -144,3 +142,54 @@ async function getUsers() {
   }
 
   getUsers();
+
+  var LandmarkIcon = L.Icon.extend({
+    options: {
+   iconSize: [60, 60],
+iconAnchor: [5, 60],
+popupAnchor: [5, -60]
+    }
+});
+
+
+var icon_landmark = new LandmarkIcon({ iconUrl: 'static/images/markers/a-red-flag.png' });
+
+
+
+        
+        let obj = JSON.parse(unlocked);
+        console.log(typeof (obj));
+console.log(obj);
+
+  async function getLandmarks() {
+     // load JSON File
+      const response = await fetch("static/JSON/landmark_data.json");
+      const landmark_data = await response.json();
+      console.log(landmark_data);
+    
+      for (item of landmark_data) {
+        const marker = L.marker([item.latitude, item.longitude], { icon: icon_landmark }).addTo(map);
+        let txt = '';
+        Object.keys(obj).forEach(key => {
+  		let value = obj[key];
+          
+         if (item.modal_link == key){ 
+     		 if(value == "yes"){
+    		  console.log("unlocked", key)
+               txt = `<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"data-bs-target="#${item.modal_link}" > ${item.modal_link} ${item.landmark_name} </button>`;
+    		  }
+          
+   			 else{
+    		   console.log("locked", key);
+               txt = `<button type="button" class="btn btn-light btn-sm" >${item.modal_link} ${item.landmark_name} </button>`;
+   			   }
+         }
+		});
+        
+        
+        marker.bindPopup(txt);
+      }
+  }
+  
+
+  getLandmarks();

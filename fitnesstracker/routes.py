@@ -33,22 +33,14 @@ def register():
         db.session.commit()
 
         # Put new user into 'session' cookie
-
-        if existing_user:
-            print(request.form.get("email"))
-            # ensure hashed password matches user input
-            if check_password_hash(
-                    existing_user[0].password, request.form.get("password")):
-                        session["user"] = existing_user[0].user_id
-                        flash("Welcome, {}".format(
-                            request.form.get("user_id")))
-                        return redirect(url_for(
-                            "profile", user_id=session["user"]))
+        session["user"] = request.form.get("email").lower()
+        flash("Welcome, {}".format(session["user"]))
+        return redirect(url_for("profile", email=session["user"]))
 
     return render_template("register.html")
 
 
-    # Log In
+# Log In
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -57,15 +49,12 @@ def login():
             Users.email == request.form.get("email").lower()).all()
 
         if existing_user:
-            print(request.form.get("email"))
             # ensure hashed password matches user input
             if check_password_hash(
                     existing_user[0].password, request.form.get("password")):
-                        session["user"] = existing_user[0].user_id
-                        flash("Welcome, {}".format(
-                            request.form.get("user_id")))
-                        return redirect(url_for(
-                            "profile", user_id=session["user"]))
+                        session["user"] = request.form.get("email").lower()
+                        flash("Welcome, {}".format(session["user"]))
+                        return redirect(url_for("profile"))
             else:
                 #invalid password
                 flash("Incorrect Username and/or Password")
@@ -80,13 +69,20 @@ def login():
 
 
 
-@app.route("/profile/<user_id>", methods=["GET", "POST"])
-def profile(user_id):
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
     # grab the session user's email from db
     if "user" in session:
-        return render_template("profile.html", user_id=session["user"])
+        email = session["user"]
+        return render_template("profile.html", email=session["user"])
 
     return redirect(url_for("login"))
+
+
+    user_data = Users.query.get_or_404(email)
+    user_data.first_name
+        
+  
 
 
 @app.route("/logout")
@@ -252,6 +248,7 @@ def map_link():
     laps_calc = total_distance[0] / lap_distance
     laps = math.floor(laps_calc)
 
+    
     # load the JSON files containing the map reference data 
     landmarks = json.load(open("fitnesstracker/static/JSON/map_landmarks.json"))
     zones = json.load(open("fitnesstracker/static/JSON/map_zones.json"))
@@ -274,8 +271,7 @@ def map_link():
             update.latitude = latitude
             db.session.commit()
             
-       
-    return render_template("map_link.html")
+    return render_template("map_link.html", update=update)
 
 
 @app.route("/user_json")
@@ -340,3 +336,13 @@ def landmark_json():
         json.dump(all_landmarks, outfile)
     flash("Landmark data added to map")
     return render_template("landmark_json.html")
+
+
+# Home page end point
+@app.route("/map/<int:user_id>", methods=["GET", "POST"])
+def map(user_id):
+    data = Users.query.get_or_404(user_id)
+    
+    return render_template("map.html", data=data)
+
+
