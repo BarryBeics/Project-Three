@@ -71,19 +71,25 @@ def login():
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-    # grab the session user's email from db
+    
     if "user" in session:
         email = session["user"]
-        return render_template("profile.html", email=session["user"])
+        # swap the session value from email to user_id
+        user_data = Users.query.filter(Users.email == session["user"]).first()
+        user_id = user_data.user_id
+        session["user"] = user_id
+
+        is_new = Activity_log.query.filter_by(user_id=session["user"]).count()
+        print(is_new)
+        if is_new == 0:
+            flash("new account detected")
+            return render_template("profile.html", user_data=user_data)
+
+
+        return render_template("profile.html", user_data=user_data)
 
     return redirect(url_for("login"))
-
-
-    user_data = Users.query.get_or_404(email)
-    user_data.first_name
-        
   
-
 
 @app.route("/logout")
 def logout():
@@ -195,9 +201,9 @@ def register_group():
 
 
 # Setting Edit
-@app.route("/settings/<int:user_id>", methods=["GET", "POST"])
-def settings(user_id):
-    settings = Users.query.get_or_404(user_id)
+@app.route("/settings", methods=["GET", "POST"])
+def settings():
+    settings = Users.query.get_or_404(session["user"])
     if request.method == "POST":
         settings.icon_url = request.form.get("icon_url"),
         settings.icon_num = request.form.get("icon_num"),
@@ -205,8 +211,7 @@ def settings(user_id):
         settings.group_name = request.form.get("group_name")
         
         db.session.commit()
-        return redirect(url_for(
-                            "profile", user_id=session["user"]))
+        flash("Edits have been saved")
     return render_template("settings.html", settings=settings)
 
 
