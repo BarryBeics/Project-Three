@@ -79,10 +79,23 @@ def profile():
         user_id = user_data.user_id
         session["user"] = user_id
 
-        is_new = Activity_log.query.filter_by(user_id=session["user"]).count()
+        # As json column can not have a default value, detect if this is a new account and complete set up by adding this default to the users account
+        is_new = Activity_log.query.filter_by(user_id=user_id).count()
         print(is_new)
         if is_new == 0:
-            flash("new account detected")
+            setup = Users.query.get_or_404(user_id)
+            setup.unlocked_zones = {
+            "L1": "no",
+            "L2": "no",
+            "L3": "no",
+            "L4": "no",
+            "L5": "no",
+            "L6": "no",
+            "L7": "no"
+            }
+            db.session.commit()
+            flash("inserted")
+            
             return render_template("profile.html", user_data=user_data)
 
 
@@ -239,6 +252,11 @@ def chat():
 # get sum of distance traveled
 @app.route("/map_link", methods=["GET"])
 def map_link():
+    is_new = Activity_log.query.filter_by(user_id=session["user"]).count()
+    print(is_new)
+    if is_new == 0:
+        flash('You need to log your first activity before viewing the map')
+        return render_template("post_activity.html")
     update = Users.query.get_or_404(session["user"])
     # get sum total of all activity for a user
     total_distance = Activity_log.query.with_entities(
