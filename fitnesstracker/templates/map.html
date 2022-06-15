@@ -29,7 +29,10 @@
 
 
 
-<span class="text-muted">Leaflet js map goes here.</span>
+<span class="text-muted">Leaflet js map goes here. </span>
+<script>
+    var unlocked = {{ json_object|tojson }}
+</script>
 <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fas fa-user-cog"
     aria-hidden="true"></i> show totals</a>
     <script src="{{ url_for('static', filename='js/map_build.js') }}"></script>

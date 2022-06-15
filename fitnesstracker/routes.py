@@ -362,10 +362,14 @@ def landmark_json():
 
 
 # Home page end point
-@app.route("/map/<int:user_id>", methods=["GET", "POST"])
-def map(user_id):
-    data = Users.query.get_or_404(user_id)
+@app.route("/map", methods=["GET", "POST"])
+def map():
+    data = Users.query.get_or_404(session["user"])
+    zones = Users.query.filter(Users.user_id == session["user"]).first()
+    # Change Python Dict to a json object
+    unlocked_status = zones.unlocked_zones
+    json_object = json.dumps(unlocked_status) 
     
-    return render_template("map.html", data=data)
+    return render_template("map.html", data=data, json_object=json_object)
 
 
