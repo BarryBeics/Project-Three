@@ -7,13 +7,12 @@
     {% for user in users%}
     <div class="col-sm-6">
         <div class="card" style="width: 18rem;">
-            
+
             <div class="card-body">
                 <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
                 <p class="card-text">{{ user.access }}</p>
                 <p class="card-text">{{ user.email }}</p>
-                <a href="{{ url_for('edit_user', user_id=user.user_id) }}"
-                    class="btn btn-warning">Edit</a>
+                <a href="{{ url_for('edit_user', user_id=user.user_id) }}" class="btn btn-warning">Edit</a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                     data-bs-target="#modal-{{ user.user_id }}"> Delete </button>
 
@@ -40,17 +39,9 @@
             </div>
         </div>
     </div>
+
     {% endfor %}
 </div>
 
 
-<div class="d-flex justify-content-center">
-   
-    <a href="{{ url_for('add_landmark') }}" class="btn btn-warning btn-lg">
-        Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
-    </a>
-    <a href="{{ url_for('landmark_json') }}" class="btn btn-secondary btn-lg">
-        Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
-    </a>
-</div>
 {% endblock %}

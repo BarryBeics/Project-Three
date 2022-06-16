@@ -167,6 +167,7 @@ console.log(obj);
       const landmark_data = await response.json();
       console.log(landmark_data);
     
+      // Loop JSON to get landmark data
       for (item of landmark_data) {
         const marker = L.marker([item.latitude, item.longitude], { icon: icon_landmark }).addTo(map);
         let txt = '';

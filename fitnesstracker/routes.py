@@ -6,12 +6,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import math, json
 
 
-# Home page end point
+# Home page 
 @app.route("/")
 def home():
     return render_template("map.html")
 
-# Register
+
+# Register - Users CREATE
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -68,7 +69,7 @@ def login():
     return render_template("login.html")
 
 
-
+# Profile
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     
@@ -104,6 +105,7 @@ def profile():
     return redirect(url_for("login"))
   
 
+# Logout
 @app.route("/logout")
 def logout():
     # remove user from session cookie
@@ -112,6 +114,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# Activity CREATE
 @app.route("/post_activity", methods=["GET", "POST"])
 def post_activity():
     if request.method == "POST":
@@ -128,19 +131,38 @@ def post_activity():
     return render_template("post_activity.html")
 
 
+# Activity RETRIEVE
 @app.route("/view_activity")
 def view_activity():
-    activities = Activity_log.query.filter_by(user_id=session["user"]).all()
+    activities = Activity_log.query.filter(Activity_log.user_id == session["user"]).order_by(Activity_log.date).all()
+    
     return render_template("view_activity.html", activities=activities)
 
 
-# landmarks list
-@app.route("/landmarks")
-def landmarks():
-    landmarks = list(Map_data.query.order_by(Map_data.landmark_name).all())
-    return render_template("landmarks.html", landmarks=landmarks)
+# Activity UPDATE
+@app.route("/edit_activity/<int:entry_id>", methods=["GET", "POST"])
+def edit_activity(entry_id):
+    activity = Activity_log.query.get_or_404(entry_id)
+    if request.method == "POST":
+        activity.distance=request.form.get("distance")
+        activity.activity_type=request.form.get("activity_type")
+        activity.commute=request.form.get('commute') == 'on'
 
-# Landmarks Add New
+        db.session.commit()
+        return redirect(url_for("view_activity"))
+    return render_template("edit_activity.html", activity=activity)
+
+
+# Activity DELETE
+@app.route("/delete_activity/<int:entry_id>")
+def delete_activity(entry_id):
+    activity = Activity_log.query.get_or_404(entry_id)
+    db.session.delete(activity)
+    db.session.commit()
+    return redirect(url_for("view_activity"))
+
+
+# Landmarks CREATE
 @app.route("/add_landmark", methods=["GET", "POST"])
 def add_landmark():
     if request.method == "POST":
@@ -160,7 +182,14 @@ def add_landmark():
     return render_template("add_landmark.html")
 
 
-# Landmark Edit
+# Landmarks RETRIEVE
+@app.route("/landmarks")
+def landmarks():
+    landmarks = list(Map_data.query.order_by(Map_data.landmark_name).all())
+    return render_template("landmarks.html", landmarks=landmarks)
+
+
+# Landmark UPDATE
 @app.route("/edit_landmark/<int:landmark_id>", methods=["GET", "POST"])
 def edit_landmark(landmark_id):
     landmark = Map_data.query.get_or_404(landmark_id)
@@ -178,8 +207,7 @@ def edit_landmark(landmark_id):
     return render_template("edit_landmark.html", landmark=landmark)
 
 
-
-# Landmark Delete
+# Landmark DELETE
 @app.route("/delete_landmark/<int:landmark_id>")
 def delete_landmark(landmark_id):
     landmark = Map_data.query.get_or_404(landmark_id)
@@ -188,7 +216,7 @@ def delete_landmark(landmark_id):
     return redirect(url_for("landmarks"))
 
 
-# Register a new group
+# Register a new group CREATE
 @app.route("/register_group", methods=["GET", "POST"])
 def register_group():
     if request.method == "POST":
@@ -212,7 +240,7 @@ def register_group():
     return render_template("register_group.html")
 
 
-# Setting Edit
+# Settings UPDATE
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
     settings = Users.query.get_or_404(session["user"])
@@ -227,7 +255,7 @@ def settings():
     return render_template("settings.html", settings=settings)
 
 
-# comments
+# Comments RETRIEVE & CREATE
 @app.route("/chat", methods=["GET", "POST"])
 def chat():
     group = Users.query.filter_by(user_id=session["user"]).all()
@@ -247,10 +275,15 @@ def chat():
         return redirect(url_for("chat"))
     return render_template("chat.html", comments=comments)
 
+
+#Edit Comments
+#Delete comments
+
     
 # get sum of distance traveled
 @app.route("/map_link", methods=["GET"])
 def map_link():
+    # Check is this is a new user with no activity posted
     is_new = Activity_log.query.filter_by(user_id=session["user"]).count()
     print(is_new)
     if is_new == 0:
@@ -270,7 +303,6 @@ def map_link():
     laps_calc = total_distance[0] / lap_distance
     laps = math.floor(laps_calc)
 
-    
     # load the JSON files containing the map reference data 
     landmarks = json.load(open("fitnesstracker/static/JSON/map_landmarks.json"))
     zones = json.load(open("fitnesstracker/static/JSON/map_zones.json"))
@@ -296,9 +328,10 @@ def map_link():
     return render_template("map_link.html", update=update)
 
 
+# Build User JSON
 @app.route("/user_json")
 def user_json():
-    #identify all the users who share the same group as the session user in order to retrieve only their data
+    # identify all the users who share the same group as the session user in order to retrieve only their data
     group = Users.query.filter_by(user_id=session["user"]).all()
     group_name=group[0].group_name
     count = Users.query.filter_by(group_name=group_name).count()
@@ -329,6 +362,7 @@ def user_json():
     return render_template("user_json.html")
 
 
+# Build Landmark JSON
 @app.route("/landmark_json")
 def landmark_json():
     map_data = Map_data.query.all()
@@ -360,7 +394,7 @@ def landmark_json():
     return render_template("landmark_json.html")
 
 
-# Home page end point
+# Map view
 @app.route("/map", methods=["GET", "POST"])
 def map():
     data = Users.query.get_or_404(session["user"])
@@ -372,6 +406,7 @@ def map():
     return render_template("map.html", data=data, json_object=json_object)
 
 
+# Admin
 @app.route("/admin")
 def admin():
     access = Users.query.filter(Users.user_id == session["user"]).first()
@@ -380,23 +415,14 @@ def admin():
     return render_template("admin.html", access=access)
 
 
-# users list
+# Users RETIREVE
 @app.route("/users")
 def users():
     users = list(Users.query.order_by(Users.first_name).all())
     return render_template("users.html", users=users)
 
 
-# Users Delete
-@app.route("/delete_user/<int:user_id>")
-def delete_user(user_id):
-    user = Users.query.get_or_404(user_id)
-    db.session.delete(user)
-    db.session.commit()
-    return redirect(url_for("users"))
-
-
-# Users Edit
+# Users UPDATE
 @app.route("/edit_user/<int:user_id>", methods=["GET", "POST"])
 def edit_user(user_id):
     user = Users.query.get_or_404(user_id)
@@ -408,3 +434,12 @@ def edit_user(user_id):
         db.session.commit()
         return redirect(url_for("users"))
     return render_template("edit_user.html", user=user)
+
+
+# Users DELETE
+@app.route("/delete_user/<int:user_id>")
+def delete_user(user_id):
+    user = Users.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for("users"))

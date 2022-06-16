@@ -18,7 +18,9 @@
   <header>
     <nav class="navbar navbar-light bg-warning fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"> <h2>Community Fitness</h2></a>
+        <a class="navbar-brand" href="#">
+          <h2>Community Fitness</h2>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -31,31 +33,32 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                  <!-- Only visable to logged IN users -->
-                  {% if session.user %}
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fa fa-globe"
-                            aria-hidden="true"></i> Map View </a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i class="fa fa-list-ul" aria-hidden="true"></i>
-                          View Activity</a>
-                        <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-link" aria-hidden="true"></i>
-                          Connections</a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('post_activity') }}"> <i class="fa-solid fa-plus"
-                            aria-hidden="true"></i> Post Manually</a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('settings') }}"> <i class="fa-solid fa-user-gear"
-                            aria-hidden="true"></i> Settings</a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('register_group') }}"> <i class="fa fa-people-group"
-                            aria-hidden="true"></i> Create a Group</a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i class="fas fa-gear" 
-                            aria-hidden="true"></i> Admin</a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}"> <i class="fas fa-power-off"
-                            aria-hidden="true"></i> Log Out</a>
-                    {% else %}
-                            <!-- Only visable to logged OUT users -->
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}"> <i class="fas fa-user-cog"
-                              aria-hidden="true"></i> Log In</a>
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i class="fas fa-power-off"
-                            aria-hidden="true"></i> Register</a>
-                    {% endif %}
+                <!-- Only visable to logged IN users -->
+                {% if session.user %}
+                <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fa fa-globe"
+                    aria-hidden="true"></i> Map View </a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i
+                    class="fa fa-list-ul" aria-hidden="true"></i>
+                  View Activity</a>
+                <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-link" aria-hidden="true"></i>
+                  Connections</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('post_activity') }}"> <i
+                    class="fa-solid fa-plus" aria-hidden="true"></i> Post Manually</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('settings') }}"> <i
+                    class="fa-solid fa-user-gear" aria-hidden="true"></i> Settings</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('register_group') }}"> <i
+                    class="fa fa-people-group" aria-hidden="true"></i> Create a Group</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i class="fas fa-gear"
+                    aria-hidden="true"></i> Admin</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}"> <i
+                    class="fas fa-power-off" aria-hidden="true"></i> Log Out</a>
+                {% else %}
+                <!-- Only visable to logged OUT users -->
+                <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}"> <i class="fas fa-user-cog"
+                    aria-hidden="true"></i> Log In</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i
+                    class="fas fa-power-off" aria-hidden="true"></i> Register</a>
+                {% endif %}
               </li>
 
             </ul>
@@ -68,18 +71,19 @@
   <section class="flash">
     <!-- Display flash message here -->
     {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages%}
-          <div class="row flashes">
-            <h4>{{ message }}</h4>
-          </div>
-        {% endfor %}
-      {% endif %}
+    {% if messages %}
+    {% for message in messages%}
+    <div class="row flashes">
+      <h4>{{ message }}</h4>
+    </div>
+    {% endfor %}
+    {% endif %}
   </section>
   <section class="container-fluid main">
+    <!-- Get content for various page here -->
     {% block content %}
     {% endblock %}
-  {% endwith %}
+    {% endwith %}
   </section>
   <footer class="footer">
     <div class="container">
@@ -94,7 +98,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  
+
 </body>
 
 </html>

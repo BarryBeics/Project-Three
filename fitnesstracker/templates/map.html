@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 <!-- get leaflet JS to build map -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" crossorigin=""></script>
@@ -11,14 +12,12 @@
                     aria-hidden="true"></i><span>Leaderboard</span></a>
         </li>
         <li class="col-4-xs list-inline-item main-menuitem">
-            <a href="" class="hvr-push"><i class="fas fa-bell"
-                    aria-hidden="true"></i>
+            <a href="" class="hvr-push"><i class="fas fa-bell" aria-hidden="true"></i>
                 <div><span>Notifications</span></div>
             </a>
         </li>
         <li class="col-4-xs  list-inline-item main-menuitem">
-            <a href="{{ url_for('chat') }}" class="hvr-push"><i class="fas fa-comment-dots"
-                    aria-hidden="true"></i>
+            <a href="{{ url_for('chat') }}" class="hvr-push"><i class="fas fa-comment-dots" aria-hidden="true"></i>
                 <div><span>Comments</span></div>
             </a>
         </li>
@@ -27,16 +26,14 @@
 <div id="map"></div>
 
 
-
-
-<span class="text-muted">Leaflet js map goes here. </span>
 <script>
-    var unlocked = {{ json_object|tojson }}
+    var unlocked = {
+        {
+            json_object | tojson
+        }
+    }
 </script>
-<a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fas fa-user-cog"
-    aria-hidden="true"></i> show totals</a>
-    <script src="{{ url_for('static', filename='js/map_build.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/map_build.js') }}"></script>
 
 {% endblock %}
-
-

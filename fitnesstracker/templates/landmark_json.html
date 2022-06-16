@@ -1,22 +1,22 @@
 {% extends "base.html" %}
-{% block content %}    
+{% block content %}
 
 <div class="container form-box d-flex justify-content-center">
     <div class="row">
         <div class="col">
             <h3>Gathering Landmark Data</h3>
-    
+
             <div class="loader"></div>
-    
+
         </div>
     </div>
 </div>
-<!-- Now the data loaded redirect to landmark_json.php -->
+<!-- Now the data has loaded redirect to landmarks -->
 <script type="text/javascript">
-    setTimeout(function() {
+    setTimeout(function () {
         window.location.href = "{{ url_for('landmarks') }}";
-    },2500);
-  </script>
+    }, 1500);
+</script>
 
 
 {% endblock %}

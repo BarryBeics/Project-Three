@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h3 class="d-flex justify-content-center">Edit Activity</h3>
+
+<div class="row card">
+    <form method="POST" action="{{ url_for('edit_activity', entry_id=activity.entry_id) }}">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <!-- distance -->
+                <div class="mb-3">
+                    <label for="distance">Distance</label>
+                    <input type="number" name="distance" min="2" max="100" step="0.1" class="form-control" id="distance"  value="{{ activity.distance }}" 
+                        aria-describedby="distance" required>
+
+                </div>
+                <!-- activity type -->
+                <div class="mb-3">
+                    <label for="activity_type">Activity Type</label>
+                    <input type="radio" id="run" name="activity_type" value="Run">
+                    <label for="run">Run</label><br>
+                    <input type="radio" id="walk" name="activity_type" value="Walk">
+                    <label for="walk">Walk</label><br>
+                    <input type="radio" id="ride" name="activity_type" value="Ride">
+                    <label for="ride">Ride</label>
+                </div>
+                <!-- commute? -->
+                <div class="mb-3">
+                    <label for="commute"> Was this a Commute?</label>
+                    <input type="checkbox" id="yes" name="commute" value="{{ activity.commute }}"> 
+                    <label for="yes">Yes</label><br>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-warning">Edit<i class="fa-solid fa-sign-in-alt"
+                        aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

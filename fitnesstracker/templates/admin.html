@@ -2,24 +2,24 @@
 {% block content %}
 
 
+<div class="container form-box d-flex justify-content-center">
+    <div class="row">
+        <div class="col">
+            <h3>Admin Panel</h3>
 
-    <div class="container form-box d-flex justify-content-center">
-        <div class="row">
-            <div class="col">
-                <h3>Admin Panel</h3>
-        
-                You have access {{ access.access }}
-                {% if access.access == 'on' %}
-                <a href="{{ url_for('landmarks') }}" class="btn btn-warning btn-lg">
-                    Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
-                </a>
-                <a href="{{ url_for('users') }}" class="btn btn-secondary btn-lg">
-                    Manage Users <i class="fas fa-user" aria-hidden="true"></i>
-                </a>
-                {% endif %}
-            </div>
+            You have access {{ access.access }}
+            <!-- Hide buttons for non admin users -->
+            {% if access.access == 'on' %}
+            <a href="{{ url_for('landmarks') }}" class="btn btn-warning btn-lg">
+                Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
+            </a>
+            <a href="{{ url_for('users') }}" class="btn btn-secondary btn-lg">
+                Manage Users <i class="fas fa-user" aria-hidden="true"></i>
+            </a>
+            {% endif %}
         </div>
     </div>
+</div>
 
 
 

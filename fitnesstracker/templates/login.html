@@ -5,36 +5,37 @@
 <div class="container form-box d-flex justify-content-center">
     <div class="row">
         <div class="col">
-        <h3>Log In</h3>
+            <h3>Log In</h3>
 
-        <form class="col-md-auto" method="POST" action="{{ url_for('login') }}">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <!-- email -->
-                    <div class="mb-3">
-                        <i class="fa-solid fa-at" aria-hidden="true"></i>
-                        <label for="email" class="form-label">Email address</label>
-                        <input id="email" name="email" type="email" class="form-control" required>
+            <form class="col-md-auto" method="POST" action="{{ url_for('login') }}">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <!-- email -->
+                        <div class="mb-3">
+                            <i class="fa-solid fa-at" aria-hidden="true"></i>
+                            <label for="email" class="form-label">Email address</label>
+                            <input id="email" name="email" type="email" class="form-control" required>
+                        </div>
+                        <!-- password -->
+                        <div class="mb-3">
+                            <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" minlength="5" maxlength="15" attern="^[a-zA-Z0-9]{5,15}$"
+                                name="password" class="form-control" id="password" required>
+                        </div>
+                        <!-- login -->
+                        <button type="submit" class="btn btn-warning">Login<i class="fa-solid fa-sign-in-alt"
+                                aria-hidden="true"></i></button>
                     </div>
-                    <!-- password -->
-                    <div class="mb-3">
-                        <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" minlength="5" maxlength="15" attern="^[a-zA-Z0-9]{5,15}$" name="password" class="form-control" id="password" required>
-                    </div>
-                    <!-- login -->
-                    <button type="submit" class="btn btn-warning">Login<i class="fa-solid fa-sign-in-alt"
-                            aria-hidden="true"></i></button>
                 </div>
-            </div>
-        </form>
+            </form>
 
-        <p class="center-align">
-            New here? <a href="{{ url_for('register') }}" >Register Account</a>
-        </p>
+            <p class="center-align">
+                New here? <a href="{{ url_for('register') }}">Register Account</a>
+            </p>
 
+        </div>
     </div>
-</div>
 </div>
 
 

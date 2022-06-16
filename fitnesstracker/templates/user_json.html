@@ -1,22 +1,22 @@
 {% extends "base.html" %}
-{% block content %}    
+{% block content %}
 
 <div class="container form-box d-flex justify-content-center">
     <div class="row">
         <div class="col">
             <h3>Gathering User Data</h3>
-    
+
             <div class="loader"></div>
-    
+
         </div>
     </div>
 </div>
-<!-- Now the data loaded redirect to build_user_json.php -->
+<!-- Now the data has loaded redirect to the map -->
 <script type="text/javascript">
-    setTimeout(function() {
+    setTimeout(function () {
         window.location.href = "{{ url_for('map') }}";
-    },500);
-  </script>
+    }, 500);
+</script>
 
 
 {% endblock %}

@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
- 
+
 
 <h3 class="d-flex justify-content-center">Edit User</h3>
- <!-- Card Example -->
 
-  <div class="row card">
+<div class="row card">
     <form method="POST" action="{{ url_for('edit_user', user_id=user.user_id) }}">
         <!-- Access -->
 
@@ -17,21 +16,22 @@
 
         <!-- Longitude -->
         <div class="mb-3">
-            <input id="longitude" name="longitude" value="{{ user.longitude }}" type="text" class="form-control" required>
+            <input id="longitude" name="longitude" value="{{ user.longitude }}" type="text" class="form-control"
+                required>
             <label for="longitude" class="form-label">longitude:</label>
         </div>
-         <!-- Latitude -->
-         <div class="mb-3">
+        <!-- Latitude -->
+        <div class="mb-3">
             <input id="latitude" name="latitude" value="{{ user.latitude }}" type="text" class="form-control" required>
             <label for="latitude" class="form-label">Latitude:</label>
         </div>
-         <!-- Submit Button -->
+        <!-- Submit Button -->
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-warning">
                 Edit User <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </button>
         </div>
-      </form>
-  </div>
+    </form>
+</div>
 
 {% endblock %}
