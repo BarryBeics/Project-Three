@@ -249,7 +249,6 @@ def settings():
         settings.icon_num = request.form.get("icon_num")
         settings.email = request.form.get("email")
         settings.group_name = request.form.get("group_name")
-        
         db.session.commit()
         flash("Edits have been saved")
     return render_template("settings.html", settings=settings)
@@ -281,8 +280,24 @@ def chat():
     return render_template("chat.html", get_chat=get_chat)
 
 
-#Edit Comments
-#Delete comments
+#Comments UPDATE
+@app.route("/edit_comment/<int:comment_id>", methods=["GET", "POST"])
+def edit_comment(comment_id):
+    comment = Chat_log.query.get_or_404(comment_id)
+    if request.method == "POST":
+        comment.comment = request.form.get("comment")
+        db.session.commit()
+        return redirect(url_for("chat"))
+    return render_template("edit_comment.html", comment=comment)
+
+
+# Comments DELETE
+@app.route("/delete_comment/<int:comment_id>")
+def delete_comment(comment_id):
+    comment = Chat_log.query.get_or_404(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for("chat"))
 
     
 # get sum of distance traveled
