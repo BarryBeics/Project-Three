@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h3 class="d-flex justify-content-center">Manage Users</h3>
+<div class="row">
+    {% for user in users%}
+    <div class="col-sm-6">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ user.first_name }}</h5>
+                <p class="card-text">{{ user.last_name }}</p>
+                <p class="card-text">{{ user.email }}</p>
+                <a href=""
+                    class="btn btn-warning">Edit</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#modal-{{ user.user_id }}"> Delete </button>
+
+                <!-- Confirmation Modal -->
+                <div class="modal" id="modal-{{ user.user_id }}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Are you sure you want to delete this user?</h4>
+                                <p>This action cannot be undone!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                <a href="{{ url_for('delete_user', user_id=user.user_id) }}"
+                                    class="btn btn-success">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="d-flex justify-content-center">
+   
+    <a href="{{ url_for('add_landmark') }}" class="btn btn-warning btn-lg">
+        Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    </a>
+    <a href="{{ url_for('landmark_json') }}" class="btn btn-secondary btn-lg">
+        Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
+    </a>
+</div>
+{% endblock %}

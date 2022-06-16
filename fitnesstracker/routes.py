@@ -131,7 +131,6 @@ def post_activity():
 @app.route("/view_activity")
 def view_activity():
     activities = Activity_log.query.filter_by(user_id=session["user"]).all()
-    #access = Users.query.filter_by(user_id=session["user"]).all()
     return render_template("view_activity.html", activities=activities)
 
 
@@ -373,3 +372,25 @@ def map():
     return render_template("map.html", data=data, json_object=json_object)
 
 
+@app.route("/admin")
+def admin():
+    access = Users.query.filter(Users.user_id == session["user"]).first()
+    flash(access.access)
+
+    return render_template("admin.html", access=access)
+
+
+# users list
+@app.route("/users")
+def users():
+    users = list(Users.query.order_by(Users.first_name).all())
+    return render_template("users.html", users=users)
+
+
+# Users Delete
+@app.route("/delete_user/<int:user_id>")
+def delete_user(user_id):
+    user = Users.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for("users"))
