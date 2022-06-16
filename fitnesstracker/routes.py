@@ -217,9 +217,9 @@ def register_group():
 def settings():
     settings = Users.query.get_or_404(session["user"])
     if request.method == "POST":
-        settings.icon_url = request.form.get("icon_url"),
-        settings.icon_num = request.form.get("icon_num"),
-        settings.email = request.form.get("email"),
+        settings.icon_url = request.form.get("icon_url")
+        settings.icon_num = request.form.get("icon_num")
+        settings.email = request.form.get("email")
         settings.group_name = request.form.get("group_name")
         
         db.session.commit()
@@ -394,3 +394,17 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for("users"))
+
+
+# Users Edit
+@app.route("/edit_user/<int:user_id>", methods=["GET", "POST"])
+def edit_user(user_id):
+    user = Users.query.get_or_404(user_id)
+    if request.method == "POST":
+        user.access = request.form.get("access")
+        user.longitude=request.form.get("longitude")
+        user.latitude=request.form.get("latitude")
+
+        db.session.commit()
+        return redirect(url_for("users"))
+    return render_template("edit_user.html", user=user)

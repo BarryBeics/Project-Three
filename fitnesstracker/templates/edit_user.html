@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+
+<h3 class="d-flex justify-content-center">Edit User</h3>
+ <!-- Card Example -->
+
+  <div class="row card">
+    <form method="POST" action="{{ url_for('edit_user', user_id=user.user_id) }}">
+        <!-- Access -->
+
+        <div class="mb-3">
+            <label for="access"> Does this user have admin access?</label>
+            <input type="checkbox" id="yes" name="access">
+            <label for="yes">Yes</label><br>
+        </div>
+
+        <!-- Longitude -->
+        <div class="mb-3">
+            <input id="longitude" name="longitude" value="{{ user.longitude }}" type="text" class="form-control" required>
+            <label for="longitude" class="form-label">longitude:</label>
+        </div>
+         <!-- Latitude -->
+         <div class="mb-3">
+            <input id="latitude" name="latitude" value="{{ user.latitude }}" type="text" class="form-control" required>
+            <label for="latitude" class="form-label">Latitude:</label>
+        </div>
+         <!-- Submit Button -->
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning">
+                Edit User <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+        </div>
+      </form>
+  </div>
+
+{% endblock %}
