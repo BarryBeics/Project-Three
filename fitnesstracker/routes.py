@@ -375,8 +375,8 @@ def map():
 @app.route("/admin")
 def admin():
     access = Users.query.filter(Users.user_id == session["user"]).first()
-    flash(access.access)
-
+    if access.access == 'false':
+        flash('Sorry no Access for you')
     return render_template("admin.html", access=access)
 
 

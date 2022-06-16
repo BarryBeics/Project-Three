@@ -9,21 +9,18 @@
                 <h3>Admin Panel</h3>
         
                 You have access {{ access.access }}
-        
-                
-    
+                {% if access.access == 'on' %}
+                <a href="{{ url_for('landmarks') }}" class="btn btn-warning btn-lg">
+                    Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
+                </a>
+                <a href="{{ url_for('users') }}" class="btn btn-secondary btn-lg">
+                    Manage Users <i class="fas fa-user" aria-hidden="true"></i>
+                </a>
+                {% endif %}
             </div>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center">
-   
-        <a href="{{ url_for('landmarks') }}" class="btn btn-warning btn-lg">
-            Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
-        </a>
-        <a href="{{ url_for('users') }}" class="btn btn-secondary btn-lg">
-            Manage Users <i class="fas fa-user" aria-hidden="true"></i>
-        </a>
-    </div>
+
 
 {% endblock %}
