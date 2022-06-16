@@ -261,8 +261,13 @@ def chat():
     group = Users.query.filter_by(user_id=session["user"]).all()
     group_name=group[0].group_name
     comments = Chat_log.query.filter_by(group_name=group_name).all()
+
+    get_chat = db.session.query(Users, Chat_log).join(Chat_log). \
+        filter(Users.group_name == group_name).all()
+    for users, chat_log in get_chat:
+        print(users.first_name, chat_log.comment, chat_log.date)
+
     if request.method == "POST":
-        # check group name to see if user already exisits in db
         group = Users.query.filter_by(user_id=session["user"]).all()
 
         comment = Chat_log(
@@ -273,7 +278,7 @@ def chat():
         db.session.add(comment)
         db.session.commit()
         return redirect(url_for("chat"))
-    return render_template("chat.html", comments=comments)
+    return render_template("chat.html", get_chat=get_chat)
 
 
 #Edit Comments

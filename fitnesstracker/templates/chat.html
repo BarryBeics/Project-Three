@@ -5,14 +5,14 @@
 <h3 class="center-align light-blue-text text-darken-4">Chat</h3>
 <!-- Loop to Display data for the comments -->
 <div>
-    {% for comment in comments %}
+    {% for users, chat_log in get_chat %}
     <div class="row data-block">
-        <div class="col-6"><span>{{ comment.user_id }}</span></div>
+        <div class="col-6"><span>{{ users.first_name }}</span></div>
         <div class="col-6 data_dark">
-            <p>Date: {{ comment.date }}</p>
+            <p>Date: {{ chat_log.date }}</p>
         </div> <!-- data-dark -->
         <div class="col-12">
-            <p> {{ comment.comment }}</p>
+            <p> {{ chat_log.comment }}</p>
         </div>
     </div> <!-- row -->
 </div> <!-- options-form-item-full -->
