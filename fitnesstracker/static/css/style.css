@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,200&family=Teko:wght@300&display=swap');
 
+
+/* ------------- Site wide  ----------- Font Family */
+
 p {
   font-family: 'Montserrat', sans-serif;
 }
@@ -14,8 +17,56 @@ a,
   font-family: 'Teko', sans-serif;
 }
 
+
+/* ------------- Site wide  ----------- Colours */
+h1,
+h2,
+h3,
+a{
+  color: #48515B;
+}
+
+
 .panel.label {
   color:antiquewhite;
+}
+
+.header {
+  background: rgb(253,187,45);
+  background: linear-gradient(0deg, rgba(253,187,45,1) 39%, rgba(244,242,240,1) 100%);
+ }
+
+ .card {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.main-menuitem a,
+.main-menuitem a i,
+body {
+   color: #48515B;
+}
+
+.selected:before,
+.link-text i:hover {
+   color: #FDDA0D;
+}
+
+.hvr-underline-from-center:before,
+.radio-toolbar label:hover {
+   background-color: #FDDA0D;
+}
+
+.popover-header {
+   background-color: #FDDA0D;
+}
+
+
+.data_dark p {
+  color: #859583;
+}
+
+.data-block {
+  border: solid 1px #197b7b;
 }
 
 /* Sticky footer styles
@@ -25,12 +76,7 @@ html {
     min-height: 100%;
 }
 
-h1,
-h2,
-h3,
-a{
-  color: #48515B;
-}
+
 
 .subtle a{
   text-decoration: none;
@@ -45,10 +91,7 @@ a{
     margin-bottom: 60px; /* Margin bottom by footer height */ 
  }
 
- .header {
-  background: rgb(253,187,45);
-  background: linear-gradient(0deg, rgba(253,187,45,1) 39%, rgba(244,242,240,1) 100%);
- }
+
 
   .footer {
     position: absolute;
@@ -85,9 +128,7 @@ a{
   height: 500px;
 }
 
-.card {
-  background-color: rgba(0, 0, 0, 0.5);
-}
+
 
 
 /* ------------- Internal navigation -----*/
@@ -129,35 +170,6 @@ ol, ul {
 }
 .main-menuitem a {
   text-decoration: none;
-}
-
-.main-menuitem a,
-.main-menuitem a i,
-body {
-   color: #48515B;
-}
-
-.selected:before,
-.link-text i:hover {
-   color: #FDDA0D;
-}
-
-.hvr-underline-from-center:before,
-.radio-toolbar label:hover {
-   background-color: #FDDA0D;
-}
-
-.popover-header {
-   background-color: #FDDA0D;
-}
-
-
-.data_dark p {
-  color: #859583;
-}
-
-.data-block {
-  border: solid 1px #197b7b;
 }
 
 /* ------------- CSS for loader -----*/
