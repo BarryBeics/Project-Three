@@ -8,23 +8,23 @@
     <form method="POST" action="{{ url_for('settings', user_id=session['user']) }}">
         <!-- Icon Url -->
         <div class="mb-3">
-            <input id="icon_url" name="icon_url" value="{{ settings.icon_url }}" minlength="3" maxlength="25" type="text" class="form-control" required>
             <label for="icon_url" class="form-label">Icon Url:</label>
+            <input id="icon_url" name="icon_url" value="{{ settings.icon_url }}" minlength="3" maxlength="25" type="text" class="form-control" required>
         </div>
         <!-- Icon Num -->
         <div class="mb-3">
-            <input id="icon_num" name="icon_num" value="{{ settings.icon_num }}" minlength="1" maxlength="2" type="number" class="form-control" >
             <label for="icon_num" class="form-label">Icon Num:</label>
+            <input id="icon_num" name="icon_num" value="{{ settings.icon_num }}" minlength="1" maxlength="2" type="number" class="form-control" >
         </div>
         <!-- Email -->
         <div class="mb-3">
-            <input id="email" name="email" value="{{ settings.email }}" minlength="1" maxlength="3" type="text" class="form-control" required>
             <label for="email" class="form-label">Email:</label>
+            <input id="email" name="email" value="{{ settings.email }}" minlength="1" maxlength="3" type="text" class="form-control" required>
         </div>
         <!-- Group Name -->
         <div class="mb-3">
-            <input id="group_name" name="group_name" value="{{ settings.group_name }}" type="text" class="form-control" required>
             <label for="group_name" class="form-label">Group Name:</label>
+            <input id="group_name" name="group_name" value="{{ settings.group_name }}" type="text" class="form-control" required>
         </div>
          
          <!-- Submit Button -->

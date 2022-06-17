@@ -7,13 +7,14 @@
     <div class="row">
         <hr>
         <div class="col-6"><span>{{ users.first_name }}</span></div>
-        <div class="col-6 data_dark">
-            <p>Date: {{ chat_log.date }}</p>
-        </div> 
+       
         <div class="col-12">
             <p> {{ chat_log.comment }}</p>
         </div>
-        <div class="col-3">
+        <div class="col-6 data_dark">
+            <p>Date: {{ chat_log.date }}</p>
+        </div> 
+        <div class="col-3 subtle">
             <!-- Hide buttons for non admin users -->
             {% if users.user_id == session["user"] %}
             <a href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}" >Edit</a>

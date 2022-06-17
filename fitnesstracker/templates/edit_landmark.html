@@ -9,45 +9,45 @@
     <form method="POST" action="{{ url_for('edit_landmark', landmark_id=landmark.landmark_id) }}">
         <!-- Landmark Name -->
         <div class="mb-3">
+            <label for="landmark_name" class="form-label">Landmark Name:</label>
             <input id="landmark_name" name="landmark_name" value="{{ landmark.landmark_name }}" minlength="3"
                 maxlength="25" type="text" class="form-control" required>
-            <label for="landmark_name" class="form-label">Landmark Name:</label>
         </div>
         <!-- Modal Link -->
         <div class="mb-3">
+            <label for="modal_link" class="form-label">Modal Link:</label>
             <input id="modal_link" name="modal_link" value="{{ landmark.modal_link }}" minlength="1" maxlength="3"
                 type="text" class="form-control" required>
-            <label for="modal_link" class="form-label">Modal Link:</label>
         </div>
         <!-- Main Image -->
         <div class="mb-3">
+            <label for="main_image" class="form-label">Main Image:</label>
             <input id="main_image" name="main_image" value="{{ landmark.main_image }}" type="text" class="form-control"
                 required>
-            <label for="main_image" class="form-label">Main Image:</label>
         </div>
         <!-- Video Link -->
         <div class="mb-3">
+            <label for="video_link" class="form-label">Video Link:</label>
             <input id="video_link" name="video_link" value="{{ landmark.video_link }}" type="text" class="form-control"
                 required>
-            <label for="video_link" class="form-label">Video Link:</label>
         </div>
         <!-- Body Text-->
         <div class="mb-3">
+            <label for="body_text" class="form-label">Body Text:</label>
             <input id="body_text" name="body_text" value="{{ landmark.body_text }}" type="textarea" class="form-control"
                 required>
-            <label for="body_text" class="form-label">Body Text:</label>
         </div>
         <!-- Longitude -->
         <div class="mb-3">
+            <label for="longitude" class="form-label">longitude:</label>
             <input id="longitude" name="longitude" value="{{ landmark.longitude }}" type="text" class="form-control"
                 required>
-            <label for="longitude" class="form-label">longitude:</label>
         </div>
         <!-- Latitude -->
         <div class="mb-3">
+            <label for="latitude" class="form-label">Latitude:</label>
             <input id="latitude" name="latitude" value="{{ landmark.latitude }}" type="text" class="form-control"
                 required>
-            <label for="latitude" class="form-label">Latitude:</label>
         </div>
         <!-- Submit Button -->
         <div class="d-flex justify-content-center">

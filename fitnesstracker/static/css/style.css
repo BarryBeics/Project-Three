@@ -7,9 +7,10 @@ p {
 h1,
 h2,
 h3,
+a,
 .popover-header,
-.main-menuitem span
-.flashes {
+.main-menuitem span,
+.flashes h4 {
   font-family: 'Teko', sans-serif;
 }
 
@@ -24,13 +25,29 @@ html {
     min-height: 100%;
 }
 
+h1,
+h2,
+h3,
+a{
+  color: #48515B;
+}
+
+.subtle a{
+  text-decoration: none;
+}
   body {
     clear: left;
     background: url("../images/runner.png");
     background-size: cover;
     background-position: center;
+    color:rgba(248, 246, 246, 0.8);
     background-repeat: no-repeat;
     margin-bottom: 60px; /* Margin bottom by footer height */ 
+ }
+
+ .header {
+  background: rgb(253,187,45);
+  background: linear-gradient(0deg, rgba(253,187,45,1) 39%, rgba(244,242,240,1) 100%);
  }
 
   .footer {
@@ -44,8 +61,8 @@ html {
 
   .flashes h4 {
     line-height: 2;
-    color: #575050;
-    background-color: whitesmoke;
+    color: #48515B;
+    background-color: rgba(248, 246, 246, 0.8);
   }
 
 .flash {

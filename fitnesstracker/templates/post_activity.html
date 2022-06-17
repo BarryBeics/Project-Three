@@ -7,34 +7,55 @@
         <div class="col">
             <h3>Post An Activity</h3>
 
-            <form class="col-sm-10 col-m-8 center" method="POST" action="{{ url_for('post_activity') }}">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <!-- distance -->
-                        <div class="mb-3">
-                            <label for="distance">Distance</label>
-                            <input type="number" name="distance" min="2" max="100" step="0.1" class="form-control"
-                                id="distance" aria-describedby="distance" required>
+            <form>
+                <!-- distance -->
+                <div class="form-group row">
+                    <label for="distance" class="col-sm-2 col-form-label">Distance</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="distance" min="2" max="100" step="0.1" class="form-control"
+                            id="distance" aria-describedby="distance" required>
+                    </div>
+                </div>
+                <!-- activity type -->
+                <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Activity Type</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="activity_type" id="run" value="Run"
+                                    checked>
+                                <label class="form-check-label" for="run">Run</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="activity_type" id="walk"
+                                    value="Walk">
+                                <label class="form-check-label" for="walk">Walk</label>
+                            </div>
+                            <div class="form-check disabled">
+                                <input class="form-check-input" type="radio" name="activity_type" id="ride"
+                                    value="Ride">
+                                <label class="form-check-label" for="ride">Ride</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
 
+                <!-- commute? -->
+                <div class="form-group row">
+                    <div class="col-sm-2">Was this a Commute?</div>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="yes" name="commute">
+                            <label class="form-check-label" for="yes">
+                                Yes
+                            </label>
                         </div>
-                        <!-- activity type -->
-                        <div class="mb-3">
-                            <label for="activity_type">Activity Type</label>
-                            <input type="radio" id="run" name="activity_type" value="Run">
-                            <label for="run">Run</label><br>
-                            <input type="radio" id="walk" name="activity_type" value="Walk">
-                            <label for="walk">Walk</label><br>
-                            <input type="radio" id="ride" name="activity_type" value="Ride">
-                            <label for="ride">Ride</label>
-                        </div>
-                        <!-- commute? -->
-                        <div class="mb-3">
-                            <label for="commute"> Was this a Commute?</label>
-                            <input type="checkbox" id="yes" name="commute">
-                            <label for="yes">Yes</label><br>
-                        </div>
+                    </div>
+                </div>
 
-                        <!-- Submit -->
+                <!-- Submit -->
+                <div class="form-group row">
+                    <div class="col-sm-10">
                         <button type="submit" class="btn btn-warning">Submit<i class="fa-solid fa-sign-in-alt"
                                 aria-hidden="true"></i></button>
                     </div>
@@ -46,5 +67,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
