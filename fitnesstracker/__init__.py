@@ -22,3 +22,6 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 from fitnesstracker import routes # noqa
+
+db.create_all()
+db.session.commit()
