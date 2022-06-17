@@ -10,10 +10,12 @@
         <div class="col-3"><span>{{ users.first_name }}</span></div>
         <div class="col-3 data_dark">
             <p>Date: {{ chat_log.date }}</p>
-            <a href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}"
-                    class="btn btn-warning btn-sm">Edit</a>
         </div> <!-- data-dark -->
         <div class="col-3">
+            <!-- Hide buttons for non admin users -->
+            {% if users.first_name == 'liam' %}
+            <a href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}"
+                    class="btn btn-warning btn-sm">Edit</a>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                     data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </button>
 
@@ -37,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
         </div>
         <div class="col-12">
             <p> {{ chat_log.comment }}</p>
