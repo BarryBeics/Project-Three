@@ -2,22 +2,23 @@
 {% block content %}
 
 
-<h3 class="center-align light-blue-text text-darken-4">Chat</h3>
+<h3 class="center">Chat</h3>
 <!-- Loop to Display data for the comments -->
 <div>
     {% for users, chat_log in get_chat %}
     <div class="row data-block">
-        <div class="col-3"><span>{{ users.first_name }}</span></div>
-        <div class="col-3 data_dark">
+        <div class="col-6"><span>{{ users.first_name }}</span></div>
+        <div class="col-6 data_dark">
             <p>Date: {{ chat_log.date }}</p>
-        </div> <!-- data-dark -->
+        </div> 
+        <div class="col-12">
+            <p> {{ chat_log.comment }}</p>
+        </div>
         <div class="col-3">
             <!-- Hide buttons for non admin users -->
-            {% if users.first_name == 'liam' %}
-            <a href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}"
-                    class="btn btn-warning btn-sm">Edit</a>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </button>
+            {% if users.user_id == session["user"] %}
+            <a href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}" >Edit</a>
+            <a data-bs-toggle="modal" data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </a>
 
                 <!-- Confirmation Modal -->
                 <div class="modal" id="modal-{{ chat_log.comment_id }}" tabindex="-1">
@@ -41,9 +42,7 @@
                 </div>
                 {% endif %}
         </div>
-        <div class="col-12">
-            <p> {{ chat_log.comment }}</p>
-        </div>
+        
     </div> <!-- row -->
 </div> <!-- options-form-item-full -->
 {% endfor %}
