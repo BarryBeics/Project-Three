@@ -18,11 +18,18 @@ h3,
 html {
     position: relative;
     min-height: 100%;
-  }
+}
+
   body {
+    clear: left;
+    background: url("../images/runner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin-bottom: 60px; /* Margin bottom by footer height */ 
     background-color: #F3F3F4;
-  }
+ }
+
   .footer {
     position: absolute;
     bottom: 0;

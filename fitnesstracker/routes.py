@@ -263,9 +263,7 @@ def chat():
 
     get_chat = db.session.query(Users, Chat_log).join(Chat_log). \
         filter(Users.group_name == group_name).all()
-    for users, chat_log in get_chat:
-        print(users.first_name, chat_log.comment, chat_log.date)
-
+    
     if request.method == "POST":
         group = Users.query.filter_by(user_id=session["user"]).all()
 

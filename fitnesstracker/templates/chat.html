@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-
-
 <h3 class="center">Chat</h3>
 <!-- Loop to Display data for the comments -->
 <div>
     {% for users, chat_log in get_chat %}
-    <div class="row data-block">
+    <div class="row">
+        <hr>
         <div class="col-6"><span>{{ users.first_name }}</span></div>
         <div class="col-6 data_dark">
             <p>Date: {{ chat_log.date }}</p>
