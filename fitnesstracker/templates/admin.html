@@ -9,7 +9,7 @@
 
             You have access {{ access.access }}
             <!-- Hide buttons for non admin users -->
-            {% if access.access == 'on' %}
+            {% if access.access == 'false' %}
             <a href="{{ url_for('landmarks') }}" class="btn btn-warning btn-lg">
                 Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
             </a>
