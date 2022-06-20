@@ -7,7 +7,7 @@
         <div class="col">
             <h3>Post An Activity</h3>
 
-            <form>
+            <form method="POST" action="{{ url_for('post_activity') }}">
                 <!-- distance -->
                 <div class="form-group row">
                     <label for="distance" class="col-sm-2 col-form-label">Distance</label>
