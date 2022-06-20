@@ -22,18 +22,25 @@ a,
 h1,
 h2,
 h3,
-a{
-  color: #48515B;
+a,
+.offcanvas-title,
+p{
+  color: #2e5266;
+}
+
+.offcanvas {
+  background-color: #50A5B1;
 }
 
 
-.panel.label {
-  color:antiquewhite;
+.panel.label,
+.btn-delete {
+  color:#FCFAF9;
 }
 
-.header {
-  background: rgb(253,187,45);
-  background: linear-gradient(0deg, rgba(253,187,45,1) 39%, rgba(244,242,240,1) 100%);
+.header,
+.btn-edit {
+  background: #50A5B1;
  }
 
  .card {
@@ -43,21 +50,22 @@ a{
 .main-menuitem a,
 .main-menuitem a i,
 body {
-   color: #48515B;
+   color: #2e5266;
 }
 
 .selected:before,
-.link-text i:hover {
-   color: #FDDA0D;
+.link-text i:hover,
+.flashes h4 {
+   color: #F0C808;
 }
 
 .hvr-underline-from-center:before,
 .radio-toolbar label:hover {
-   background-color: #FDDA0D;
+   background-color: #F0C808;
 }
 
 .popover-header {
-   background-color: #FDDA0D;
+   background-color: #F0C808;
 }
 
 
@@ -67,6 +75,13 @@ body {
 
 .data-block {
   border: solid 1px #197b7b;
+}
+
+.footer,
+.btn-delete,
+.flashes h4
+{
+background-color: #2e5266;
 }
 
 /* Sticky footer styles
@@ -99,13 +114,10 @@ html {
     width: 100%;
     height: 60px; /* Set the fixed height of the footer here */
     line-height: 60px; /* Vertically center the text there */
-    background-color: #48515B;
   }
 
   .flashes h4 {
     line-height: 2;
-    color: #48515B;
-    background-color: rgba(248, 246, 246, 0.8);
   }
 
 .flash {
@@ -129,7 +141,10 @@ html {
 }
 
 
-
+.btn-delete,
+.btn-edit {
+  text-align:center;
+}
 
 /* ------------- Internal navigation -----*/
 
@@ -175,9 +190,9 @@ ol, ul {
 /* ------------- CSS for loader -----*/
 
 .loader {
-  border: 16px solid #197b7b;
+  border: 16px solid #2e5266;
   border-radius: 50%;
-  border-top: 16px solid #00aaaa;
+  border-top: 16px solid #50A5B1;
   width: 80px;
   height: 80px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
