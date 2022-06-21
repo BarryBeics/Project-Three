@@ -7,30 +7,37 @@
         <div class="col">
             <h3>Admin</h3>
 
-           <p></p> You have access {{ access.access }} </p>
             <!-- Hide buttons for non admin users -->
             {% if access.access == 'on' %}
-            <a href="{{ url_for('landmarks') }}" class="btn btn-warning btn-lg">
-                Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
-            </a>
+            <p>As a site admin you have Privileged access to the following:</p>
+            <hr>
+            
             <a href="{{ url_for('users') }}" class="btn btn-secondary btn-lg">
                 Manage Users <i class="fas fa-user" aria-hidden="true"></i>
             </a>
+            <p>Here you can edit and delete all users.</p>
+
+            <a href="{{ url_for('add_landmark') }}" class="btn btn-warning btn-lg">
+                Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </a>
+            <p>Ensure you have your data ready because every feild is required to create a new landmark.</p>
 
             <a href="{{ url_for('groups') }}" class="btn btn-secondary btn-lg">
                 Manage Group Names <i class="fas fa-user" aria-hidden="true"></i>
             </a>
+            <p>Here you can keep on top of the group names made by the users, you can also edit and delete all group names.</p>
 
-            
+            <a href="{{ url_for('landmarks') }}" class="btn btn-warning btn-lg">
+                Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
+            </a>
 
-                <a href="{{ url_for('add_landmark') }}" class="btn btn-warning btn-lg">
-                    Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                </a>
-                <p>Once you have finished adding landmark data click 'Build Map JSON to make changes apear on the map.</p>
-                <a href="{{ url_for('landmark_json') }}" class="btn btn-secondary btn-lg">
-                    Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
-                </a>
-            
+            <p>Here you can view all landmarks and from there you can edit and delete any of them.</p>
+
+            <a href="{{ url_for('landmark_json') }}" class="btn btn-secondary btn-lg">
+                Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
+            </a>
+            <p>Once you have finished adding landmark data click 'Build Map JSON to make changes apear on the map.</p>
+
             {% endif %}
         </div>
     </div>

@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="d-flex justify-content-center">Add Landmarks</h3>
+<div class="row">
+    <div class="col-2 link-text"><a href="{{ url_for('admin') }}"><i class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i>
+    </a> </div>
+    <div class="col-10"><h3 class="d-flex justify-content-center">Add Landmark</h3> </div>
+</div>
 
 <div class="row card">
     <form method="POST" action="{{ url_for('add_landmark') }}">
@@ -34,12 +38,12 @@
         </div>
         <!-- Longitude -->
         <div class="mb-3">
-            <input id="longitude" name="longitude" type="text" class="form-control" required>
+            <input id="longitude" name="longitude" type="number" step="any" class="form-control" required>
             <label for="longitude" class="form-label">longitude:</label>
         </div>
         <!-- Latitude -->
         <div class="mb-3">
-            <input id="latitude" name="latitude" type="text" class="form-control" required>
+            <input id="latitude" name="latitude" type="number" step="any" class="form-control" required>
             <label for="latitude" class="form-label">Latitude:</label>
         </div>
         <!-- Submit Button -->
