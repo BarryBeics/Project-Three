@@ -28,6 +28,10 @@ def admin_access(func):
 
     return secure_function
 
+# date filter
+@app.template_filter('datetimeformat')
+def datetimeformat(value, format='%B %d, %Y'):
+    return value.strftime(format)
 
 # Home page 
 @app.route("/")
@@ -338,6 +342,7 @@ def settings():
 @login_required
 def chat():
     group = Users.query.filter_by(user_id=session["user"]).all()
+    # Get the group name this user is part of
     group_name=group[0].group_name
     comments = Chat_log.query.filter_by(group_name=group_name).all()
 
@@ -432,7 +437,6 @@ def map_link():
 # Build User JSON
 @app.route("/user_json")
 @login_required
-@admin_access
 def user_json():
     # identify all the users who share the same group as the session user in order to retrieve only their data
     group = Users.query.filter_by(user_id=session["user"]).all()
@@ -468,7 +472,6 @@ def user_json():
 # Build Landmark JSON
 @app.route("/landmark_json")
 @login_required
-@admin_access
 def landmark_json():
     map_data = Map_data.query.all()
     count = Map_data.query.count()

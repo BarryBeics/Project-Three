@@ -16,7 +16,7 @@
     <hr>
     <div class="col-3 col-md-3 "><p>{{ activity.distance }}</p></div>
     <div class="col-3 col-md-3 "><p>{{ activity.activity_type }}</p></div>
-    <div class="col-3 col-md-3 "><p>{{ activity.date }}</p></div>
+    <div class="col-3 col-md-3 "><p>{{ activity.date|datetimeformat }}</p></div>
     <div class="col-1 col-md-1 d-none d-md-block "><p>{{ activity.commute }}</p></div>
     <div class="col-1 col-md-1 d-none d-sm-block"><a href="{{ url_for('edit_activity', entry_id=activity.entry_id) }}"
         class="btn btn-edit btn-sm">Edit</a></div>
