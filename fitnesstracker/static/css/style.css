@@ -52,7 +52,8 @@ label, .fa-user:before {
 .main-menuitem a,
 .main-menuitem a i,
 body,
-hr {
+hr,
+a:not([href]):not([class]) {
    color: #2e5266;
 }
 
@@ -130,7 +131,7 @@ a,
 
 .main {
   margin-top: 20px;
-  padding: 50px;
+  padding: 30px;
   background-color: rgba(248, 246, 246, 0.8);
 }
 
@@ -208,3 +209,10 @@ ol, ul {
 }
 
 /* ------------- Internal navigation -----*/
+
+
+
+
+.comment {
+  padding: 12px;
+}
