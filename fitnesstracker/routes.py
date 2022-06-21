@@ -326,8 +326,6 @@ def delete_group(group_id):
 def settings():
     settings = Users.query.get_or_404(session["user"])
     if request.method == "POST":
-        settings.icon_url = request.form.get("icon_url")
-        settings.icon_num = request.form.get("icon_num")
         settings.email = request.form.get("email")
         settings.group_name = request.form.get("group_name")
         db.session.commit()

@@ -6,20 +6,10 @@
 
   <div class="row card">
     <form method="POST" action="{{ url_for('settings', user_id=session['user']) }}">
-        <!-- Icon Url -->
-        <div class="mb-3">
-            <label for="icon_url" class="form-label">Icon Url:</label>
-            <input id="icon_url" name="icon_url" value="{{ settings.icon_url }}" minlength="3" maxlength="25" type="text" class="form-control" required>
-        </div>
-        <!-- Icon Num -->
-        <div class="mb-3">
-            <label for="icon_num" class="form-label">Icon Num:</label>
-            <input id="icon_num" name="icon_num" value="{{ settings.icon_num }}" minlength="1" maxlength="2" type="number" class="form-control" >
-        </div>
         <!-- Email -->
         <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input id="email" name="email" value="{{ settings.email }}" minlength="1" maxlength="3" type="text" class="form-control" required>
+            <label for="email" class="form-label">Email Address:</label>
+            <input id="email" name="email" value="{{ settings.email }}" minlength="8" maxlength="50" type="email" class="form-control" required>
         </div>
         <!-- Group Name -->
         <div class="mb-3">
@@ -39,8 +29,8 @@
 
   <div class="row subtle">
     
-    <div class="btn btn-danger"><a data-bs-toggle="modal"
-        data-bs-target="#modal-{{  session['user'] }}"> Delete </a></div>
+    <div><button data-bs-toggle="modal" class="btn btn-danger"
+        data-bs-target="#modal-{{  session['user'] }}"> Delete </button></div>
 </div>
 
                 <!-- Confirmation Modal -->
@@ -55,11 +45,12 @@
                                 <h4>Are you sure you want to delete your account?</h4>
                                 <p>All data will be deleted with this action!</p>
                                 <p>This action cannot be undone!</p>
+                                <h2>DO YOU UNDERSTAND?</h2>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <a href="{{ url_for('delete_self',  user_id=session['user']) }}"
-                                    class="btn btn-success">Yes</a>
+                                    class="btn btn-danger">Yes, Delete my account! </a>
                             </div>
                         </div>
                     </div>
