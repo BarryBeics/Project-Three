@@ -3,7 +3,28 @@ from sqlalchemy import func
 from fitnesstracker import app, db
 from fitnesstracker.models import Users, Map_data, Notifications, Chat_log, Activity_log, Groups
 from werkzeug.security import generate_password_hash, check_password_hash
-import math, json
+import math, json, functools
+
+# Check user is logged in
+def login_required(func):
+    @functools.wraps(func)
+    def secure_function(*args, **kwargs):
+        if "user" not in session:
+            return redirect(url_for("login", next=request.url))
+        return func(*args, **kwargs)
+
+    return secure_function
+
+# Restirc access to admin pages
+def admin_access(func):
+    @functools.wraps(func)
+    def secure_function(*args, **kwargs):
+        access = Users.query.filter(Users.user_id == session["user"]).first()
+        if access.access == 'false':
+            return redirect(url_for("admin"))
+        return func(*args, **kwargs)
+
+    return secure_function
 
 
 # Home page 
@@ -116,6 +137,7 @@ def logout():
 
 # Activity CREATE
 @app.route("/post_activity", methods=["GET", "POST"])
+@login_required
 def post_activity():
     if request.method == "POST":
         activity = Activity_log(
@@ -133,6 +155,7 @@ def post_activity():
 
 # Activity RETRIEVE
 @app.route("/view_activity")
+@login_required
 def view_activity():
     activities = Activity_log.query.filter(Activity_log.user_id == session["user"]).order_by(Activity_log.date).all()
     
@@ -141,6 +164,7 @@ def view_activity():
 
 # Activity UPDATE
 @app.route("/edit_activity/<int:entry_id>", methods=["GET", "POST"])
+@login_required
 def edit_activity(entry_id):
     activity = Activity_log.query.get_or_404(entry_id)
     if request.method == "POST":
@@ -155,6 +179,7 @@ def edit_activity(entry_id):
 
 # Activity DELETE
 @app.route("/delete_activity/<int:entry_id>")
+@login_required
 def delete_activity(entry_id):
     activity = Activity_log.query.get_or_404(entry_id)
     db.session.delete(activity)
@@ -164,6 +189,8 @@ def delete_activity(entry_id):
 
 # Landmarks CREATE
 @app.route("/add_landmark", methods=["GET", "POST"])
+@login_required
+@admin_access
 def add_landmark():
     if request.method == "POST":
         landmark = Map_data(
@@ -184,6 +211,8 @@ def add_landmark():
 
 # Landmarks RETRIEVE
 @app.route("/landmarks")
+@login_required
+@admin_access
 def landmarks():
     landmarks = list(Map_data.query.order_by(Map_data.landmark_name).all())
     return render_template("landmarks.html", landmarks=landmarks)
@@ -191,6 +220,8 @@ def landmarks():
 
 # Landmark UPDATE
 @app.route("/edit_landmark/<int:landmark_id>", methods=["GET", "POST"])
+@login_required
+@admin_access
 def edit_landmark(landmark_id):
     landmark = Map_data.query.get_or_404(landmark_id)
     if request.method == "POST":
@@ -209,6 +240,8 @@ def edit_landmark(landmark_id):
 
 # Landmark DELETE
 @app.route("/delete_landmark/<int:landmark_id>")
+@login_required
+@admin_access
 def delete_landmark(landmark_id):
     landmark = Map_data.query.get_or_404(landmark_id)
     db.session.delete(landmark)
@@ -218,6 +251,8 @@ def delete_landmark(landmark_id):
 
 # Groups RETRIEVE
 @app.route("/groups")
+@login_required
+@admin_access
 def groups():
     groups = list(Groups.query.order_by(Groups.name).all())
     return render_template("groups.html", groups=groups)
@@ -225,6 +260,7 @@ def groups():
 
 # Register a new group CREATE
 @app.route("/register_group", methods=["GET", "POST"])
+@login_required
 def register_group():
     if request.method == "POST":
         # check group name to see if user already exisits in db
@@ -249,6 +285,8 @@ def register_group():
 
 # Group UPDATE
 @app.route("/edit_group/<int:group_id>", methods=["GET", "POST"])
+@login_required
+@admin_access
 def edit_group(group_id):
     group = Groups.query.get_or_404(group_id)
     if request.method == "POST":
@@ -261,6 +299,8 @@ def edit_group(group_id):
 
 # Group DELETE
 @app.route("/delete_group/<int:group_id>")
+@login_required
+@admin_access
 def delete_group(group_id):
     group = Groups.query.get_or_404(group_id)
     db.session.delete(group)
@@ -270,6 +310,7 @@ def delete_group(group_id):
 
 # Settings UPDATE
 @app.route("/settings", methods=["GET", "POST"])
+@login_required
 def settings():
     settings = Users.query.get_or_404(session["user"])
     if request.method == "POST":
@@ -284,6 +325,7 @@ def settings():
 
 # Comments RETRIEVE & CREATE
 @app.route("/chat", methods=["GET", "POST"])
+@login_required
 def chat():
     group = Users.query.filter_by(user_id=session["user"]).all()
     group_name=group[0].group_name
@@ -308,6 +350,7 @@ def chat():
 
 #Comments UPDATE
 @app.route("/edit_comment/<int:comment_id>", methods=["GET", "POST"])
+@login_required
 def edit_comment(comment_id):
     comment = Chat_log.query.get_or_404(comment_id)
     if request.method == "POST":
@@ -319,6 +362,7 @@ def edit_comment(comment_id):
 
 # Comments DELETE
 @app.route("/delete_comment/<int:comment_id>")
+@login_required
 def delete_comment(comment_id):
     comment = Chat_log.query.get_or_404(comment_id)
     db.session.delete(comment)
@@ -328,6 +372,7 @@ def delete_comment(comment_id):
     
 # get sum of distance traveled
 @app.route("/map_link", methods=["GET"])
+@login_required
 def map_link():
     # Check is this is a new user with no activity posted
     is_new = Activity_log.query.filter_by(user_id=session["user"]).count()
@@ -376,6 +421,8 @@ def map_link():
 
 # Build User JSON
 @app.route("/user_json")
+@login_required
+@admin_access
 def user_json():
     # identify all the users who share the same group as the session user in order to retrieve only their data
     group = Users.query.filter_by(user_id=session["user"]).all()
@@ -410,6 +457,8 @@ def user_json():
 
 # Build Landmark JSON
 @app.route("/landmark_json")
+@login_required
+@admin_access
 def landmark_json():
     map_data = Map_data.query.all()
     count = Map_data.query.count()
@@ -442,6 +491,7 @@ def landmark_json():
 
 # Map view
 @app.route("/map", methods=["GET", "POST"])
+@login_required
 def map():
     data = Users.query.get_or_404(session["user"])
     zones = Users.query.filter(Users.user_id == session["user"]).first()
@@ -454,15 +504,18 @@ def map():
 
 # Admin
 @app.route("/admin")
+@login_required
 def admin():
     access = Users.query.filter(Users.user_id == session["user"]).first()
     if access.access == 'false':
-        flash('Sorry no Access for you')
+        flash('Sorry, You must have admin rights to access here')
     return render_template("admin.html", access=access)
 
 
 # Users RETIREVE
 @app.route("/users")
+@login_required
+@admin_access
 def users():
     users = list(Users.query.order_by(Users.first_name).all())
     return render_template("users.html", users=users)
@@ -470,6 +523,8 @@ def users():
 
 # Users UPDATE
 @app.route("/edit_user/<int:user_id>", methods=["GET", "POST"])
+@login_required
+@admin_access
 def edit_user(user_id):
     user = Users.query.get_or_404(user_id)
     if request.method == "POST":
@@ -484,6 +539,8 @@ def edit_user(user_id):
 
 # Users DELETE
 @app.route("/delete_user/<int:user_id>")
+@login_required
+@admin_access
 def delete_user(user_id):
     user = Users.query.get_or_404(user_id)
     db.session.delete(user)
