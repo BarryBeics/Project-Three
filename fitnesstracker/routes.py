@@ -216,6 +216,13 @@ def delete_landmark(landmark_id):
     return redirect(url_for("landmarks"))
 
 
+# Groups RETRIEVE
+@app.route("/groups")
+def groups():
+    groups = list(Groups.query.order_by(Groups.name).all())
+    return render_template("groups.html", groups=groups)
+
+
 # Register a new group CREATE
 @app.route("/register_group", methods=["GET", "POST"])
 def register_group():
@@ -238,6 +245,27 @@ def register_group():
                             request.form.get("name")))
 
     return render_template("register_group.html")
+
+
+# Group UPDATE
+@app.route("/edit_group/<int:group_id>", methods=["GET", "POST"])
+def edit_group(group_id):
+    group = Groups.query.get_or_404(group_id)
+    if request.method == "POST":
+        group.name = request.form.get("name")
+        group.size=request.form.get("size")
+        db.session.commit()
+        return redirect(url_for("groups"))
+    return render_template("edit_group.html", group=group)
+
+
+# Group DELETE
+@app.route("/delete_group/<int:group_id>")
+def delete_group(group_id):
+    group = Groups.query.get_or_404(group_id)
+    db.session.delete(group)
+    db.session.commit()
+    return redirect(url_for("groups"))
 
 
 # Settings UPDATE

@@ -4,19 +4,22 @@
 
 <h3 class="d-flex justify-content-center">View Activities</h3>
 <p>Details of all of your activities.</p>
-{% for activity in activities %}
 <div class="row">
     <hr>
     <div class="col-3 col-md-3"><h3>Distance</h3> </div>
     <div class="col-3 col-md-3 "><h3>Activity</h3> </div>
-    <div class="col-4 col-md-3 "><h3>Date</h3></div>
+    <div class="col-3 col-md-3 "><h3>Date</h3></div>
     <div class="col-1 col-md-2 d-none d-md-block "><h3>Commute</h3></div>
-    <div class="col-1 col-md-1 d-none d-sm-block"><a href="{{ url_for('edit_activity', entry_id=activity.entry_id) }}"
-        class="btn btn-edit btn-sm">Edit</a></div>
+</div>
+{% for activity in activities %}
+<div class="row">
+    <hr>
     <div class="col-3 col-md-3 "><p>{{ activity.distance }}</p></div>
     <div class="col-3 col-md-3 "><p>{{ activity.activity_type }}</p></div>
-    <div class="col-4 col-md-3 "><p>{{ activity.date }}</p></div>
-    <div class="col-1 col-md-2 d-none d-md-block "><p>{{ activity.commute }}</p></div>
+    <div class="col-3 col-md-3 "><p>{{ activity.date }}</p></div>
+    <div class="col-1 col-md-1 d-none d-md-block "><p>{{ activity.commute }}</p></div>
+    <div class="col-1 col-md-1 d-none d-sm-block"><a href="{{ url_for('edit_activity', entry_id=activity.entry_id) }}"
+        class="btn btn-edit btn-sm">Edit</a></div>
     <div class="col-1 col-md-1 d-none d-sm-block "><button type="button" class="btn btn-delete btn-sm" data-bs-toggle="modal"
                 data-bs-target="#modal-{{ activity.entry_id }}"> Delete </button></div>
 </div>
@@ -47,12 +50,6 @@
         </div>
     </div>
     {% endfor %}
-
-
-
-
-        
-    
 
 
     {% endblock %}

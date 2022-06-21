@@ -399,7 +399,10 @@ Click on **Open app** in the right corner of your Heroku account. The app wil op
 
 
 find the nessary reference material
+#### Images
 
+
+- Picture of the running woman taken from [here](https://pixabay.com/photos/running-woman-fitness-runner-6252827/)
 
 #### Code
 

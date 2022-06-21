@@ -3,18 +3,33 @@
 
 
 <h3 class="d-flex justify-content-center">Manage Users</h3>
-<div class="row">
-    {% for user in users%}
-    <div class="col-sm-6">
-        <div class="card" style="width: 18rem;">
 
-            <div class="card-body">
-                <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
-                <p class="card-text">{{ user.access }}</p>
-                <p class="card-text">{{ user.email }}</p>
-                <a href="{{ url_for('edit_user', user_id=user.user_id) }}" class="btn btn-warning">Edit</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#modal-{{ user.user_id }}"> Delete </button>
+
+<div class="row">
+    <hr>
+    <div class="col-4 col-md-3"><h3>Name</h3> </div>
+    <div class="col-2 col-md-1 "><h3>Admin</h3> </div>
+    <div class="col-4 col-md-4 "><h3>Email</h3></div>
+    <div class="col-1 col-md-2 d-none d-md-block "><h3>Group Name</h3></div>
+</div>
+{% for user in users%}
+<div class="row">
+    <hr>
+    <div class="col-4 col-md-3 "><p>{{ user.first_name }} {{ user.last_name }}</p></div>
+    <div class="col-2 col-md-1 "><p>{{ user.access }}</p></div>
+    <div class="col-4 col-md-4 "><p>{{ user.email }}</p></div>
+    <div class="col-1 col-md-2 d-none d-md-block "><p>{{ user.group_name }}</p></div>
+    <div class="col-1 col-md-1 d-none d-sm-block"><a href="{{ url_for('edit_user', user_id=user.user_id) }}"
+        class="btn btn-edit btn-sm">Edit</a></div>
+    <div class="col-1 col-md-1 d-none d-sm-block "><button type="button" class="btn btn-delete btn-sm" data-bs-toggle="modal"
+                data-bs-target="#modal-{{ user.user_id }}"> Delete </button></div>
+</div>
+
+<div class="row subtle">
+    <div class="col-6 d-block d-sm-none btn-edit"><a href="{{ url_for('edit_user', user_id=user.user_id) }}">Edit</a></div>
+    <div class="col-6 d-block d-sm-none btn-delete"><a data-bs-toggle="modal"
+        data-bs-target="#modal-{{ user.user_id }}"> Delete </a></div>
+</div>
 
                 <!-- Confirmation Modal -->
                 <div class="modal" id="modal-{{ user.user_id }}" tabindex="-1">
@@ -36,12 +51,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
     {% endfor %}
-</div>
-
 
 {% endblock %}

@@ -16,6 +16,21 @@
             <a href="{{ url_for('users') }}" class="btn btn-secondary btn-lg">
                 Manage Users <i class="fas fa-user" aria-hidden="true"></i>
             </a>
+
+            <a href="{{ url_for('groups') }}" class="btn btn-secondary btn-lg">
+                Manage Group Names <i class="fas fa-user" aria-hidden="true"></i>
+            </a>
+
+            
+
+                <a href="{{ url_for('add_landmark') }}" class="btn btn-warning btn-lg">
+                    Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                </a>
+                <p>Once you have finished adding landmark data click 'Build Map JSON to make changes apear on the map.</p>
+                <a href="{{ url_for('landmark_json') }}" class="btn btn-secondary btn-lg">
+                    Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
+                </a>
+            
             {% endif %}
         </div>
     </div>
