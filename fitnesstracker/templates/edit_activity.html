@@ -16,15 +16,23 @@
 
                 </div>
                 <!-- activity type -->
-                <div class="mb-3">
-                    <label for="activity_type">Activity Type</label>
-                    <input type="radio" id="run" name="activity_type" value="Run">
-                    <label for="run">Run</label><br>
-                    <input type="radio" id="walk" name="activity_type" value="Walk">
-                    <label for="walk">Walk</label><br>
-                    <input type="radio" id="ride" name="activity_type" value="Ride">
-                    <label for="ride">Ride</label>
-                </div>
+               
+               
+
+                <select id="activity_type" name="activity_type" required>
+                    <option value="" disabled>Choose Type</option>
+
+                    <!-- for to to find current activity type -->
+                    {% for type in activity_types %}
+                        {% if type == 'Run' %}
+                            <option value="{{ type.activity_type }}" selected>{{ type.activity_type }}</option>
+                        {% else %}
+                            <option value="{{ type.activity_type }}">{{ type.activity_type }}</option>
+                        {% endif %}
+                        <p>{% type.activity_type %}</p>
+                    {% endfor %}
+                        </select>
+              
                 <!-- commute? -->
                 <div class="mb-3">
                     <label for="commute"> Was this a Commute?</label>

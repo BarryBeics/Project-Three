@@ -5,6 +5,8 @@ from fitnesstracker.models import Users, Map_data, Notifications, Chat_log, Acti
 from werkzeug.security import generate_password_hash, check_password_hash
 import math, json, functools
 
+
+
 # Check user is logged in
 def login_required(func):
     @functools.wraps(func)
@@ -166,6 +168,7 @@ def view_activity():
 @app.route("/edit_activity/<int:entry_id>", methods=["GET", "POST"])
 @login_required
 def edit_activity(entry_id):
+    activity_types = ('run', 'walk','ride')
     activity = Activity_log.query.get_or_404(entry_id)
     if request.method == "POST":
         activity.distance=request.form.get("distance")
@@ -174,7 +177,7 @@ def edit_activity(entry_id):
 
         db.session.commit()
         return redirect(url_for("view_activity"))
-    return render_template("edit_activity.html", activity=activity)
+    return render_template("edit_activity.html", activity=activity, activity_types=activity_types)
 
 
 # Activity DELETE
@@ -187,12 +190,21 @@ def delete_activity(entry_id):
     return redirect(url_for("view_activity"))
 
 
+            
 # Landmarks CREATE
 @app.route("/add_landmark", methods=["GET", "POST"])
 @login_required
 @admin_access
 def add_landmark():
+    landmark_names = Map_data.query.all()
     if request.method == "POST":
+        Lname = request.form.get("landmark_name")
+        # check landmark name to see if user already exisits in db
+        if landmark_names:
+            for name in landmark_names:
+                if Lname == Map_data.landmark_name:
+                    flash("modal_link already exists")
+                    return redirect(url_for("add_landmark"))
         landmark = Map_data(
             landmark_name=request.form.get("landmark_name"),
             modal_link=request.form.get("modal_link"),
@@ -546,3 +558,21 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for("users"))
+
+# Custom Error pages
+
+# Invalid URL
+@app.errorhandler(403)
+def page_not_found(e):
+    return render_template("error_handlers/403.html"), 403
+
+# Invalid URL
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("error_handlers/404.html"), 404
+
+
+# Internal server error
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("error_handlers/500.html"), 500
