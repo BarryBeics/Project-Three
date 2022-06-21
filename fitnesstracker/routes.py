@@ -549,7 +549,7 @@ def edit_user(user_id):
     return render_template("edit_user.html", user=user)
 
 
-# Users DELETE
+# Users ADMIN DELETE
 @app.route("/delete_user/<int:user_id>")
 @login_required
 @admin_access
@@ -558,6 +558,18 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for("users"))
+
+# Users SELF DELETE
+@app.route("/delete_self/<int:user_id>")
+@login_required
+def delete_self(user_id):
+    user = Users.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('Your account has been succefully deleted!')
+    session.pop("user")
+    return redirect(url_for("home"))
+    
 
 # Custom Error pages
 

@@ -36,4 +36,33 @@
       </form>
   </div>
 
+
+  <div class="row subtle">
+    
+    <div class="btn btn-danger"><a data-bs-toggle="modal"
+        data-bs-target="#modal-{{  session['user'] }}"> Delete </a></div>
+</div>
+
+                <!-- Confirmation Modal -->
+                <div class="modal" id="modal-{{  session['user'] }}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Are you sure you want to delete your account?</h4>
+                                <p>All data will be deleted with this action!</p>
+                                <p>This action cannot be undone!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                <a href="{{ url_for('delete_self',  user_id=session['user']) }}"
+                                    class="btn btn-success">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 {% endblock %}
