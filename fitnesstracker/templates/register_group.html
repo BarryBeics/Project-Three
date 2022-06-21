@@ -16,8 +16,11 @@
                         <div class="mb-3">
                             <i class="fa-solid fa-user" aria-hidden="true"></i>
                             <label for="name">Group Name</label>
-                            <input type="text" name="name" minlength="3" maxlength="15" pattern="^[a-zA-Z0-9]{2,15}$"
+                            <input type="text" name="name" minlength="3" maxlength="15" pattern="[a-zA-Z]"
                                 class="form-control" id="name" aria-describedby="name" required>
+                                <p><i class="fa-solid fa-check"></i> Can not contain numbers</p>
+                                <p><i class="fa-solid fa-check"></i> Between 3 - 15 characters</p>
+                                <p><i class="fa-solid fa-check"></i> Must be a unique name</p>
                         </div>
                         <!-- register -->
                         <button type="submit" class="btn btn-warning">Register<i class="fa-solid fa-sign-in-alt"

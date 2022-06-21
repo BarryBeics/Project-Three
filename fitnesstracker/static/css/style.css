@@ -25,7 +25,8 @@ h3,
 h4,
 a,
 .offcanvas-title,
-p{
+p,
+label, .fa-user:before {
   color: #2e5266;
 }
 
@@ -45,7 +46,7 @@ p{
  }
 
  .card {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(80,165,177, 0.5);
 }
 
 .main-menuitem a,

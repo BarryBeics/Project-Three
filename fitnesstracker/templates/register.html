@@ -30,7 +30,7 @@
                         <div class="mb-3">
                             <i class="fa-solid fa-at" aria-hidden="true"></i>
                             <label for="email" class="form-label">Email address</label>
-                            <input id="email" name="email" type="email" class="form-control" required>
+                            <input id="email" name="email" type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         </div>
                         <!-- password -->
                         <div class="mb-3">
@@ -38,6 +38,10 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="password" minlength="5" maxlength="15" attern="^[a-zA-Z0-9]{5,15}$"
                                 name="password" class="form-control" id="password" required>
+                            <label for="password" class="form-label">Password criteria:</label>
+                            <p><i class="fa-solid fa-check"></i> At least 8 characters</p>
+                            <p><i class="fa-solid fa-check"></i> Can't be entrily numeric</p>
+                            <p><i class="fa-solid fa-check"></i> Please keep safe as it will be encrypted</p>
                         </div>
 
                         <!-- register -->
