@@ -329,12 +329,13 @@ def delete_group(group_id):
 @login_required
 def settings():
     settings = Users.query.get_or_404(session["user"])
+    groups = list(Groups.query.order_by(Groups.name).all())
     if request.method == "POST":
         settings.email = request.form.get("email")
         settings.group_name = request.form.get("group_name")
         db.session.commit()
         flash("Edits have been saved")
-    return render_template("settings.html", settings=settings)
+    return render_template("settings.html", settings=settings, groups=groups)
 
 
 # Comments RETRIEVE & CREATE

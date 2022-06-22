@@ -19,7 +19,7 @@ class Users(db.Model):
     longitude = db.Column(db.Float, nullable=False, default=-4.0929)
     latitude = db.Column(db.Float, nullable=False, default=53.2637)
     miles = db.Column(db.Boolean, default=True, nullable=False)
-    group_name = db.Column(db.String(15), nullable=False, default='all')
+    group_name = db.Column(db.String(14), nullable=False, default='all')
     icon_num = db.Column(db.Integer, default=1)
     total_distance = db.Column(db.Float, nullable=False, default=0)
     current_distance = db.Column(db.Float, nullable=False, default=0)
