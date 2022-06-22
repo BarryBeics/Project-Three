@@ -5,16 +5,42 @@
     <div class="col s12 m8 offset-m2">
         <div class="card-panel">
             <h3 class="center-align light-blue-text text-darken-4">
-                Profile for {{ user_data.first_name }} {{ user_data.last_name }} {{ user_data.user_id }}
+                Profile for {{ user_data.first_name }} {{ user_data.last_name }}
+                User id {{ user_data.user_id }}
+                Access {{ session['access'] }}
             </h3>
         </div>
     </div>
 </div>
-<!-- Now the data has loaded redirect to the map -->
-<script type="text/javascript">
-    setTimeout(function () {
-        window.location.href = "{{ url_for('map_link') }}";
-    }, 500);
-</script>
+
+
+<div class="row subtle">
+    
+    <div><button data-bs-toggle="modal" class="btn btn-danger"
+        data-bs-target="#modal-{{  session['user'] }}"> Delete </button></div>
+</div>
+
+                <!-- Confirmation Modal -->
+                <div class="modal" id="modal-{{  session['user'] }}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Are you sure you want to delete your account?</h4>
+                                <p>All data will be deleted with this action!</p>
+                                <p>This action cannot be undone!</p>
+                                <h2>DO YOU UNDERSTAND?</h2>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="{{ url_for('delete_self',  user_id=session['user']) }}"
+                                    class="btn btn-danger">Yes, Delete my account! </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 {% endblock %}

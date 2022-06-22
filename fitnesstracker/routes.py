@@ -106,6 +106,8 @@ def profile():
         user_data = Users.query.filter(Users.email == session["user"]).first()
         user_id = user_data.user_id
         session["user"] = user_id
+        access = user_data.access
+        session["access"] = access
 
         # As json column can not have a default value, detect if this is a new account and complete set up by adding this default to the users account
         is_new = Activity_log.query.filter_by(user_id=user_id).count()

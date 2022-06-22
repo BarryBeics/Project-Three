@@ -38,27 +38,29 @@
                 <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fa fa-globe"
                     aria-hidden="true"></i> Map View </a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i
-                    class="fa fa-list-ul" aria-hidden="true"></i>
-                  View Activity</a>
-                <a class="nav-link active" aria-current="page" href=""> <i class="fa fa-link" aria-hidden="true"></i>
-                  Connections</a>
+                  class="fa fa-list-ul" aria-hidden="true"></i> View Activity</a>
+                <a class="nav-link active" aria-current="page" href=""> <i 
+                  class="fa fa-link" aria-hidden="true"></i> Connections</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('post_activity') }}"> <i
                     class="fa-solid fa-plus" aria-hidden="true"></i> Post Manually</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('settings') }}"> <i
                     class="fa-solid fa-user-gear" aria-hidden="true"></i> Settings</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register_group') }}"> <i
                     class="fa fa-people-group" aria-hidden="true"></i> Create a Group</a>
-                <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i class="fas fa-gear"
-                    aria-hidden="true"></i> Admin</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}"> <i
                     class="fas fa-power-off" aria-hidden="true"></i> Log Out</a>
                 {% else %}
                 <!-- Only visable to logged OUT users -->
-                <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}"> <i class="fas fa-user-cog"
-                    aria-hidden="true"></i> Log In</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}"> <i 
+                  class="fas fa-user-cog" aria-hidden="true"></i> Log In</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i
                     class="fas fa-power-off" aria-hidden="true"></i> Register</a>
                 {% endif %}
+                {% if session.access == 'on' %}
+                <hr>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i 
+                  class="fas fa-gear" aria-hidden="true"></i> Admin</a>
+                  {% endif %}
               </li>
 
             </ul>

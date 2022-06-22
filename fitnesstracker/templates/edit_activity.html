@@ -17,7 +17,7 @@
                 <!-- activity type -->
                 <div class="mb-3">
                     
-                    <label for="activity_type">Activity Type</label>
+                    <label for="activity_type">Activity Type</label><br>
                     <input type="radio" id="run" name="activity_type" value="Run" {% if activity.activity_type == 'Run' %} checked {% endif %}>
                     <label for="run">Run</label><br>
                     <input type="radio" id="walk" name="activity_type" value="Walk" {% if activity.activity_type == 'Walk' %} checked {% endif %}>
@@ -31,9 +31,20 @@
                 <!-- commute? -->
                 <div class="mb-3">
                     <label for="commute"> Was this a Commute?</label>
-                    <input type="checkbox" id="yes" name="commute">
-                    <label for="yes">Yes</label><br>
+                   <input type="checkbox" id="yes" name="commute" {% if activity.commute == true %} checked {% endif %}> 
+                    <label for="yes">Yes</label> 
+                    <p>{% if activity.commute == false %} No this was not a commute {% endif %}</p>
+
+             <!-- Group Name -->
+            <!--  <label for="commute" class="form-label">Was this a Commute?</label> -->
+          <!--    <select id="commute" name="commute" class="form-control" required> -->
+          <!--    <option {% if activity.commute == true %} selected {% endif %}>Yes</option>  -->
+          <!--    <option {% if activity.commute == false %} selected {% endif %}>No</option>  -->    
+          <!--    </select>
                 </div>
+
+
+    
 
                 <!-- Submit -->
                 <button type="submit" class="btn btn-warning">Submit<i class="fa-solid fa-sign-in-alt"

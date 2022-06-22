@@ -13,14 +13,14 @@
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" class="form-control" required>
         </div>
         <!-- Group Name -->
-        
+        <label for="group_name" class="form-label">Group Name:</label>
         <select id="group_name" name="group_name" class="form-control" required>
-            <option value="" disabled>Choose Type</option>
+            <option value="{{ settings.group_name }}" disabled>Choose Type</option>
 
             <!-- for to to find current activity type -->
             {% for group in groups %}
             
-                    <option value="{{ group.name }}" >{{ group.name }}</option>
+                    <option value="{{ group.name }}" {% if settings.group_name == group.name %} selected {% endif %}>{{ group.name }}</option>
                 
             {% endfor %}
                 </select>
@@ -34,34 +34,5 @@
       </form>
   </div>
 
-
-  <div class="row subtle">
-    
-    <div><button data-bs-toggle="modal" class="btn btn-danger"
-        data-bs-target="#modal-{{  session['user'] }}"> Delete </button></div>
-</div>
-
-                <!-- Confirmation Modal -->
-                <div class="modal" id="modal-{{  session['user'] }}" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h4>Are you sure you want to delete your account?</h4>
-                                <p>All data will be deleted with this action!</p>
-                                <p>This action cannot be undone!</p>
-                                <h2>DO YOU UNDERSTAND?</h2>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <a href="{{ url_for('delete_self',  user_id=session['user']) }}"
-                                    class="btn btn-danger">Yes, Delete my account! </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 {% endblock %}
