@@ -92,23 +92,50 @@
   </section>
   <footer class="footer">
     <div class="container">
-      <div class="d-md-block">
+      
+
+        {% if session.access == 'on' %}
+        <div class="d-md-block">
         <ul id="nav" class="main-list-inline main-menucontainer">
-            <li class="col-4-xs list-inline-item footer-menuitem">
-                <a href="{{ url_for('post_activity') }}" class="hvr-push"><i class="fa-solid fa-plus"
-                        aria-hidden="true"></i><span>Post Activity</span></a>
-            </li>
-            <li class="col-4-xs list-inline-item footer-menuitem">
-                <a href="{{ url_for('map_link') }}" class="hvr-push"><i class="fa-solid fa-map" aria-hidden="true"></i>
-                    <div><span>View Map</span></div>
-                </a>
-            </li>
-            <li class="col-4-xs  list-inline-item footer-menuitem">
-                <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
-                    <div><span>Leaderboards</span></div>
-                </a>
-            </li>
-        </ul>
+          <li class="col-4-xs list-inline-item footer-menuitem">
+              <a href="{{ url_for('users') }}" class="hvr-push"><i class="fas fa-user"
+                      aria-hidden="true"></i><span>Users</span></a>
+          </li>
+          <li class="col-4-xs list-inline-item footer-menuitem">
+              <a href="{{ url_for('landmarks') }}" class="hvr-push"><i class="fas fa-map-pin" aria-hidden="true"></i>
+                  <div><span>Landmarks</span></div>
+              </a>
+          </li>
+          <li class="col-4-xs  list-inline-item footer-menuitem">
+              <a href="{{ url_for('groups') }}" class="hvr-push"><i class="fa fa-people-group" aria-hidden="true"></i>
+                  <div><span>Groups</span></div>
+              </a>
+          </li>
+      </ul>
+    </div>
+                  {% else %}
+                  <div class="d-md-block">
+                  <ul id="nav" class="main-list-inline main-menucontainer">
+                    <li class="col-4-xs list-inline-item footer-menuitem">
+                        <a href="{{ url_for('post_activity') }}" class="hvr-push"><i class="fa-solid fa-plus"
+                                aria-hidden="true"></i><span>Post Activity</span></a>
+                    </li>
+                    <li class="col-4-xs list-inline-item footer-menuitem">
+                        <a href="{{ url_for('map_link') }}" class="hvr-push"><i class="fa-solid fa-map" aria-hidden="true"></i>
+                            <div><span>View Map</span></div>
+                        </a>
+                    </li>
+                    <li class="col-4-xs  list-inline-item footer-menuitem">
+                        <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
+                            <div><span>Leaderboards</span></div>
+                        </a>
+                    </li>
+                </ul>
+
+                  {% endif %}
+
+
+
     </div>
     </div>
   </footer>
