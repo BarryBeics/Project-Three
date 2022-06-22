@@ -12,6 +12,7 @@ def login_required(func):
     @functools.wraps(func)
     def secure_function(*args, **kwargs):
         if "user" not in session:
+            flash("You need to be logged in to access that page!")
             return redirect(url_for("login", next=request.url))
         return func(*args, **kwargs)
 
@@ -23,7 +24,8 @@ def admin_access(func):
     def secure_function(*args, **kwargs):
         access = Users.query.filter(Users.user_id == session["user"]).first()
         if access.access == 'false':
-            return redirect(url_for("admin"))
+            flash('Sorry, You must have admin rights to access that page!')
+            return redirect(url_for("home"))
         return func(*args, **kwargs)
 
     return secure_function
@@ -158,6 +160,7 @@ def post_activity():
         db.session.add(activity)
         db.session.commit()
         flash("Activity Successfully added")
+        return redirect(url_for("view_activity"))
     return render_template("post_activity.html")
 
 
@@ -536,11 +539,9 @@ def map():
 # Admin
 @app.route("/admin")
 @login_required
+@admin_access
 def admin():
-    access = Users.query.filter(Users.user_id == session["user"]).first()
-    if access.access == 'false':
-        flash('Sorry, You must have admin rights to access here')
-    return render_template("admin.html", access=access)
+    return render_template("admin.html")
 
 
 # Users RETIREVE
