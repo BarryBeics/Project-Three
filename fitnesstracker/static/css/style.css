@@ -13,6 +13,7 @@ h3,
 a,
 .popover-header,
 .main-menuitem span,
+.footer-menuitem span,
 .flashes h4 {
   font-family: 'Teko', sans-serif;
 }
@@ -59,6 +60,12 @@ hr,
 a:not([href]):not([class]) {
    color: #2e5266;
 }
+
+.footer-menuitem a,
+.footer-menuitem a i {
+  color: #50A5B1;
+}
+
 
 .selected:before,
 .link-text i:hover,
@@ -120,7 +127,7 @@ a,
     bottom: 0;
     width: 100%;
     height: 60px; /* Set the fixed height of the footer here */
-    line-height: 60px; /* Vertically center the text there */
+    
   }
 
   .flashes h4 {
@@ -155,11 +162,13 @@ a,
 
 /* ------------- Internal navigation -----*/
 
+.footer-menuitem a i,
 .main-menuitem a i {
   display: block;
   font-size: 22px;
 }
 
+.footer-menuitem span,
 .main-menuitem span {
   font-size: 10px;
 }
@@ -177,6 +186,7 @@ a,
   z-index: 1;
 }
 
+.footer-menuitem,
 .main-menuitem {
   padding: 10px 0px 0px 0px;
   text-align: center;
@@ -190,6 +200,8 @@ ol, ul {
 .col-4-xs {
   width: 32%;
 }
+
+.footer-menuitem a,
 .main-menuitem a {
   text-decoration: none;
 }

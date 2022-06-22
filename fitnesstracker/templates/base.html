@@ -35,8 +35,8 @@
               <li class="nav-item">
                 <!-- Only visable to logged IN users -->
                 {% if session.user %}
-                <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fa fa-globe"
-                    aria-hidden="true"></i> Map View </a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i 
+                  class="fa-solid fa-map" aria-hidden="true"></i> Map View </a>
                 <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i
                   class="fa fa-list-ul" aria-hidden="true"></i> View Activity</a>
@@ -92,7 +92,24 @@
   </section>
   <footer class="footer">
     <div class="container">
-      <span class="text-muted">Place sticky footer content here.</span>
+      <div class="d-md-block">
+        <ul id="nav" class="main-list-inline main-menucontainer">
+            <li class="col-4-xs list-inline-item footer-menuitem">
+                <a href="{{ url_for('post_activity') }}" class="hvr-push"><i class="fa-solid fa-plus"
+                        aria-hidden="true"></i><span>Post Activity</span></a>
+            </li>
+            <li class="col-4-xs list-inline-item footer-menuitem">
+                <a href="{{ url_for('map_link') }}" class="hvr-push"><i class="fa-solid fa-map" aria-hidden="true"></i>
+                    <div><span>View Map</span></div>
+                </a>
+            </li>
+            <li class="col-4-xs  list-inline-item footer-menuitem">
+                <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
+                    <div><span>Leaderboards</span></div>
+                </a>
+            </li>
+        </ul>
+    </div>
     </div>
   </footer>
 
