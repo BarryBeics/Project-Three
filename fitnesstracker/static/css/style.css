@@ -34,6 +34,9 @@ label, .fa-user:before {
   background-color: #50A5B1;
 }
 
+.form-control {
+  appearance: auto;
+}
 
 .panel.label,
 .btn-delete {
