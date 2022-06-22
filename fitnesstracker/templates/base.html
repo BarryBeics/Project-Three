@@ -37,16 +37,19 @@
                 {% if session.user %}
                 <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i class="fa fa-globe"
                     aria-hidden="true"></i> Map View </a>
+                <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i
                   class="fa fa-list-ul" aria-hidden="true"></i> View Activity</a>
-                <a class="nav-link active" aria-current="page" href=""> <i 
-                  class="fa fa-link" aria-hidden="true"></i> Connections</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('post_activity') }}"> <i
                     class="fa-solid fa-plus" aria-hidden="true"></i> Post Manually</a>
+                <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('settings') }}"> <i
                     class="fa-solid fa-user-gear" aria-hidden="true"></i> Settings</a>
+                <a class="nav-link active" aria-current="page" href=""> <i 
+                      class="fa fa-link" aria-hidden="true"></i> Connections</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register_group') }}"> <i
                     class="fa fa-people-group" aria-hidden="true"></i> Create a Group</a>
+                <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}"> <i
                     class="fas fa-power-off" aria-hidden="true"></i> Log Out</a>
                 {% else %}

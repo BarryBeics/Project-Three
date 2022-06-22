@@ -201,15 +201,31 @@ def delete_activity(entry_id):
 @login_required
 @admin_access
 def add_landmark():
-    landmark_names = Map_data.query.all()
     if request.method == "POST":
-        Lname = request.form.get("landmark_name")
         # check landmark name to see if user already exisits in db
-        if landmark_names:
-            for name in landmark_names:
-                if Lname == Map_data.landmark_name:
-                    flash("modal_link already exists")
-                    return redirect(url_for("add_landmark"))
+        existing_landmark = Map_data.query.filter(
+            Map_data.landmark_name == request.form.get("landmark_name")).all()
+
+        if existing_landmark:
+            flash("Landmark already exists")
+            return redirect(url_for("add_landmark"))
+
+        # check Modal Link to see if user already exisits in db
+        existing_modal_link = Map_data.query.filter(
+            Map_data.modal_link == request.form.get("modal_link")).all()
+
+        if existing_modal_link:
+            flash("Modal Link already exists")
+            return redirect(url_for("add_landmark"))
+
+        # check Main Image name to see if user already exisits in db
+        existing_main_image = Map_data.query.filter(
+            Map_data.main_image == request.form.get("main_image")).all()
+
+        if existing_main_image:
+            flash("Main Image already exists")
+            return redirect(url_for("add_landmark"))
+
         landmark = Map_data(
             landmark_name=request.form.get("landmark_name"),
             modal_link=request.form.get("modal_link"),
