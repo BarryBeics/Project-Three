@@ -1,7 +1,6 @@
 from fitnesstracker import db
 from sqlalchemy.dialects.postgresql import JSON
 import datetime
-from datetime import date
 
 
 class Users(db.Model):

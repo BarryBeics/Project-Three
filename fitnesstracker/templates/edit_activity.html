@@ -5,43 +5,38 @@
 <h3 class="d-flex justify-content-center">Edit Activity</h3>
 
 <div class="row card">
-    <form method="POST" action="{{ url_for('edit_activity', entry_id=activity.entry_id) }}">
+    <form class="col-sm-10 col-m-8 center" method="POST" action="{{ url_for('edit_activity', entry_id=activity.entry_id) }}">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <!-- distance -->
                 <div class="mb-3">
                     <label for="distance">Distance</label>
-                    <input type="number" name="distance" min="2" max="100" step="0.1" class="form-control" id="distance"  value="{{ activity.distance }}" 
-                        aria-describedby="distance" required>
-
+                    <input type="number" name="distance" min="2" max="100" step="0.1" class="form-control"
+                    value="{{ activity.distance }}" id="distance" aria-describedby="distance" required>
                 </div>
                 <!-- activity type -->
-               
-               
-
-                <select id="activity_type" name="activity_type" required>
-                    <option value="" disabled>Choose Type</option>
-
-                    <!-- for to to find current activity type -->
-                    {% for type in activity_types %}
-                        {% if type == 'Run' %}
-                            <option value="{{ type.activity_type }}" selected>{{ type.activity_type }}</option>
-                        {% else %}
-                            <option value="{{ type.activity_type }}">{{ type.activity_type }}</option>
-                        {% endif %}
-                        <p>{% type.activity_type %}</p>
-                    {% endfor %}
-                        </select>
-              
+                <div class="mb-3">
+                    
+                    <label for="activity_type">Activity Type</label>
+                    <input type="radio" id="run" name="activity_type" value="Run" {% if activity.activity_type == 'Run' %} checked {% endif %}>
+                    <label for="run">Run</label><br>
+                    <input type="radio" id="walk" name="activity_type" value="Walk" {% if activity.activity_type == 'Walk' %} checked {% endif %}>
+                    <label for="walk">Walk</label><br>
+                    <input type="radio" id="ride" name="activity_type" value="Ride" {% if activity.activity_type == 'Ride' %} checked {% endif %}>
+                    <label for="ride">Ride</label>
+                    
+                    
+                </div>
+                
                 <!-- commute? -->
                 <div class="mb-3">
                     <label for="commute"> Was this a Commute?</label>
-                    <input type="checkbox" id="yes" name="commute" value="{{ activity.commute }}"> 
+                    <input type="checkbox" id="yes" name="commute">
                     <label for="yes">Yes</label><br>
                 </div>
 
                 <!-- Submit -->
-                <button type="submit" class="btn btn-warning">Edit<i class="fa-solid fa-sign-in-alt"
+                <button type="submit" class="btn btn-warning">Submit<i class="fa-solid fa-sign-in-alt"
                         aria-hidden="true"></i></button>
             </div>
         </div>

@@ -172,7 +172,6 @@ def view_activity():
 @app.route("/edit_activity/<int:entry_id>", methods=["GET", "POST"])
 @login_required
 def edit_activity(entry_id):
-    activity_types = ('run', 'walk','ride')
     activity = Activity_log.query.get_or_404(entry_id)
     if request.method == "POST":
         activity.distance=request.form.get("distance")
@@ -181,7 +180,7 @@ def edit_activity(entry_id):
 
         db.session.commit()
         return redirect(url_for("view_activity"))
-    return render_template("edit_activity.html", activity=activity, activity_types=activity_types)
+    return render_template("edit_activity.html", activity=activity)
 
 
 # Activity DELETE
