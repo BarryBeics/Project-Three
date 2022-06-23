@@ -11,7 +11,7 @@ class Users(db.Model):
     password = db.Column(db.String(140), unique=True, nullable=False)
     account_created = db.Column(db.DateTime, default=datetime.datetime.now)
     icon_url = db.Column(db.String(50), unique=True, nullable=True)
-    access = db.Column(db.String(6), nullable=False, default=False)
+    access = db.Column(db.Boolean, nullable=False, default=False)
     refresh_token = db.Column(db.String(50), unique=True)
     connection_status = db.Column(db.Boolean, default=False, nullable=False)
     update_status = db.Column(db.Boolean, default=False, nullable=False)
