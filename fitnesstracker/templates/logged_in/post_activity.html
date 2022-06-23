@@ -2,47 +2,49 @@
 {% block content %}
 
 
-<div class="container form-box d-flex justify-content-center main">
-    <div class="row">
-        <div class="col">
-            <h3>Post An Activity</h3>
+<div class="main">
+    <div class="container form-box d-flex justify-content-center">
+        <div class="row">
+            <div class="col">
+                <h3>Post An Activity</h3>
 
-            <form class="col-md-auto" method="POST" action="{{ url_for('post_activity') }}">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <!-- distance -->
-                <div class="mb-3">
-                    <label for="distance">Distance</label>
-                    <input type="number" name="distance" min="2" max="130" step="0.1" class="form-control"
-                            id="distance" aria-describedby="distance" required>
-                </div>
-                <!-- activity type -->
-                <div class="mb-3">
-                    <label for="activity_type">Activity Type</label><br>
-                    <input type="radio" id="run" name="activity_type" value="Run">
-                    <label for="run">Run</label><br>
-                    <input type="radio" id="walk" name="activity_type" value="Walk">
-                    <label for="walk">Walk</label><br>
-                    <input type="radio" id="ride" name="activity_type" value="Ride">
-                    <label for="ride">Ride</label>    
-                </div>
-                
-                <!-- commute? -->
-                <div class="mb-3">
-                    <label for="commute"> Was this a Commute?</label>
-                    <input class="form-check-input" type="checkbox" id="yes" name="commute">
-                    <label class="form-check-label" for="yes">
-                        Yes
-                    </label>
-                </div>
-                        <!-- Submit -->
-                <button type="submit" class="btn btn-warning">Submit<i class="fa-solid fa-sign-in-alt"
-                    aria-hidden="true"></i></button>
+                <form class="col-md-auto" method="POST" action="{{ url_for('post_activity') }}">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <!-- distance -->
+                            <div class="mb-3">
+                                <label for="distance">Distance</label>
+                                <input type="number" name="distance" min="2" max="130" step="0.1" class="form-control"
+                                    id="distance" aria-describedby="distance" required>
+                            </div>
+                            <!-- activity type -->
+                            <div class="mb-3">
+                                <label for="activity_type">Activity Type</label><br>
+                                <input type="radio" id="run" name="activity_type" value="Run">
+                                <label for="run">Run</label><br>
+                                <input type="radio" id="walk" name="activity_type" value="Walk">
+                                <label for="walk">Walk</label><br>
+                                <input type="radio" id="ride" name="activity_type" value="Ride">
+                                <label for="ride">Ride</label>
+                            </div>
+
+                            <!-- commute? -->
+                            <div class="mb-3">
+                                <label for="commute"> Was this a Commute?</label>
+                                <input class="form-check-input" type="checkbox" id="yes" name="commute">
+                                <label class="form-check-label" for="yes">
+                                    Yes
+                                </label>
+                            </div>
+                            <!-- Submit -->
+                            <button type="submit" class="btn btn-warning">Submit<i class="fa-solid fa-sign-in-alt"
+                                    aria-hidden="true"></i></button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
 
+            </div>
         </div>
     </div>
 </div>

@@ -10,9 +10,12 @@
         </div>
     <div class="col-6">
         <!-- register -->
+        {% if session.user %}
 
+        {% else %}
             <a href="{{ url_for('register') }}" class="btn btn-warning">
                 Register <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i></a>
+        {% endif %}
     </div>
 </div>
 <div class="row">
