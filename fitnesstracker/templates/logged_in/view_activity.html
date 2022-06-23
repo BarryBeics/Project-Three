@@ -2,8 +2,13 @@
 {% block content %}
 
 <div class="main">
-<h3 class="d-flex justify-content-center">View Activities</h3>
-<p>Details of all of your activities.</p>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6"><h3 class="d-flex justify-content-center">View Activities</h3> </div>
+        <div class="col-3"> <a href="{{ url_for('map') }}" class="btn btn-warning"> View Map<i class="fa-solid fa-plus" aria-hidden="true"></i> </a> </div>
+        <p>Details of all of your activities.</p>
+    </div>
+
 <div class="row">
     <hr>
     <div class="col-3 col-md-3"><h3>Distance</h3> </div>

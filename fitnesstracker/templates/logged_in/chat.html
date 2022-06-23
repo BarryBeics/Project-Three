@@ -1,81 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="main">
-<h3 class="d-flex justify-content-center">Chat</h3>
-{% for users, chat_log in get_chat %}
-<div class="row">
-    <hr>
-    <div class="col-6 col-md-4 "><h4>{{ users.first_name }}</h4></div>
-    <div class="col-6 col-md-4 "><p>{{ chat_log.date|datetimeformat }}</p></div>
-    <!-- Hide buttons for non admin users -->
-{% if users.user_id == session["user"] %}
-    <div class="col-6 col-md-2 d-none d-sm-block"><a
-        href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}">Edit</a></div>
-    <div class="col-6 col-md-2 d-none d-sm-block"><a data-bs-toggle="modal"
-        data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </a></div>
+
+    <h3 class="d-flex justify-content-center">Chat</h3>
+    {% for users, chat_log in get_chat %}
+    <div class="row">
+        <hr>
+        <div class="col-6 col-md-4 ">
+            <h4>{{ users.first_name }}</h4>
+        </div>
+        <div class="col-6 col-md-4 ">
+            <p>{{ chat_log.date|datetimeformat }}</p>
+        </div>
+        <!-- Hide buttons for non admin users -->
+        {% if users.user_id == session["user"] %}
+        <div class="col-6 col-md-2 d-none d-sm-block"><a
+                href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}">Edit</a></div>
+        <div class="col-6 col-md-2 d-none d-sm-block"><a data-bs-toggle="modal"
+                data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </a></div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 ">
+            <p>{{ chat_log.comment }}</p>
+        </div>
+    </div>
+
+    <div class="row subtle">
+        <div class="col-6 d-block d-sm-none btn-edit"><a
+                href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}">Edit</a></div>
+        <div class="col-6 d-block d-sm-none btn-delete"><a data-bs-toggle="modal"
+                data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </a></div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="modal-{{ chat_log.comment_id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Are you sure you want to delete this comment?</h4>
+                    <p>This action cannot be undone!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <a href="{{ url_for('delete_comment', comment_id=chat_log.comment_id) }}"
+                        class="btn btn-danger">Yes</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
 </div>
 
-<div class="row">
-    <div class="col-12 ">
-        <p>{{ chat_log.comment }}</p>
-    </div>
-</div>
-<div class="row">
+        {% endfor %}
+
     
+        <form method="POST" action="{{ url_for('chat') }}">
+            <div class="row comment">
+                <!-- comment field -->
+                <div class="col-10">
 
-</div>
-
-
-<div class="row subtle">
-    <div class="col-6 d-block d-sm-none btn-edit"><a
-            href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}">Edit</a></div>
-    <div class="col-6 d-block d-sm-none btn-delete"><a data-bs-toggle="modal"
-            data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </a></div>
-</div>
-
-<!-- Confirmation Modal -->
-<div class="modal" id="modal-{{ chat_log.comment_id }}" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <input type="text" name="comment" minlength="3" maxlength="150" class="form-control" id="comment"
+                        aria-describedby="comment" required>
+                </div>
+                <!-- Submit -->
+                <div class="col-2 col-md-2 d-none d-sm-block">
+                    <button type="submit" class="btn btn-warning">Comment <i class="fas fa-comment-dots"
+                            aria-hidden="true"></i></button>
+                </div>
+                <div class="col-2 d-sm-none">
+                    <button type="submit" class="btn btn-warning"><i class="fas fa-comment-dots"
+                            aria-hidden="true"></i></button>
+                </div>
             </div>
-            <div class="modal-body">
-                <h4>Are you sure you want to delete this comment?</h4>
-                <p>This action cannot be undone!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a href="{{ url_for('delete_comment', comment_id=chat_log.comment_id) }}"
-                    class="btn btn-danger">Yes</a>
-            </div>
-        </div>
-        {% endif %}
-    </div>
-</div>
-
-{% endfor %}
+        </form>
 
 
-    <form method="POST" action="{{ url_for('chat') }}">
-        <div class="row comment">
-        <!-- comment field -->
-        <div class="col-10">
-            
-            <input type="text" name="comment" minlength="3" maxlength="150" class="form-control" id="comment"
-                aria-describedby="comment" required>
-        </div>
-        <!-- Submit -->
-        <div class="col-2 col-md-2 d-none d-sm-block">
-            <button type="submit" class="btn btn-warning">Comment <i class="fas fa-comment-dots" aria-hidden="true"></i></button>
-        </div>
-        <div class="col-2 d-sm-none">
-            <button type="submit" class="btn btn-warning"><i class="fas fa-comment-dots" aria-hidden="true"></i></button>
-        </div>
-    </div>
-    </form>
+        {% endblock %}
 
-
-{% endblock %}
-</div>
+    

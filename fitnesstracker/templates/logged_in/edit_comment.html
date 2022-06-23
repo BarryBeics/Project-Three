@@ -2,26 +2,28 @@
 {% block content %}
 
 
-<h3 class="d-flex justify-content-center">Edit Comment</h3>
+<div class="main">
+    <h3 class="d-flex justify-content-center">Edit Comment</h3>
 
-<form method="POST" action="{{ url_for('edit_comment', comment_id=comment.comment_id) }}">
-    <div class="row comment">
-    <!-- comment field -->
-    <label for="distance">Comment</label>
-    <div class="col-10">
-        
-        <input type="textarea" name="comment" class="form-control" id="comment"  value="{{ comment.comment }}" 
-                        aria-describedby="comment" required>
-    </div>
-    <!-- Submit -->
-    <div class="col-2 col-md-2 d-none d-sm-block">
-        <button type="submit" class="btn btn-warning">Edit <i class="fas fa-comment-dots" aria-hidden="true"></i></button>
-    </div>
-    <div class="col-2 d-sm-none">
-        <button type="submit" class="btn btn-warning">Edit<i class="fa-solid fa-sign-in-alt"
-            aria-hidden="true"></i></button>
-    </div>
+    <form method="POST" action="{{ url_for('edit_comment', comment_id=comment.comment_id) }}">
+        <div class="row comment">
+            <!-- comment field -->
+            <label for="distance">Comment</label>
+            <div class="col-10">
+
+                <input type="textarea" name="comment" class="form-control" id="comment" value="{{ comment.comment }}"
+                    aria-describedby="comment" required>
+            </div>
+            <!-- Submit -->
+            <div class="col-2 col-md-2 d-none d-sm-block">
+                <button type="submit" class="btn btn-warning">Edit <i class="fas fa-comment-dots"
+                        aria-hidden="true"></i></button>
+            </div>
+            <div class="col-2 d-sm-none">
+                <button type="submit" class="btn btn-warning">Edit<i class="fa-solid fa-sign-in-alt"
+                        aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </form>
 </div>
-</form>
-
 {% endblock %}

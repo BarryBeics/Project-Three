@@ -638,6 +638,6 @@ def register():
         # Put new user into 'session' cookie
         session["user"] = request.form.get("email").lower()
         flash("Welcome, {}".format(session["user"]))
-        return redirect(url_for("profile", email=session["user"]))
+        return redirect(url_for("set_up", email=session["user"]))
 
     return render_template("public/register.html")
