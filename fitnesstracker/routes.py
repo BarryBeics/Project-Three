@@ -197,7 +197,6 @@ def delete_activity(entry_id):
     return redirect(url_for("view_activity"))
 
 
-            
 # Landmarks CREATE
 @app.route("/add_landmark", methods=["GET", "POST"])
 @login_required
