@@ -60,7 +60,7 @@
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i
                     class="fas fa-power-off" aria-hidden="true"></i> Register</a>
                 {% endif %}
-                {% if session.access == 'true' %}
+                {% if session.access == false %}
                 <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i class="fas fa-gear"
                     aria-hidden="true"></i> Admin</a>

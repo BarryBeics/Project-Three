@@ -10,9 +10,9 @@
         <div class="mb-3">
             
             <label for="access"> Does this user have admin access?</label>
-            <input type="checkbox" id="yes" name="access" {% if user.access == on %} checked {% endif %}> 
+            <input type="checkbox" id="yes" name="access" {% if user.access == true %} checked {% endif %}> 
             <label for="yes">Yes</label><br>
-            <p>{% if user.access == 'false' %} No this was not a commute {% endif %}</p>
+            <p>{% if user.access == false %} This user does not have admin access {% endif %}</p>
         </div>
 
 

@@ -136,7 +136,7 @@ def edit_user(user_id):
     user = Users.query.get_or_404(user_id)
     print(user)
     if request.method == "POST":
-        user.access = request.form.get("access")
+        user.access = request.form.get("access") == 'on'
         user.longitude=request.form.get("longitude")
         user.latitude=request.form.get("latitude")
 
