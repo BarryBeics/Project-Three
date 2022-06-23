@@ -15,15 +15,15 @@
         <!-- Group Name -->
         <label for="group_name" class="form-label">Group Name:</label>
         <select id="group_name" name="group_name" class="form-control" required>
-            <option value="{{ settings.group_name }}" disabled>Choose Type</option>
+        <option value="{{ settings.group_name }}" disabled>Choose Type</option>
 
             <!-- for to to find current activity type -->
             {% for group in groups %}
-            
                     <option value="{{ group.name }}" {% if settings.group_name == group.name %} selected {% endif %}>{{ group.name }}</option>
-                
             {% endfor %}
-                </select>
+        </select>
+
+
          
          <!-- Submit Button -->
         <div class="d-flex justify-content-center">
@@ -35,4 +35,9 @@
   </div>
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e65dfe7a0d7a826c6ca1082577dec4faf9d573c8
 {% endblock %}
