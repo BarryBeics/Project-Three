@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-<h3 class="d-flex justify-content-center">Edit Group</h3>
+<div class="main">
+    <div class="row">
+        <div class="col-3 link-text"><a href="{{ url_for('admin') }}"><i class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i></a> </div>
+        <div class="col-6"><h3 class="d-flex justify-content-center">Edit Groups</h3> </div>
+        <div class="col-3">  </div>
+    </div>
 
 <div class="row card">
     <form method="POST" action="{{ url_for('edit_group', group_id=group.group_id) }}">
@@ -34,5 +38,5 @@
         </div>
     </form>
 </div>
-
+</div>
 {% endblock %}

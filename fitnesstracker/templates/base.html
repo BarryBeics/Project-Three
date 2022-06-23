@@ -60,7 +60,7 @@
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i
                     class="fas fa-power-off" aria-hidden="true"></i> Register</a>
                 {% endif %}
-                {% if session.access == false %}
+                {% if session.access == true %}
                 <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i class="fas fa-gear"
                     aria-hidden="true"></i> Admin</a>
@@ -85,7 +85,7 @@
     {% endfor %}
     {% endif %}
   </section>
-  <section class="container-lg main">
+  <section class="container-lg">
     <!-- Get content for various page here -->
     {% block content %}
     {% endblock %}

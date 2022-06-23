@@ -61,6 +61,8 @@ hr {
    color: #2e5266;
 }
 
+
+.how-it-works i,
 .footer-menuitem a,
 .footer-menuitem a i {
   color: #50A5B1;
@@ -120,7 +122,19 @@ a,
     margin-bottom: 60px; /* Margin bottom by footer height */ 
  }
 
+.how-it-works i {
+  font-size: 100px;
+}
 
+.how-it-works {
+  margin-left: auto;
+  margin-right: auto;
+  width: 8em;
+}
+
+.intro h1 {
+  font-size: 150px;
+}
 
   .footer {
     position: absolute;

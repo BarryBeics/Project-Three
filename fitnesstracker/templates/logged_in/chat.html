@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="main">
 <h3 class="d-flex justify-content-center">Chat</h3>
 {% for users, chat_log in get_chat %}
 <div class="row">
@@ -24,7 +25,7 @@
     
 
 </div>
-</div>
+
 
 <div class="row subtle">
     <div class="col-6 d-block d-sm-none btn-edit"><a
@@ -77,3 +78,4 @@
 
 
 {% endblock %}
+</div>

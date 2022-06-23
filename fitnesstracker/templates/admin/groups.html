@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row">
-    <div class="col-2 link-text"><a href="{{ url_for('admin') }}"><i class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i>
-    </a> </div>
-    <div class="col-10"><h3 class="d-flex justify-content-center">Groups</h3> </div>
-</div>
+<div class="main">
+    <div class="row">
+        <div class="col-3 link-text"><a href="{{ url_for('admin') }}"><i class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i></a> </div>
+        <div class="col-6"><h3 class="d-flex justify-content-center">Groups</h3> </div>
+        <div class="col-3"> <a href="{{ url_for('register_group') }}" class="btn btn-warning"> Create a Group <i class="fa fa-people-group" aria-hidden="true"></i> </a> </div>
+    </div>
 
                     <div class="row">
                         <hr>
@@ -53,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-
+                
     {% endfor %}
-
+</div>
 {% endblock %}

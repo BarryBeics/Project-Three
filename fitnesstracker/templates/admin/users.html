@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-
+<div class="main">
 <div class="row">
     <div class="col-2 link-text"><a href="{{ url_for('admin') }}"><i class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i>
     </a> </div>
@@ -53,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+            
     {% endfor %}
-
+</div>
 {% endblock %}
