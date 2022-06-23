@@ -134,6 +134,7 @@ def edit_landmark(landmark_id):
 @admin_access
 def edit_user(user_id):
     user = Users.query.get_or_404(user_id)
+    print(user)
     if request.method == "POST":
         user.access = request.form.get("access")
         user.longitude=request.form.get("longitude")

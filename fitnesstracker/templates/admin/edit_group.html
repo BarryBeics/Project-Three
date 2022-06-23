@@ -12,14 +12,19 @@
                 <div class="mb-3">
                     <label for="name">Group Name</label>
                     <input type="text" name="name" class="form-control" id="name"  value="{{ group.name }}" 
-                        aria-describedby="name" required>
+                    pattern="^[a-zA-Z]{3,15}$" aria-describedby="name" required>
+                    <p><i class="fa-solid fa-check"></i> No numbers or spaces</p>
+                    <p><i class="fa-solid fa-check"></i> No special characters</p>
+                    <p><i class="fa-solid fa-check"></i> Between 3 - 15 characters</p>
+                    <p><i class="fa-solid fa-check"></i> Must be a unique name</p>
                 </div>
 
                 <!-- Group Size -->
                 <div class="mb-3">
                     <label for="size">Group Size</label>
-                    <input type="size" name="size" class="form-control" id="size"  value="{{ group.size }}" 
-                        aria-describedby="size">
+                    <input type="number" name="size" class="form-control" id="size" min="2" max="20" step="1" value="{{ group.size }}" 
+                    pattern="^[0-9]{1,2}$"  aria-describedby="size">
+                    <p><i class="fa-solid fa-check"></i> Size between 2 - 20</p>
                 </div>
                 
                 <!-- Submit -->

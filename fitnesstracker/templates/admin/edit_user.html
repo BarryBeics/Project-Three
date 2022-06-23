@@ -8,21 +8,24 @@
     <form method="POST" action="{{ url_for('edit_user', user_id=user.user_id) }}">
         <!-- Access -->
         <div class="mb-3">
+            
             <label for="access"> Does this user have admin access?</label>
-            <input type="checkbox" id="yes" name="access">
+            <input type="checkbox" id="yes" name="access" {% if user.access == on %} checked {% endif %}> 
             <label for="yes">Yes</label><br>
+            <p>{% if user.access == 'false' %} No this was not a commute {% endif %}</p>
         </div>
+
 
         <!-- Longitude -->
         <div class="mb-3">
             <label for="longitude" class="form-label">longitude:</label>
-            <input id="longitude" name="longitude" value="{{ user.longitude }}" type="text" class="form-control"
+            <input id="longitude" name="longitude" value="{{ user.longitude }}"  type="number" class="form-control" pattern="^[0-9]{1,6}$"
                 required>
         </div>
         <!-- Latitude -->
         <div class="mb-3">
             <label for="latitude" class="form-label">Latitude:</label>
-            <input id="latitude" name="latitude" value="{{ user.latitude }}" type="text" class="form-control" required>
+            <input id="latitude" name="latitude" value="{{ user.latitude }}"  type="number" class="form-control" pattern="^[0-9]{1,6}$" required>
         </div>
         <!-- Submit Button -->
         <div class="d-flex justify-content-center">
