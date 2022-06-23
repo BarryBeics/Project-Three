@@ -21,6 +21,8 @@
         <a class="navbar-brand" href="#">
           <h2>Community Fitness</h2>
         </a>
+        <!-- Burger Menu-->
+
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -30,23 +32,22 @@
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Main Navigation</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
+
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
                 <!-- Only visable to logged IN users -->
                 {% if session.user %}
-                <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i 
-                  class="fa-solid fa-map" aria-hidden="true"></i> Map View </a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('map_link') }}"> <i
+                    class="fa-solid fa-map" aria-hidden="true"></i> Map View </a>
                 <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('view_activity') }}"> <i
-                  class="fa fa-list-ul" aria-hidden="true"></i> View Activity</a>
+                    class="fa fa-list-ul" aria-hidden="true"></i> View Activity</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('post_activity') }}"> <i
                     class="fa-solid fa-plus" aria-hidden="true"></i> Post Manually</a>
                 <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('settings') }}"> <i
                     class="fa-solid fa-user-gear" aria-hidden="true"></i> Settings</a>
-                <a class="nav-link active" aria-current="page" href=""> <i 
-                      class="fa fa-link" aria-hidden="true"></i> Connections</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register_group') }}"> <i
                     class="fa fa-people-group" aria-hidden="true"></i> Create a Group</a>
                 <hr>
@@ -54,16 +55,16 @@
                     class="fas fa-power-off" aria-hidden="true"></i> Log Out</a>
                 {% else %}
                 <!-- Only visable to logged OUT users -->
-                <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}"> <i 
-                  class="fas fa-user-cog" aria-hidden="true"></i> Log In</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}"> <i class="fas fa-user-cog"
+                    aria-hidden="true"></i> Log In</a>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i
                     class="fas fa-power-off" aria-hidden="true"></i> Register</a>
                 {% endif %}
                 {% if session.access == 'on' %}
                 <hr>
-                <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i 
-                  class="fas fa-gear" aria-hidden="true"></i> Admin</a>
-                  {% endif %}
+                <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i class="fas fa-gear"
+                    aria-hidden="true"></i> Admin</a>
+                {% endif %}
               </li>
 
             </ul>
@@ -92,47 +93,61 @@
   </section>
   <footer class="footer">
     <div class="container">
-      
 
-        {% if session.access == 'on' %}
-        <div class="d-md-block">
+
+      {% if session.access == 'on' %}
+      <div class="d-md-block">
         <ul id="nav" class="main-list-inline main-menucontainer">
           <li class="col-4-xs list-inline-item footer-menuitem">
-              <a href="{{ url_for('users') }}" class="hvr-push"><i class="fas fa-user"
-                      aria-hidden="true"></i><span>Users</span></a>
+            <a href="{{ url_for('users') }}" class="hvr-push"><i class="fas fa-user"
+                aria-hidden="true"></i><span>Users</span></a>
           </li>
           <li class="col-4-xs list-inline-item footer-menuitem">
-              <a href="{{ url_for('landmarks') }}" class="hvr-push"><i class="fas fa-map-pin" aria-hidden="true"></i>
-                  <div><span>Landmarks</span></div>
-              </a>
+            <a href="{{ url_for('landmarks') }}" class="hvr-push"><i class="fas fa-map-pin" aria-hidden="true"></i>
+              <div><span>Landmarks</span></div>
+            </a>
           </li>
           <li class="col-4-xs  list-inline-item footer-menuitem">
-              <a href="{{ url_for('groups') }}" class="hvr-push"><i class="fa fa-people-group" aria-hidden="true"></i>
-                  <div><span>Groups</span></div>
-              </a>
+            <a href="{{ url_for('groups') }}" class="hvr-push"><i class="fa fa-people-group" aria-hidden="true"></i>
+              <div><span>Groups</span></div>
+            </a>
           </li>
-      </ul>
-    </div>
-                  {% else %}
-                  <div class="d-md-block">
-                  <ul id="nav" class="main-list-inline main-menucontainer">
-                    <li class="col-4-xs list-inline-item footer-menuitem">
-                        <a href="{{ url_for('post_activity') }}" class="hvr-push"><i class="fa-solid fa-plus"
-                                aria-hidden="true"></i><span>Post Activity</span></a>
-                    </li>
-                    <li class="col-4-xs list-inline-item footer-menuitem">
-                        <a href="{{ url_for('map_link') }}" class="hvr-push"><i class="fa-solid fa-map" aria-hidden="true"></i>
-                            <div><span>View Map</span></div>
-                        </a>
-                    </li>
-                    <li class="col-4-xs  list-inline-item footer-menuitem">
-                        <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
-                            <div><span>Leaderboards</span></div>
-                        </a>
-                    </li>
-                </ul>
+        </ul>
+      </div>
+      {% endif %}
+      <!-- Only visable to logged IN users -->
+      {% if session.user %}
+      <div class="d-md-block">
+        <ul id="nav" class="main-list-inline main-menucontainer">
+          <li class="col-4-xs list-inline-item footer-menuitem">
+            <a href="{{ url_for('post_activity') }}" class="hvr-push"><i class="fa-solid fa-plus"
+                aria-hidden="true"></i><span>Post Activity</span></a>
+          </li>
+          <li class="col-4-xs list-inline-item footer-menuitem">
+            <a href="{{ url_for('map_link') }}" class="hvr-push"><i class="fa-solid fa-map" aria-hidden="true"></i>
+              <div><span>View Map</span></div>
+            </a>
+          </li>
+          <li class="col-4-xs  list-inline-item footer-menuitem">
+            <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
+              <div><span>Leaderboards</span></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- For not logged in users -->
+      {% else %}
+      <div class="d-md-block">
 
-                  {% endif %}
+        <li class="col-12-xs list-inline-item footer-menuitem">
+          <a href="{{ url_for('how_it_works') }}" class="hvr-push"><i class="fa-solid fa-question"
+              aria-hidden="true"></i>
+            <div><span>How it works</span></div>
+          </a>
+        </li>
+        </ul>
+      </div>
+      {% endif %}
 
 
 

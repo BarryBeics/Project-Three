@@ -169,7 +169,6 @@ def post_activity():
 @login_required
 def view_activity():
     activities = Activity_log.query.filter(Activity_log.user_id == session["user"]).order_by(Activity_log.date).all()
-    
     return render_template("view_activity.html", activities=activities)
 
 
@@ -589,7 +588,13 @@ def delete_self(user_id):
     flash('Your account has been succefully deleted!')
     session.pop("user")
     return redirect(url_for("home"))
-    
+
+
+# Users SELF DELETE
+@app.route("/how_it_works")
+def how_it_works():
+    return render_template("how_it_works.html")
+
 
 # Custom Error pages
 

@@ -141,7 +141,6 @@ a,
 
 .main {
   margin-top: 20px;
-  padding: 30px;
   background-color: rgba(248, 246, 246, 0.8);
 }
 
@@ -159,13 +158,22 @@ a,
 }
 
 .main {
-  padding: 0px;
+  padding: 10px;
 }
 
 }
+
+/* ------------- Media Queries  ----------- All Mobile & Nexus 7 Tablet */
+
+@media only screen and (min-width: 577px) {
 
 #map {
   height: 500px;
+}
+
+.main {
+  padding: 30px;
+}
 }
 
 .btn-delete,
