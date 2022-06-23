@@ -310,6 +310,44 @@ def map_link():
     return render_template("loading/map_link.html", update=update)
 
 
+# Set up
+@app.route("/set_up", methods=["GET", "POST"])
+def set_up():
+    
+    if "user" in session:
+        email = session["user"]
+        # swap the session value from email to user_id
+        user_data = Users.query.filter(Users.email == session["user"]).first()
+        user_id = user_data.user_id
+        session["user"] = user_id
+        access = user_data.access
+        session["access"] = access
+
+        # As json column can not have a default value, detect if this is a new account and complete set up by adding this default to the users account
+        is_new = Activity_log.query.filter_by(user_id=user_id).count()
+        print(is_new)
+        if is_new == 0:
+            setup = Users.query.get_or_404(user_id)
+            setup.unlocked_zones = {
+            "L1": "no",
+            "L2": "no",
+            "L3": "no",
+            "L4": "no",
+            "L5": "no",
+            "L6": "no",
+            "L7": "no"
+            }
+            db.session.commit()
+            flash("Account set up!")
+            
+            return render_template("loading/set_up.html", user_data=user_data)
+
+
+        return render_template("loading/set_up.html", user_data=user_data)
+
+    return redirect(url_for("login"))
+
+
 # Build User JSON
 @app.route("/user_json")
 @login_required
@@ -435,37 +473,12 @@ def post_activity():
 
 # Profile
 @app.route("/profile", methods=["GET", "POST"])
+@login_required
 def profile():
     
     if "user" in session:
-        email = session["user"]
         # swap the session value from email to user_id
-        user_data = Users.query.filter(Users.email == session["user"]).first()
-        user_id = user_data.user_id
-        session["user"] = user_id
-        access = user_data.access
-        session["access"] = access
-
-        # As json column can not have a default value, detect if this is a new account and complete set up by adding this default to the users account
-        is_new = Activity_log.query.filter_by(user_id=user_id).count()
-        print(is_new)
-        if is_new == 0:
-            setup = Users.query.get_or_404(user_id)
-            setup.unlocked_zones = {
-            "L1": "no",
-            "L2": "no",
-            "L3": "no",
-            "L4": "no",
-            "L5": "no",
-            "L6": "no",
-            "L7": "no"
-            }
-            db.session.commit()
-            flash("Account set up!")
-            
-            return render_template("logged_in/profile.html", user_data=user_data)
-
-
+        user_data = Users.query.filter(Users.user_id == session["user"]).first() 
         return render_template("logged_in/profile.html", user_data=user_data)
 
     return redirect(url_for("login"))
@@ -587,7 +600,7 @@ def login():
                     existing_user[0].password, request.form.get("password")):
                         session["user"] = request.form.get("email").lower()
                         flash("Welcome, {}".format(session["user"]))
-                        return redirect(url_for("profile"))
+                        return redirect(url_for("set_up"))
             else:
                 #invalid password
                 flash("Incorrect Username and/or Password")
