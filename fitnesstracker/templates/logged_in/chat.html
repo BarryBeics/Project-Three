@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-    <h3 class="d-flex justify-content-center">Chat</h3>
+<div class="row">
+    <div class="col-3 link-text"><a href="{{ url_for('map') }}"><i class="fa-solid fa-circle-left" aria-hidden="true"> Map</i>
+    </a> </div>
+    <div class="col-9"><h3 class="d-flex justify-content-center">Chat</h3> </div>
+</div>
+    
     {% for users, chat_log in get_chat %}
     <div class="row">
         <hr>

@@ -25,6 +25,41 @@
     </ul>
 </div>
 <div id="map"></div>
+
+<!-- DASHBOARD OPEN -->
+<div class="col-12">
+  <h1>YOUR PROGRESS</h1>
+  <p>This is an overview of your current progress.</p>
+  <div class="row results-center results-area">
+  <!-- Total Panel -->
+  <div class="col-4">
+    <div class="box-style">
+      <label class="title"> Total Distance</label>
+      <div class="dashboard"> <span id="newBalance">{{ data.total_distance }}</span> </div>
+      <label class="title"> Miles </label>
+    </div>
+  </div>
+  <!-- Laps Panel -->
+  <div class="col-4">
+    <div class="box-style">
+      <label class="title"> Completed</label>
+      <div class="dashboard"> <span id="profitLoss">{{ data.laps}}</span> </div>
+      <label class="title"> Laps </label>
+    </div>
+  </div>
+  <!-- Distance Panel -->
+  <div class="col-4">
+    <div class="box-style">
+      <label class="title"> Current Lap Distance</label>
+      <div class="dashboard"> <span id="cryptoSelection">{{ data.current_distance }}</span> </div>
+      <label class="title"> Miles </label>
+    </div>
+  </div>
+    <!-- Distance Panel -->
+</div>
+</div> <!-- col-12 -->
+<!-- DASHBOARD CLOSE -->
+
 </div>
 {% for landmark in landmarks %}
 <div class="modal fade" id="{{ landmark.modal_link }}" tabindex="-1" aria-labelledby="oneLabel" aria-hidden="true">
