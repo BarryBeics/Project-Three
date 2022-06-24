@@ -177,12 +177,12 @@ console.log(obj);
          if (item.modal_link == key){ 
      		 if(value == "yes"){
     		  console.log("unlocked", key)
-               txt = `<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"data-bs-target="#${item.modal_link}" > ${item.modal_link} ${item.landmark_name} </button>`;
+               txt = `<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"data-bs-target="#${item.modal_link}" > ${item.modal_link} ${item.landmark_name} </button>`;
     		  }
           
    			 else{
     		   console.log("locked", key);
-               txt = `<button type="button" class="btn btn-light btn-sm" >${item.modal_link} ${item.landmark_name} </button>`;
+               txt = `<button type="button" class="btn btn-secondary btn-sm" >${item.modal_link} ${item.landmark_name} </button>`;
    			   }
          }
 		});

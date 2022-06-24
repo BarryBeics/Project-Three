@@ -26,7 +26,27 @@
 </div>
 <div id="map"></div>
 </div>
+{% for landmark in landmarks %}
+<div class="modal fade" id="{{ landmark.modal_link }}" tabindex="-1" aria-labelledby="oneLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="oneLabel">{{ landmark.landmark_name }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div> <!-- modal-header -->
+        <div class="modal-body">
+          <img id="main_image" src="" width="760">
+          {{ landmark.body_text }}
+          {{ landmark.video_link }}
+        </div> <!-- modal-body -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div> <!-- modal-footer -->
+      </div> <!-- modal-content -->
+    </div> <!-- modal-dialog -->
+  </div> <!-- modal-fade -->
 
+  {% endfor %}
 <script>
     var unlocked = {{ json_object | tojson  }}
 </script>

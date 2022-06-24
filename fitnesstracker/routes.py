@@ -327,11 +327,11 @@ def set_up():
             setup = Users.query.get_or_404(user_id)
             setup.unlocked_zones = {
             "L1": "no",
-            "L2": "no",
+            "L2": "yes",
             "L3": "no",
             "L4": "no",
             "L5": "no",
-            "L6": "no",
+            "L6": "yes",
             "L7": "no"
             }
             db.session.commit()
@@ -443,8 +443,9 @@ def map():
     # Change Python Dict to a json object
     unlocked_status = zones.unlocked_zones
     json_object = json.dumps(unlocked_status) 
+    landmarks = Map_data.query.all()
     
-    return render_template("logged_in/map.html", data=data, json_object=json_object)
+    return render_template("logged_in/map.html", data=data, json_object=json_object, landmarks=landmarks)
 
 
 # Activity CREATE
