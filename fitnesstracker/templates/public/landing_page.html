@@ -2,13 +2,13 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-6 intro main">
+    <div class="col-12 col-md-6 intro main">
             <h1>
                 START SOMETHING NEW
             </h1>
             <p>A platform for corporate wellness, a launchpad for your health and fitness</p>
         </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
         <!-- register -->
         {% if session.user %}
 
@@ -19,10 +19,10 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-6 main">
+    <div class="col-12 col-md-6 main">
             <img src="{{ url_for('static', filename='images/comp-view.png') }}" alt="">
         </div>
-    <div class="col-6 main">
+    <div class="col-12 col-md-6 main">
        <h3> CREATE YOUR OWN </h3>
        <h3> FITNESS CHALLENGE </h3> 
 <p> Stay focused and motivated to exercise by creating your own fitness challenge!</p>

@@ -1,25 +1,73 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <div class="main">
 <div class="row">
-    <div class="col s12 m8 offset-m2">
-        <div class="card-panel">
-            <h3 class="center-align light-blue-text text-darken-4">
-                Profile for {{ user_data.first_name }} {{ user_data.last_name }}
-                User id {{ user_data.user_id }}
-                Access {{ session['access'] }}
-                your part of {{ user_data.group_name }} group
-            </h3>
+    <div class="col-12 ">
+            <h2>
+                WELCOME {{ user_data.first_name }} {{ user_data.last_name }}
+            </h2>
+            <p>A platform for corporate wellness, a launchpad for your health and fitness</p>
         </div>
-    </div>
+</div>
+
+<div class="row">
+    <div class="col-9 icon">
+            
+            <p>You are currently part of the {{ user_data.group_name }} group.</p>
+
+            <p>Your Icon is currently:</p>
+            <img src="{{ url_for('static', filename='images/markers/' + icon  + '.png') }}" alt="">
+            <p>If you wish to change either of these you can at:</p>
+
+        </div>
+        <div class="col-3">
+            <a href="{{ url_for('settings') }}"
+                                    class="btn btn-edit">Settings! </a>
+        </div>
 </div>
 
 
+<!-- DASHBOARD OPEN -->
+<div class="col-12">
+    <h1>YOUR PROGRESS</h1>
+    <p>This is an overview of your current progress.</p>
+    <div class="row text-center">
+    <!-- Total Panel -->
+    <div class="col-12 col-md-4">
+      <div class="box-style">
+        <label class="title"> Total Distance</label>
+        <div class="dashboard"> <span>{{ user_data.total_distance }}</span> </div>
+        <label class="title"> Miles </label>
+      </div>
+    </div>
+    <!-- Laps Panel -->
+    <div class="col-12 col-md-4">
+      <div class="box-style">
+        <label class="title"> Completed</label>
+        <div class="dashboard"> <span>{{ user_data.laps}}</span> </div>
+        <label class="title"> Laps </label>
+      </div>
+    </div>
+    <!-- Distance Panel -->
+    <div class="col-12 col-md-4">
+      <div class="box-style">
+        <label class="title"> Current Lap Distance</label>
+        <div class="dashboard"> <span>{{ user_data.current_distance }}</span> </div>
+        <label class="title"> Miles </label>
+      </div>
+    </div>
+      <!-- Distance Panel -->
+  </div>
+  </div> <!-- col-12 -->
+  <!-- DASHBOARD CLOSE -->
+
+
 <div class="row subtle">
-    
-    <div><button data-bs-toggle="modal" class="btn btn-danger btn-sm"
+    <div class="col-9">
+    <h3>Want to leave?</h3>
+    <p>No problem, you can delete you account and all data posted for total peace of mind here.</p></div>
+    <div class="col-3"><button data-bs-toggle="modal" class="btn btn-danger btn-sm"
         data-bs-target="#modal-{{  session['user'] }}"> Delete </button></div>
 </div>
 

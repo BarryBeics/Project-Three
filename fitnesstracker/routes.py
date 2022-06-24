@@ -490,7 +490,11 @@ def profile():
     if "user" in session:
         # swap the session value from email to user_id
         user_data = Users.query.filter(Users.user_id == session["user"]).first() 
-        return render_template("logged_in/profile.html", user_data=user_data)
+        # load the JSON files containing the icon images data 
+        icons = json.load(open("fitnesstracker/static/JSON/user_icons.json"))
+        num_str = str(user_data.icon_num)
+        icon = icons[num_str]
+        return render_template("logged_in/profile.html", user_data=user_data, icon=icon, num_str=num_str)
 
     return redirect(url_for("login"))
 

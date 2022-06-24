@@ -10,6 +10,8 @@ p {
 h1,
 h2,
 h3,
+.title,
+.dashboard,
 a,
 .popover-header,
 .main-menuitem span,
@@ -91,6 +93,12 @@ hr {
 
 .data-block {
   border: solid 1px #197b7b;
+}
+
+.box-style {
+  border: 1px solid #2e5266;
+  background: rgba(80,165,177, 0.5);
+  padding: 5px;
 }
 
 .footer,
@@ -176,7 +184,7 @@ a,
 }
 
 .main {
-  padding: 10px;
+  padding: 20px;
 }
 
 }
@@ -199,6 +207,32 @@ a,
   text-align:center;
 }
 
+.dashboard {
+  font-size: 5.45em;
+  margin: -34px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.box-style {
+  padding: 5px;
+}
+
+.title,
+.value,
+.data span {
+   font-size: 1.6em;
+}
 /* ------------- Internal navigation -----*/
 
 .footer-menuitem a i,
