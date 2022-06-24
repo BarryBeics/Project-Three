@@ -511,10 +511,8 @@ def settings():
     # load the JSON files containing the icon images data 
     icons = json.load(open("fitnesstracker/static/JSON/user_icons.json"))
     settings = Users.query.get_or_404(session["user"])
-    eggs = str(settings.icon_num +1)
-    print(eggs)
-    print(type(eggs))
-    
+    num_str = str(settings.icon_num)
+
     groups = list(Groups.query.order_by(Groups.name).all())
     icon_nums = list(Users.query.order_by(Users.first_name).all())
     if request.method == "POST":
@@ -523,7 +521,9 @@ def settings():
         settings.icon_num = request.form.get("icon_num")
         db.session.commit()
         flash("Your changes have been saved")
-    return render_template("logged_in/settings.html", settings=settings, groups=groups, icon_nums=icon_nums, icons=icons, eggs=eggs)
+        return redirect(url_for("settings"))
+
+    return render_template("logged_in/settings.html", settings=settings, groups=groups, icon_nums=icon_nums, icons=icons, num_str=num_str)
 
 
 # Activity RETRIEVE

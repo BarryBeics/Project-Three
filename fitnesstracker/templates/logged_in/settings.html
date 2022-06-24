@@ -4,47 +4,49 @@
 
 <h3 class="d-flex justify-content-center">Settings</h3>
 
-  <div class="row card">
+<div class="row card">
     <form method="POST" action="{{ url_for('settings', user_id=session['user']) }}">
         <!-- Email -->
         <div class="mb-3">
             <label for="email" class="form-label">Email Address:</label>
-            <input id="email" name="email" value="{{ settings.email }}" minlength="8" maxlength="50" 
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" class="form-control" required>
+            <input id="email" name="email" value="{{ settings.email }}" minlength="8" maxlength="50"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" class="form-control" required>
         </div>
         <!-- Group Name -->
         <label for="group_name" class="form-label">Group Name:</label>
         <p><i class="fa-solid fa-check"></i> Select a group from the list:</p>
         <select id="group_name" name="group_name" class="form-control" required>
-            
-        <option value="{{ settings.group_name }}" disabled>Choose Type</option>
+
+            <option value="{{ settings.group_name }}" disabled>Choose Type</option>
             <!-- for to to find current activity type -->
             {% for group in groups %}
-                <option value="{{ group.name }}" {% if settings.group_name == group.name %} selected {% endif %}>{{ group.name }}</option>
+            <option value="{{ group.name }}" {% if settings.group_name == group.name %} selected {% endif %}>
+                {{ group.name }}</option>
             {% endfor %}
         </select>
-        <p><i class="fa fa-people-group"></i> Want to create your own group?<a href="{{ url_for('register_group') }}">click here</a></p>
+        <p><i class="fa fa-people-group"></i> Want to create your own group?<a
+                href="{{ url_for('register_group') }}">click here</a></p>
 
 
-       
-<!-- Select Icon -->
-<div class="mb-3 icon">
-    <label for="icon_num" class="form-label">Icon Num:</label><br>
-    {% for key, value in icons.items() %}    
-        <input type="radio" id="{{ key }}" name="icon_num" value="{{ key }}" {% if key == eggs %} checked {% endif %}> 
-        <img src="{{ url_for('static', filename='images/markers/' + value  + '.png') }}" alt="">     <br>
-    {% endfor %}
-         
+        <!-- Select Icon -->
+        <div class="mb-3 icon">
+            <label for="icon_num" class="form-label">Icon Num:</label><br>
+            {% for key, value in icons.items() %}
+            <input type="radio" id="{{ key }}" name="icon_num" value="{{ key }}" {% if key == num_str %} checked
+                {% endif %}>
+            <img src="{{ url_for('static', filename='images/markers/' + value  + '.png') }}" alt=""> <br>
+            {% endfor %}
+
         </div>
 
-         <!-- Submit Button -->
+        <!-- Submit Button -->
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-warning">
                 Edit Settings <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </button>
         </div>
-      </form>
-  </div>
+    </form>
+</div>
 
 
 
