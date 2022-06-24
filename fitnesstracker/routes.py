@@ -73,7 +73,6 @@ def add_landmark():
             landmark_name=request.form.get("landmark_name"),
             modal_link=request.form.get("modal_link"),
             main_image=request.form.get("main_image"),
-            video_link=request.form.get("video_link"),
             body_text=request.form.get("body_text"),
             user_id=session["user"],
             longitude=request.form.get("longitude"),
@@ -118,7 +117,6 @@ def edit_landmark(landmark_id):
         landmark.landmark_name = request.form.get("landmark_name")
         landmark.modal_link=request.form.get("modal_link"),
         landmark.main_image=request.form.get("main_image"),
-        landmark.video_link=request.form.get("video_link"),
         landmark.body_text=request.form.get("body_text"),
         user_id=session["user"],
         landmark.longitude=request.form.get("longitude"),
