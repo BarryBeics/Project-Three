@@ -134,7 +134,6 @@ def edit_landmark(landmark_id):
 @admin_access
 def edit_user(user_id):
     user = Users.query.get_or_404(user_id)
-    print(user)
     if request.method == "POST":
         user.access = request.form.get("access") == 'on'
         user.longitude=request.form.get("longitude")
@@ -267,7 +266,6 @@ def landmark_json():
 def map_link():
     # Check is this is a new user with no activity posted
     is_new = Activity_log.query.filter_by(user_id=session["user"]).count()
-    print(is_new)
     if is_new == 0:
         flash('You need to log your first activity before viewing the map')
         return render_template("logged_in/post_activity.html")
@@ -313,7 +311,6 @@ def map_link():
 # Set up
 @app.route("/set_up", methods=["GET", "POST"])
 def set_up():
-    
     if "user" in session:
         email = session["user"]
         # swap the session value from email to user_id
@@ -339,9 +336,7 @@ def set_up():
             }
             db.session.commit()
             flash("Account set up!")
-            
             return render_template("loading/set_up.html", user_data=user_data)
-
 
         return render_template("loading/set_up.html", user_data=user_data)
 
@@ -513,14 +508,22 @@ def register_group():
 @app.route("/settings", methods=["GET", "POST"])
 @login_required
 def settings():
+    # load the JSON files containing the icon images data 
+    icons = json.load(open("fitnesstracker/static/JSON/user_icons.json"))
     settings = Users.query.get_or_404(session["user"])
+    eggs = str(settings.icon_num +1)
+    print(eggs)
+    print(type(eggs))
+    
     groups = list(Groups.query.order_by(Groups.name).all())
+    icon_nums = list(Users.query.order_by(Users.first_name).all())
     if request.method == "POST":
         settings.email = request.form.get("email")
         settings.group_name = request.form.get("group_name")
+        settings.icon_num = request.form.get("icon_num")
         db.session.commit()
         flash("Your changes have been saved")
-    return render_template("logged_in/settings.html", settings=settings, groups=groups)
+    return render_template("logged_in/settings.html", settings=settings, groups=groups, icon_nums=icon_nums, icons=icons, eggs=eggs)
 
 
 # Activity RETRIEVE

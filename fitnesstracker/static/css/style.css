@@ -132,6 +132,10 @@ a,
   width: 8em;
 }
 
+.icon img {
+  height: 30px;
+  width: 30px;
+}
 .intro h1 {
   font-size: 150px;
 }
