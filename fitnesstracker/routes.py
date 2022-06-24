@@ -158,7 +158,7 @@ def groups():
 @login_required
 @admin_access
 def landmarks():
-    landmarks = list(Map_data.query.order_by(Map_data.landmark_name).all())
+    landmarks = list(Map_data.query.order_by(Map_data.modal_link).all())
     return render_template("admin/landmarks.html", landmarks=landmarks)
 
 
