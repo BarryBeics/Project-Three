@@ -28,11 +28,7 @@
 </div>
 
 <script>
-    var unlocked = {
-        {
-            json_object | tojson
-        }
-    }
+    var unlocked = {{ json_object | tojson  }}
 </script>
 
 <script src="{{ url_for('static', filename='js/map_build.js') }}"></script>
