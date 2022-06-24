@@ -35,12 +35,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div> <!-- modal-header -->
         <div class="modal-body">
-          <img id="main_image" src="" width="760">
-          {{ landmark.body_text }}
-          {{ landmark.video_link }}
+          <img id="main_image" src="{{ url_for('static', filename='images/landmarks/' + landmark.main_image  + '.jpeg') }}" width="760">
+         <p>{{ landmark.body_text }}</p> 
+          
+          
         </div> <!-- modal-body -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
         </div> <!-- modal-footer -->
       </div> <!-- modal-content -->
     </div> <!-- modal-dialog -->

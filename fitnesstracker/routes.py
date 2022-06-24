@@ -290,11 +290,14 @@ def map_link():
     longitude = 0
     latitude = 0
     flash("current distance {}" .format(current_distance))
+
+    json_obj = update.unlocked_zones
     
+    switch = 'on'
+
     for x in range(1,len(zones)):
         ref = str(x)
         # Get the ref for which lankmark you near.   and 
-       
         if (current_distance >= zones[ref][0] and current_distance <= zones[ref][1]):
             longitude = coordinates[ref][0]
             latitude = coordinates[ref][1]
@@ -304,17 +307,18 @@ def map_link():
             update.longitude = longitude
             update.latitude = latitude
             
-    json_obj = update.unlocked_zones
+        if switch == 'on':
+            if (current_distance >= landmarks[ref][0] and current_distance <= landmarks[ref][1]):
+                
+                landmark_num = landmarks[ref][2]
+                json_obj[landmark_num] = 'yes'
+                update.unlocked_zones = json_obj
+                switch = 'off'
+            
+        db.session.commit()
     
-    for x in range(1,len(zones)):
-        ref = str(x)
-        # Get the ref for which lankmark you near.   and 
-        if (current_distance >= landmarks[ref][0] and current_distance <= landmarks[ref][1]):
-            landmark_num = landmarks[ref][2]
-            json_obj[landmark_num] = 'yes'
-            update.unlocked_zones = json_obj
-            db.session.commit()
-            break
+            
+            
     return render_template("loading/map_link.html", update=update)
 
 
@@ -453,8 +457,10 @@ def map():
     zones = Users.query.filter(Users.user_id == session["user"]).first()
     # Change Python Dict to a json object
     unlocked_status = zones.unlocked_zones
+    
     json_object = json.dumps(unlocked_status) 
     landmarks = Map_data.query.all()
+    
     
     return render_template("logged_in/map.html", data=data, json_object=json_object, landmarks=landmarks)
 
