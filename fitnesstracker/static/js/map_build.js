@@ -21,7 +21,7 @@ fetch('https://api.maptiler.com/data/b92719af-8d5b-4006-9631-3d8b13eaa1c6/featur
     iconAnchor: [5, 60]
   });
 
-  var start = L.marker([53.2648, -4.0897],{icon:checkerd}).addTo(map);
+  var start = L.marker([53.3219, -4.2259],{icon:checkerd}).addTo(map);
 
   // Add unique markers for each group member
   var mapMarkers = [
