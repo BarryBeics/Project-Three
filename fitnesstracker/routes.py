@@ -303,8 +303,18 @@ def map_link():
             update.laps = laps
             update.longitude = longitude
             update.latitude = latitude
-            db.session.commit()
             
+    json_obj = update.unlocked_zones
+    
+    for x in range(1,len(zones)):
+        ref = str(x)
+        # Get the ref for which lankmark you near.   and 
+        if (current_distance >= landmarks[ref][0] and current_distance <= landmarks[ref][1]):
+            landmark_num = landmarks[ref][2]
+            json_obj[landmark_num] = 'yes'
+            update.unlocked_zones = json_obj
+            db.session.commit()
+            break
     return render_template("loading/map_link.html", update=update)
 
 
@@ -320,18 +330,19 @@ def set_up():
         access = user_data.access
         session["access"] = access
 
-        # As json column can not have a default value, detect if this is a new account and complete set up by adding this default to the users account
+        # As json column can not have a default value, detect if this is a new account and 
+        # complete set up by adding this default to the users account
         is_new = Activity_log.query.filter_by(user_id=user_id).count()
         print(is_new)
         if is_new == 0:
             setup = Users.query.get_or_404(user_id)
             setup.unlocked_zones = {
             "L1": "no",
-            "L2": "yes",
+            "L2": "no",
             "L3": "no",
             "L4": "no",
             "L5": "no",
-            "L6": "yes",
+            "L6": "no",
             "L7": "no"
             }
             db.session.commit()
