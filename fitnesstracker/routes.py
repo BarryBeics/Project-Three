@@ -237,7 +237,6 @@ def landmark_json():
         landmark_id = map_data[x].landmark_id
         landmark_name = map_data[x].landmark_name
         modal_link = map_data[x].modal_link
-        video_link = map_data[x].video_link
         main_image = map_data[x].main_image
         body_text = map_data[x].body_text
         longitude = map_data[x].longitude
@@ -245,7 +244,6 @@ def landmark_json():
         dict = {"landmark_id" : landmark_id, 
               "landmark_name" : landmark_name, 
               "modal_link" : modal_link,
-              "video_link": video_link,
               "main_image" : main_image,
               "body_text" : body_text,
               "longitude" : longitude,
