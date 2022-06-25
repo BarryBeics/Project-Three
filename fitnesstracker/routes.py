@@ -23,7 +23,7 @@ def admin_access(func):
     @functools.wraps(func)
     def secure_function(*args, **kwargs):
         access = Users.query.filter(Users.user_id == session["user"]).first()
-        if access.access == 'false':
+        if access.access == False:
             flash('Sorry, You must have admin rights to access that page!')
             return redirect(url_for("home"))
         return func(*args, **kwargs)
