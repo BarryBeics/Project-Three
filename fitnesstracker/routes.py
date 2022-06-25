@@ -82,7 +82,8 @@ def add_landmark():
         )
         db.session.add(landmark)
         db.session.commit()
-        return redirect(url_for("landmarks"))
+        # Redirect to landmark json to update json file for the map
+        return redirect(url_for("landmark_json"))
     return render_template("admin/add_landmark.html")
 
 
@@ -100,6 +101,13 @@ def admin():
 @admin_access
 def edit_group(group_id):
     group = Groups.query.get_or_404(group_id)
+    # Check group name to see if user already exisits in db
+    existing_group = Groups.query.filter(
+        Groups.name == request.form.get("name")).all()
+
+    if existing_group:
+        flash("Group already exists")
+        return redirect(url_for("edit_group"))
     if request.method == "POST":
         group.name = request.form.get("name")
         group.size = request.form.get("size")
@@ -123,7 +131,8 @@ def edit_landmark(landmark_id):
         landmark.longitude = request.form.get("longitude"),
         landmark.latitude = request.form.get("latitude")
         db.session.commit()
-        return redirect(url_for("landmarks"))
+        # Redirect to landmark json to update json file for the map
+        return redirect(url_for("landmark_json"))
     return render_template("admin/edit_landmark.html", landmark=landmark)
 
 
@@ -552,9 +561,9 @@ def settings():
 @app.route("/view_activity")
 @login_required
 def view_activity():
-    activities = Activity_log.query.
-    filter(Activity_log.user_id == session["user"]).
-    order_by(Activity_log.date).all()
+    activities = Activity_log. \
+        query.filter(Activity_log.user_id == session["user"]). \
+        order_by(Activity_log.date).all()
     return render_template("logged_in/view_activity.html",
                            activities=activities)
 

@@ -18,7 +18,7 @@
         <select id="group_name" name="group_name" class="form-control" required>
 
             <option value="{{ settings.group_name }}" disabled>Choose Type</option>
-            <!-- for to to find current activity type -->
+            <!-- for loop to to find current activity type -->
             {% for group in groups %}
             <option value="{{ group.name }}" {% if settings.group_name == group.name %} selected {% endif %}>
                 {{ group.name }}</option>

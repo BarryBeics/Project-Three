@@ -6,39 +6,47 @@
         <div class="col">
             <h3 class="text-center">Admin</h3>
         </div>
-        <div class="row">
-        <div class="col">
+
+    </div>
+    <div class="row">
+        <div class="col text-center">
             <p>As a site admin you have privileged access to the following:</p>
             <hr>
-            
+        </div>
+    </div>
+    <!-- Manage users & groups -->
+    <div class="row text-center">
+        <div class="col-12 col-md-6">
             <a href="{{ url_for('users') }}" class="btn btn-secondary">
                 Manage Users <i class="fas fa-user" aria-hidden="true"></i>
             </a>
             <p>Here you can edit and delete all users.</p>
-
+        </div>
+        <div class="col-12 col-md-6">
+            <a href="{{ url_for('groups') }}" class="btn btn-secondary">
+                Manage Group Names <i class="fas fa-user" aria-hidden="true"></i>
+            </a>
+            <p>Here you can keep on top of the group names made by the users, you can also edit and delete all group
+                names.</p>
+        </div>
+    </div>
+    <!-- Manage & ann new landmarks -->
+    <div class="row text-center">
+        <div class="col-12 col-md-6">
+            <a href="{{ url_for('landmarks') }}" class="btn btn-warning">
+                Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
+            </a>
+            <p>Here you can view all landmarks and from there you can edit and delete any of them.</p>
+        </div>
+        <div class="col-12 col-md-6">
             <a href="{{ url_for('add_landmark') }}" class="btn btn-warning">
                 Add Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </a>
             <p>Ensure you have your data ready because every feild is required to create a new landmark.</p>
 
-            <a href="{{ url_for('groups') }}" class="btn btn-secondary">
-                Manage Group Names <i class="fas fa-user" aria-hidden="true"></i>
-            </a>
-            <p>Here you can keep on top of the group names made by the users, you can also edit and delete all group names.</p>
-
-            <a href="{{ url_for('landmarks') }}" class="btn btn-warning">
-                Manage Landmarks <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
-            </a>
-
-            <p>Here you can view all landmarks and from there you can edit and delete any of them.</p>
-
-            <a href="{{ url_for('landmark_json') }}" class="btn btn-secondary">
-                Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
-            </a>
-            <p>Once you have finished adding landmark data click 'Build Map JSON to make changes apear on the map.</p>
-        </div>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
