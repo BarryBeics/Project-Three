@@ -115,3 +115,38 @@ The W3C Markup Validation Service was used to validate the HTML of the website.
 <details><summary>Users Page</summary>
 <img src="readme-docs/testing/html/users.png">
 </details>
+
+## CSS Validation
+<hr>
+
+The W3C Jigsaw CSS Validation Service was used to validate the CSS of the website. When validating all website, it passes with no errors.
+
+<details><summary>style.css</summary>
+<img src="readme-docs/testing/html/style.png">
+</details>
+
+## JavaScript Validation
+<hr>
+
+JSHint JS Validation Service was used to validate the Javascript files. No errors were found.
+
+<details><summary>script.js</summary>
+<img src="readme-docs/testing/html/script.png">
+</details>
+
+## PEP8 Validation
+<hr>
+
+PEP8 Validation Service was used to check the code for PEP8 requirements. All the code passes with no errors and no warnings to show.
+
+<details><summary>init.py</summary>
+<img src="readme-docs/testing/html/init.png">
+</details>
+
+<details><summary>models.py</summary>
+<img src="readme-docs/testing/html/models.png">
+</details>
+
+<details><summary>routes.py</summary>
+<img src="readme-docs/testing/html/routes.png">
+</details>

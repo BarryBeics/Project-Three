@@ -4,7 +4,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 if os.path.exists("env.py"):
-    import env # noqa
+    import env  # noqa
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
@@ -20,7 +20,7 @@ else:
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from fitnesstracker import routes, models # noqa
+from fitnesstracker import routes, models  # noqa
 
 db.create_all()
 db.session.commit()

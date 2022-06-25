@@ -20,10 +20,14 @@ class Users(db.Model):
     current_distance = db.Column(db.Float, nullable=False, default=0)
     laps = db.Column(db.Integer, nullable=False, default=0)
     unlocked_zones = db.Column(JSON)
-    landmarks = db.relationship("Map_data", backref="users", cascade="all, delete", lazy=True)
-    chats = db.relationship("Chat_log", backref="users", cascade="all, delete", lazy=True)
-    activities = db.relationship("Activity_log", backref="users", cascade="all, delete", lazy=True)
-    group = db.relationship("Groups", backref="users", cascade="all, delete", lazy=True)
+    landmarks = db.relationship("Map_data", backref="users",
+                                cascade="all, delete", lazy=True)
+    chats = db.relationship("Chat_log", backref="users",
+                            cascade="all, delete", lazy=True)
+    activities = db.relationship("Activity_log", backref="users",
+                                 cascade="all, delete", lazy=True)
+    group = db.relationship("Groups", backref="users", cascade="all,
+                            delete", lazy=True)
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
@@ -36,8 +40,11 @@ class Map_data(db.Model):
     modal_link = db.Column(db.String(10), unique=True, nullable=False)
     main_image = db.Column(db.String(100), unique=True, nullable=False)
     body_text = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey("users.user_id", ondelete="CASCADE"),
+                        nullable=False)
+    created_at = db.Column(db.DateTime,
+                           default=datetime.datetime.now, nullable=False)
     longitude = db.Column(db.Float, nullable=False)
     latitude = db.Column(db.Float, nullable=False)
 
@@ -48,9 +55,11 @@ class Map_data(db.Model):
 
 class Chat_log(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id",
+                        ondelete="CASCADE"), nullable=False)
     comment = db.Column(db.Text, nullable=False)
-    date = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
+    date = db.Column(db.DateTime, default=datetime.datetime.now,
+                     nullable=False)
     group_name = db.Column(db.String(20), nullable=False)
 
     def __repr__(self):
@@ -60,11 +69,13 @@ class Chat_log(db.Model):
 
 class Activity_log(db.Model):
     entry_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id",
+                        ondelete="CASCADE"), nullable=False)
     distance = db.Column(db.Float, nullable=False)
     activity_type = db.Column(db.String(4), nullable=False)
     commute = db.Column(db.Boolean, default=False, nullable=False)
-    date = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
+    date = db.Column(db.DateTime, default=datetime.datetime.now,
+                     nullable=False)
     strava_activity_id = db.Column(db.String(4), unique=True)
 
     def __repr__(self):
@@ -74,11 +85,13 @@ class Activity_log(db.Model):
 
 class Groups(db.Model):
     group_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id",
+                        ondelete="CASCADE"), nullable=False)
     name = db.Column(db.String(20), unique=True, nullable=False)
     size = db.Column(db.Integer, nullable=False, default=20)
-    created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now,
+                           nullable=False)
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
-        return self.name  
+        return self.name
