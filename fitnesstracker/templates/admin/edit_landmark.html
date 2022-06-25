@@ -1,56 +1,82 @@
 {% extends "base.html" %}
 {% block content %}
 
+
 <div class="main">
-<h3 class="d-flex justify-content-center">Edit Landmark</h3>
+    <!-- Sub Navigation & Title -->
+    <div class="row">
+        <div class="col-2 link-text mob d-block d-md-none "><a href="{{ url_for('admin') }}"><i
+                    class="fa-solid fa-circle-left" aria-hidden="true"></i></a> </div>
+        <div class="col-3 link-text d-none d-md-block"><a href="{{ url_for('admin') }}"><i
+                    class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i></a> </div>
+        <div class="col-6">
+            <h3 class="text-center">Edit Landmark</h3>
+        </div>
+    </div>
+    <div class="row card form">
+        <form method="POST" action="{{ url_for('edit_landmark', landmark_id=landmark.landmark_id) }}">
+            <div class="row">
+                <!-- Landmark Name -->
+                <div class="col-12 col-md-9">
+                    <label for="landmark_name" class="form-label">Landmark Name:</label>
 
+                    <input id="landmark_name" name="landmark_name" value="{{ landmark.landmark_name }}" minlength="3"
+                        maxlength="50" type="text" class="form-control" required>
+                        <p><i class="fa-solid fa-check"></i> Must be unique</p>
+                </div>
+                <!-- Modal Link -->
+                <div class="col-12 col-md-3">
+                    <label for="modal_link" class="form-label">Modal Link:</label>
 
-<div class="row card">
-    <form method="POST" action="{{ url_for('edit_landmark', landmark_id=landmark.landmark_id) }}">
-        <!-- Landmark Name -->
-        <div class="mb-3">
-            <label for="landmark_name" class="form-label">Landmark Name:</label>
-            <input id="landmark_name" name="landmark_name" value="{{ landmark.landmark_name }}" minlength="3"
-                maxlength="50" type="text" class="form-control" required>
-        </div>
-        <!-- Modal Link -->
-        <div class="mb-3">
-            <label for="modal_link" class="form-label">Modal Link:</label>
-            <input id="modal_link" name="modal_link" value="{{ landmark.modal_link }}" minlength="1" maxlength="3"
-                type="text" class="form-control" required>
-        </div>
-        <!-- Main Image -->
-        <div class="mb-3">
-            <label for="main_image" class="form-label">Main Image:</label>
-            <input id="main_image" name="main_image" value="{{ landmark.main_image }}" type="text" class="form-control"
-                required>
-        </div>
-        <!-- Body Text-->
-        <div class="mb-3">
-            <label for="body_text" class="form-label">Body Text:</label>
-            <input id="body_text" name="body_text" value="{{ landmark.body_text }}" type="textarea" class="form-control"
-                required>
-        </div>
-        <!-- Longitude -->
-        <div class="mb-3">
-            <label for="longitude" class="form-label">longitude:</label>
-            <input id="longitude" name="longitude" value="{{ landmark.longitude }}" type="text" class="form-control"
-                required>
-        </div>
-        <!-- Latitude -->
-        <div class="mb-3">
-            <label for="latitude" class="form-label">Latitude:</label>
-            <input id="latitude" name="latitude" value="{{ landmark.latitude }}" type="text" class="form-control"
-                required>
-        </div>
-        <!-- Submit Button -->
-        <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning">
-                Edit Landmark <i class="fa-solid fa-plus" aria-hidden="true"></i>
-            </button>
-        </div>
-    </form>
-</div>
+                    <input id="modal_link" name="modal_link" value="{{ landmark.modal_link }}" minlength="1"
+                        maxlength="3" type="text" class="form-control" required>
+                        <p><i class="fa-solid fa-check"></i> Format e.g. (L1, L2 .. etc) Must be unique</p>
+                </div>
+            </div>
+            <!-- Main Image -->
+            <div class="col">
+                <label for="main_image" class="form-label">Main Image:</label>
+
+                <input id="main_image" name="main_image" value="{{ landmark.main_image }}" type="text"
+                    class="form-control" required>
+                    <p><i class="fa-solid fa-check"></i> Just the file name ecluding the .jpeg</p>
+
+            </div>
+            <!-- Body Text-->
+            <div class="col">
+                <label for="body_text" class="form-label">Main content text:</label>
+                <textarea id="body_text" name="body_text" value="{{ landmark.body_text }}" rows="4" cols="50"
+                    class="form-control" required>{{ landmark.body_text }}</textarea>
+
+            </div>
+            <div class="row">
+                <!-- Longitude -->
+                <div class="col-12 col-md-6">
+                    <label for="longitude" class="form-label">Longitude:</label>
+
+                    <input id="longitude" name="longitude" value="{{ landmark.longitude }}" type="number" step="any"
+                        class="form-control" required>
+                        <p><i class="fa-solid fa-check"></i> Number only</p>
+                </div>
+                <!-- Latitude -->
+                <div class="col-12 col-md-6">
+                    <label for="latitude" class="form-label">Latitude:</label>
+
+                    <input id="latitude" name="latitude" value="{{ landmark.latitude }}" type="number" step="any"
+                        class="form-control" required>
+                        <p><i class="fa-solid fa-check"></i> Number only</p>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Submit Button -->
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-warning button-margin">
+                        Update <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

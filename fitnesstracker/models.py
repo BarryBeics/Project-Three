@@ -43,7 +43,6 @@ class Map_data(db.Model):
     landmark_name = db.Column(db.String(50), unique=True, nullable=False)
     modal_link = db.Column(db.String(10), unique=True, nullable=False)
     main_image = db.Column(db.String(100), unique=True, nullable=False)
-    video_link = db.Column(db.Text, nullable=False)
     body_text = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
