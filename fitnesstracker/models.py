@@ -21,7 +21,6 @@ class Users(db.Model):
     laps = db.Column(db.Integer, nullable=False, default=0)
     unlocked_zones = db.Column(JSON)
     landmarks = db.relationship("Map_data", backref="users", cascade="all, delete", lazy=True)
-    notify = db.relationship("Notifications", backref="users", cascade="all, delete", lazy=True)
     chats = db.relationship("Chat_log", backref="users", cascade="all, delete", lazy=True)
     activities = db.relationship("Activity_log", backref="users", cascade="all, delete", lazy=True)
     group = db.relationship("Groups", backref="users", cascade="all, delete", lazy=True)
