@@ -78,7 +78,7 @@
       </div>
     </nav>
   </header>
-  <section class="flash">
+  <div class="flash">
     <!-- Display flash message here -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -88,7 +88,7 @@
     </div>
     {% endfor %}
     {% endif %}
-  </section>
+  </div>
   <section class="container-lg">
     <!-- Get content for various page here -->
     {% block content %}
@@ -99,12 +99,13 @@
     <div class="container">
 
 
-      {% if session.access == true %}
+      {% if session.access == True %}
       <div class="d-md-block">
         <ul id="nav" class="main-list-inline main-menucontainer">
           <li class="col-4-xs list-inline-item footer-menuitem">
-            <a href="{{ url_for('users') }}" class="hvr-push"><i class="fas fa-user"
-                aria-hidden="true"></i><span>Users</span></a>
+            <a href="{{ url_for('users') }}" class="hvr-push"><i class="fa-solid fa-user" aria-hidden="true"></i>
+              <div><span>Users</span></div>
+            </a>
           </li>
           <li class="col-4-xs list-inline-item footer-menuitem">
             <a href="{{ url_for('landmarks') }}" class="hvr-push"><i class="fas fa-map-pin" aria-hidden="true"></i>
@@ -120,7 +121,7 @@
       </div>
       {% endif %}
       <!-- Only visable to logged IN users -->
-      {% if session.user %}
+      {% if session.access == False %}
       <div class="d-md-block">
         <ul id="nav" class="main-list-inline main-menucontainer">
           <li class="col-4-xs list-inline-item footer-menuitem">
@@ -139,24 +140,9 @@
           </li>
         </ul>
       </div>
-      <!-- For not logged in users -->
-      {% else %}
-      <div class="d-md-block">
-
-        <li class="col-12-xs list-inline-item footer-menuitem">
-          <a href="{{ url_for('how_it_works') }}" class="hvr-push"><i class="fa-solid fa-question"
-              aria-hidden="true"></i>
-            <div><span>How it works</span></div>
-          </a>
-        </li>
-        </ul>
-      </div>
       {% endif %}
 
-
-
-    </div>
-    </div>
+    </div>    
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -165,8 +151,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
 </body>
 
 </html>

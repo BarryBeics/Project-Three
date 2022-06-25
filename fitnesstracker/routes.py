@@ -595,12 +595,6 @@ def logout():
 # --------------- PUBLIC
 
 
-# How it works
-@app.route("/how_it_works")
-def how_it_works():
-    return render_template("public/how_it_works.html")
-
-
 # Landing page 
 @app.route("/")
 def home():
