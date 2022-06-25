@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, session, jsonify
 from sqlalchemy import func
 from fitnesstracker import app, db
-from fitnesstracker.models import Users, Map_data, Notifications, Chat_log, Activity_log, Groups
+from fitnesstracker.models import Users, Map_data, Chat_log, Activity_log, Groups
 from werkzeug.security import generate_password_hash, check_password_hash
 import math, json, functools
 

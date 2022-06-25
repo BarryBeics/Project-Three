@@ -24,6 +24,8 @@ fetch('https://api.maptiler.com/data/b92719af-8d5b-4006-9631-3d8b13eaa1c6/featur
   var start = L.marker([53.3219, -4.2259],{icon:checkerd}).addTo(map);
 
   // Add unique markers for each group member
+  // Would like to get this into a loop but Leaflet.js is beyound the scope of this project
+  // The for this will be classed as future development
   var mapMarkers = [
     L.icon({
         iconUrl: 'static/images/markers/runner-yellow.png',
@@ -119,18 +121,15 @@ fetch('https://api.maptiler.com/data/b92719af-8d5b-4006-9631-3d8b13eaa1c6/featur
 
 
 async function getUsers() {
-  // load JSON File
+  // load users JSON File
     const response = await fetch("static/JSON/user_data.json");
     const user_data = await response.json();
-    console.log(user_data);
   
   // Loop JSON to get users data
     for (item of user_data) {
-      console.log(item.first);
       for( var i = 0;  i < mapMarkers.length;  i++ ) {
         
    if(item.icon_num == i){
-     console.log(i);
   var marker = L.marker(
       [ item.latitude, item.longitude ],
       { icon: mapMarkers[i] }
@@ -155,17 +154,12 @@ popupAnchor: [5, -60]
 var icon_landmark = new LandmarkIcon({ iconUrl: 'static/images/markers/a-red-flag.png' });
 
 
-
-        
         let obj = JSON.parse(unlocked);
-        console.log(typeof (obj));
-console.log(obj);
 
   async function getLandmarks() {
      // load JSON File
       const response = await fetch("static/JSON/landmark_data.json");
       const landmark_data = await response.json();
-      console.log(landmark_data);
     
       // Loop JSON to get landmark data
       for (item of landmark_data) {
@@ -176,12 +170,10 @@ console.log(obj);
           
          if (item.modal_link == key){ 
      		 if(value == "yes"){
-    		  console.log("unlocked", key)
                txt = `<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"data-bs-target="#${item.modal_link}" > ${item.modal_link} ${item.landmark_name} </button>`;
     		  }
           
    			 else{
-    		   console.log("locked", key);
                txt = `<button type="button" class="btn btn-secondary btn-sm" >${item.modal_link} ${item.landmark_name} </button>`;
    			   }
          }

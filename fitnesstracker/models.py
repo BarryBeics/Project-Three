@@ -10,11 +10,7 @@ class Users(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(140), unique=True, nullable=False)
     account_created = db.Column(db.DateTime, default=datetime.datetime.now)
-    icon_url = db.Column(db.String(50), unique=True, nullable=True)
     access = db.Column(db.Boolean, nullable=False, default=False)
-    refresh_token = db.Column(db.String(50), unique=True)
-    connection_status = db.Column(db.Boolean, default=False, nullable=False)
-    update_status = db.Column(db.Boolean, default=False, nullable=False)
     longitude = db.Column(db.Float, nullable=False, default=-4.2259)
     latitude = db.Column(db.Float, nullable=False, default=53.3219)
     miles = db.Column(db.Boolean, default=True, nullable=False)
@@ -23,10 +19,7 @@ class Users(db.Model):
     total_distance = db.Column(db.Float, nullable=False, default=0)
     current_distance = db.Column(db.Float, nullable=False, default=0)
     laps = db.Column(db.Integer, nullable=False, default=0)
-    connection_date = db.Column(db.Date)
-    strava_fetch = db.Column(db.Boolean, default=False, nullable=False)
     unlocked_zones = db.Column(JSON)
-    strava_last_activity_id = db.Column(db.String(20), nullable=False, default='new account')
     landmarks = db.relationship("Map_data", backref="users", cascade="all, delete", lazy=True)
     notify = db.relationship("Notifications", backref="users", cascade="all, delete", lazy=True)
     chats = db.relationship("Chat_log", backref="users", cascade="all, delete", lazy=True)
@@ -52,19 +45,6 @@ class Map_data(db.Model):
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
         return self.landmark_name
-
-
-class Notifications(db.Model):
-    notifcation_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
-    notification_text = db.Column(db.Text, nullable=False)
-    marked_as_read = db.Column(db.Boolean, default=False, nullable=False)
-
-    def __repr__(self):
-        # __repr__ to represent itself in the form of a string
-        return "#{0} - Read: {1}".format(
-            self.user_id, self.marked_as_read
-        )
 
 
 class Chat_log(db.Model):
