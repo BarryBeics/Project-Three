@@ -250,7 +250,7 @@ def landmark_json():
               "latitude" : latitude}
         all_landmarks.append(dict)
 
-    with open('fitnesstracker/static/JSON/landmark_data.json', 'w') as outfile:
+    with open('fitnesstracker/static/json/landmark_data.json', 'w') as outfile:
         json.dump(all_landmarks, outfile)
     flash("Landmark data added to map")
     return render_template("loading/landmark_json.html")
@@ -280,9 +280,9 @@ def map_link():
     laps = math.floor(laps_calc)
 
     # load the JSON files containing the map reference data 
-    landmarks = json.load(open("fitnesstracker/static/JSON/map_landmarks.json"))
-    zones = json.load(open("fitnesstracker/static/JSON/map_zones.json"))
-    coordinates = json.load(open("fitnesstracker/static/JSON/map_coordinates.json"))
+    landmarks = json.load(open("fitnesstracker/static/json/map_landmarks.json"))
+    zones = json.load(open("fitnesstracker/static/json/map_zones.json"))
+    coordinates = json.load(open("fitnesstracker/static/json/map_coordinates.json"))
     longitude = 0
     latitude = 0
     flash("current distance {}" .format(current_distance))
@@ -384,7 +384,7 @@ def user_json():
               "latitude" : latitude}
         all_users.append(dict)
 
-    with open('fitnesstracker/static/JSON/user_data.json', 'w') as outfile:
+    with open('fitnesstracker/static/json/user_data.json', 'w') as outfile:
         json.dump(all_users, outfile)
     return render_template("loading/user_json.html")
 
@@ -489,7 +489,7 @@ def profile():
         # swap the session value from email to user_id
         user_data = Users.query.filter(Users.user_id == session["user"]).first() 
         # load the JSON files containing the icon images data 
-        icons = json.load(open("fitnesstracker/static/JSON/user_icons.json"))
+        icons = json.load(open("fitnesstracker/static/json/user_icons.json"))
         num_str = str(user_data.icon_num)
         icon = icons[num_str]
         return render_template("logged_in/profile.html", user_data=user_data, icon=icon, num_str=num_str)
@@ -527,7 +527,7 @@ def register_group():
 @login_required
 def settings():
     # load the JSON files containing the icon images data 
-    icons = json.load(open("fitnesstracker/static/JSON/user_icons.json"))
+    icons = json.load(open("fitnesstracker/static/json/user_icons.json"))
     settings = Users.query.get_or_404(session["user"])
     num_str = str(settings.icon_num)
 
