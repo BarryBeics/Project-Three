@@ -13,6 +13,7 @@ h3,
 .title,
 .dashboard,
 a,
+.link-text a,
 .popover-header,
 .main-menuitem span,
 .footer-menuitem span,
@@ -22,6 +23,17 @@ a,
 
 
 /* ------------- Site wide  ----------- Colours */
+
+body {
+  clear: left;
+  background: url("../images/runner.png");
+  background-size: cover;
+  background-position: center;
+  color:rgba(248, 246, 246, 0.8);
+  background-repeat: no-repeat;
+  margin-bottom: 60px; /* Margin bottom by footer height */ 
+}
+
 h1,
 h2,
 h3,
@@ -108,6 +120,12 @@ hr {
 background-color: #2e5266;
 }
 
+
+
+
+.mob i {
+  font-size: 1em;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -120,15 +138,7 @@ a,
 .subtle a{
   text-decoration: none;
 }
-  body {
-    clear: left;
-    background: url("../images/runner.png");
-    background-size: cover;
-    background-position: center;
-    color:rgba(248, 246, 246, 0.8);
-    background-repeat: no-repeat;
-    margin-bottom: 60px; /* Margin bottom by footer height */ 
- }
+
 
 .how-it-works i {
   font-size: 100px;
