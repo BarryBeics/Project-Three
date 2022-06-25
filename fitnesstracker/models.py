@@ -26,8 +26,7 @@ class Users(db.Model):
                             cascade="all, delete", lazy=True)
     activities = db.relationship("Activity_log", backref="users",
                                  cascade="all, delete", lazy=True)
-    group = db.relationship("Groups", backref="users", cascade="all,
-                            delete", lazy=True)
+    group = db.relationship("Groups", backref="users", cascade="all, delete", lazy=True)
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string

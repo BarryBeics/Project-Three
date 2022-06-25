@@ -3,33 +3,27 @@
 
 <div class="main">
 <div class="row">
-    <div class="col-12 ">
+    <div class="col-12 text-center">
             <h2>
                 WELCOME {{ user_data.first_name }} {{ user_data.last_name }}
             </h2>
             <p>A platform for corporate wellness, a launchpad for your health and fitness</p>
+            <hr>
         </div>
 </div>
 
 <div class="row">
-    <div class="col-9 icon">
-            
-            <p>You are currently part of the {{ user_data.group_name }} group.</p>
-
-            <p>Your Icon is currently:</p>
-            <img src="{{ url_for('static', filename='images/markers/' + icon  + '.png') }}" alt="">
-            <p>If you wish to change either of these you can at:</p>
-
-        </div>
-        <div class="col-3">
-            <a href="{{ url_for('settings') }}"
-                                    class="btn btn-edit">Settings! </a>
-        </div>
+    <div class="col-12 col-md-3"> <p>You are currently part of the <span>{{ user_data.group_name }}</span> group.</p></div>
+    <div class="col-6 col-md-3"><p>Your Icon is currently: </p></div>
+    <div class="col-6 col-md-1 icon"><img src="{{ url_for('static', filename='images/markers/' + icon  + '.png') }}" alt=""></div>
+    <div class="col-8 col-md-3"><p>If you wish to change either of these you can at:</p></div>
+    <div class="col-4 col-md-2"> <a href="{{ url_for('settings') }}" class="btn btn-edit">Settings! </a></div>
 </div>
+<hr>
 
 
 <!-- DASHBOARD OPEN -->
-<div class="col-12">
+<div class="col-12 text-center">
     <h1>YOUR PROGRESS</h1>
     <p>This is an overview of your current progress.</p>
     <div class="row text-center">
@@ -63,11 +57,12 @@
   <!-- DASHBOARD CLOSE -->
 
 
-<div class="row subtle">
+<div class="row">
+  <div class="col-12">  <br>
+    <h3>Want to leave?</h3></div>
     <div class="col-9">
-    <h3>Want to leave?</h3>
     <p>No problem, you can delete you account and all data posted for total peace of mind here.</p></div>
-    <div class="col-3"><button data-bs-toggle="modal" class="btn btn-danger btn-sm"
+    <div class="col-3 text-center"><button data-bs-toggle="modal" class="btn btn-danger btn-sm"
         data-bs-target="#modal-{{  session['user'] }}"> Delete </button></div>
 </div>
 
