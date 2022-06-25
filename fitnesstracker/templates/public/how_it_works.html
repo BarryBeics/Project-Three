@@ -1,31 +1,52 @@
 {% extends "base.html" %}
 {% block content %}    
 
+
 <div class="main">
     <div class="row">
-        <div class="col-12">
-            <h3>HOW IT WORKS</h3>
-            <p>Getting started is quick and easy.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4 how-it-works">
-            <i class="fa-solid fa-link"></i>
+<!-- DASHBOARD OPEN -->
+<div class="col-12">
+    <h3>HOW IT WORKS</h3>
+    <p>Getting started is quick and easy.</p>
+    <div class="row text-center">
+    <!-- Total Panel -->
+    <div class="col-12 col-sm-6 col-md-3">
+     
+        <div class="dashboard"> <i class="fa-solid fa-link"></i></div>
             <h3>SIGN UP</h3> 
-            <p>Join the platform and link your account with a sporting group or friends.</p>
-        </div>
-        <div class="col-4 how-it-works">
-            <i class="fa-solid fa-person-walking"></i>
+            <p>Join the platform along with a sporting group or friends.</p>
+      
+    </div>
+    <!-- Laps Panel -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div>
+        <div class="dashboard"> <i class="fa-solid fa-person-walking"></i></div>
             <h3>EXERCISE</h3> 
             <p>Get out there and be active.</p>
-        </div>
-        <div class="col-4 how-it-works">
-            <i class="fa-solid fa-map" aria-hidden="true"></i>
-            <h3>PROGRESS</h3> 
-            <p>Log your activity and see how far you have gone compaired to others</p>
-        </div>
+            <p>Then log your activity.</p>
+      </div>
     </div>
+    <!-- Distance Panel -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div>
+        <div class="dashboard"> <i class="fa-solid fa-map" aria-hidden="true"></i></div>
+        <h3>PROGRESS</h3> 
+        <p>See how far you have gone compaired to others in your group</p>
+      </div>
+    </div>
+    <!-- Distance Panel -->
+    <div class="col-12 col-sm-6 col-md-3">
+        <div>
+          <div class="dashboard"> <i class="fas fa-comment-dots" aria-hidden="true"></i></div>
+          <h3>CHAT</h3> 
+          <p>See how far you have gone compaired to others in your group</p>
+        </div>
+      </div>
+      <!-- Distance Panel -->
+  </div>
+  </div> <!-- col-12 -->
+  <!-- DASHBOARD CLOSE -->
 </div>
-
-
+</div>
 {% endblock %}
+
