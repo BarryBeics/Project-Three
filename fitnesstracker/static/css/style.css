@@ -49,8 +49,25 @@ label, .fa-user:before {
   background-color: #50A5B1;
 }
 
+p {
+  padding-top: 5px;
+}
+
+.form p {
+  padding-left: 5px;
+  font-size: 0.9em;
+  margin-bottom: 0rem;
+}
+.form-label {
+  margin: 0.5rem;
+}
+
 .form-control {
   appearance: auto;
+}
+
+.button-margin {
+  margin: 25px;
 }
 
 .panel.label,

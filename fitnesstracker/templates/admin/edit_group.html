@@ -1,20 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="main">
-    <div class="row">
-        <div class="col-3 link-text"><a href="{{ url_for('admin') }}"><i class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i></a> </div>
-        <div class="col-6"><h3 class="d-flex justify-content-center">Edit Groups</h3> </div>
-        <div class="col-3">  </div>
-    </div>
 
-<div class="row card">
-    <form method="POST" action="{{ url_for('edit_group', group_id=group.group_id) }}">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
+<div class="main">
+    <!-- Sub Navigation & Title -->
+    <div class="row">
+        <div class="col-2 link-text mob d-block d-md-none "><a href="{{ url_for('admin') }}"><i
+                    class="fa-solid fa-circle-left" aria-hidden="true"></i></a> </div>
+        <div class="col-3 link-text d-none d-md-block"><a href="{{ url_for('admin') }}"><i
+                    class="fa-solid fa-circle-left" aria-hidden="true"> Admin</i></a> </div>
+        <div class="col-8 col-md-6">
+            <h3 class="text-center">Edit Groups</h3>
+        </div>
+    </div>
+    <div class="row card form">
+        <form method="POST" action="{{ url_for('edit_group', group_id=group.group_id) }}">
+            <div class="row">
+                
+            <div class="row">
                 <!-- Group Name -->
-                <div class="mb-3">
-                    <label for="name">Group Name</label>
+                <div class="col-12 col-md-6">
+                    <p>Here you can edit details for this group.</p>
+                    <label for="name" class="form-label">Group Name</label>
                     <input type="text" name="name" class="form-control" id="name"  value="{{ group.name }}" 
                     pattern="^[a-zA-Z]{3,15}$" aria-describedby="name" required>
                     <p><i class="fa-solid fa-check"></i> No numbers or spaces</p>
@@ -23,20 +30,24 @@
                     <p><i class="fa-solid fa-check"></i> Must be a unique name</p>
                 </div>
 
+                
                 <!-- Group Size -->
-                <div class="mb-3">
-                    <label for="size">Group Size</label>
+                <div class="col-12 col-md-6">
+                    <label for="size" class="form-label">Group Size</label>
                     <input type="number" name="size" class="form-control" id="size" min="2" max="20" step="1" value="{{ group.size }}" 
                     pattern="^[0-9]{1,2}$"  aria-describedby="size">
                     <p><i class="fa-solid fa-check"></i> Size between 2 - 20</p>
                 </div>
-                
-                <!-- Submit -->
-                <button type="submit" class="btn btn-warning">Edit<i class="fa-solid fa-sign-in-alt"
-                        aria-hidden="true"></i></button>
             </div>
-        </div>
-    </form>
+            <div class="row">
+                <!-- Submit Button -->
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-warning button-margin">Update<i class="fa-solid fa-pen-to-square"
+                        aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-</div>
+
 {% endblock %}

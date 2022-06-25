@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <div class="container main">
     <div class="row">
         <div class="col">
-            <h3>Admin</h3>
-
-            <!-- Hide buttons for non admin users -->
-            
-            <p>As a site admin you have Privileged access to the following:</p>
+            <h3 class="text-center">Admin</h3>
+        </div>
+        <div class="row">
+        <div class="col">
+            <p>As a site admin you have privileged access to the following:</p>
             <hr>
             
             <a href="{{ url_for('users') }}" class="btn btn-secondary">
@@ -37,12 +36,9 @@
                 Build Map JSON <i class="fas fa-map-pin" aria-hidden="true"></i>
             </a>
             <p>Once you have finished adding landmark data click 'Build Map JSON to make changes apear on the map.</p>
-
-            
+        </div>
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}
