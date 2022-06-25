@@ -1,13 +1,16 @@
-from flask import render_template, request, redirect, url_for, flash, session, jsonify
+from flask import render_template, request, redirect, \
+    url_for, flash, session, jsonify
 from sqlalchemy import func
 from fitnesstracker import app, db
-from fitnesstracker.models import Users, Map_data, Chat_log, Activity_log, Groups
+from fitnesstracker.models import Users, Map_data, \
+    Chat_log, Activity_log, Groups
 from werkzeug.security import generate_password_hash, check_password_hash
-import math, json, functools
+import math
+import json
+import functools
 
 
-
-# Check user is logged in
+# SECURITY - Check user is logged in
 def login_required(func):
     @functools.wraps(func)
     def secure_function(*args, **kwargs):
@@ -18,34 +21,33 @@ def login_required(func):
 
     return secure_function
 
-# Restirc access to admin pages
+
+# SECURITY - Restirc access to admin pages
 def admin_access(func):
     @functools.wraps(func)
     def secure_function(*args, **kwargs):
         access = Users.query.filter(Users.user_id == session["user"]).first()
-        if access.access == False:
+        if access.access is False:
             flash('Sorry, You must have admin rights to access that page!')
             return redirect(url_for("home"))
         return func(*args, **kwargs)
 
     return secure_function
 
-# date filter
+
+# DATE FORMAT - Date filter
 @app.template_filter('datetimeformat')
 def datetimeformat(value, format='%B %d, %Y'):
     return value.strftime(format)
 
 
- # --------------- ADMIN
-
-
-# Landmarks CREATE
+# ADMIN - Landmarks
 @app.route("/add_landmark", methods=["GET", "POST"])
 @login_required
 @admin_access
 def add_landmark():
     if request.method == "POST":
-        # check landmark name to see if user already exisits in db
+        # Check landmark name to see if user already exisits in db
         existing_landmark = Map_data.query.filter(
             Map_data.landmark_name == request.form.get("landmark_name")).all()
 
@@ -53,7 +55,7 @@ def add_landmark():
             flash("Landmark already exists")
             return redirect(url_for("add_landmark"))
 
-        # check Modal Link to see if user already exisits in db
+        # Check Modal Link to see if user already exisits in db
         existing_modal_link = Map_data.query.filter(
             Map_data.modal_link == request.form.get("modal_link")).all()
 
@@ -61,7 +63,7 @@ def add_landmark():
             flash("Modal Link already exists")
             return redirect(url_for("add_landmark"))
 
-        # check Main Image name to see if user already exisits in db
+        # Check main image name to see if user already exisits in db
         existing_main_image = Map_data.query.filter(
             Map_data.main_image == request.form.get("main_image")).all()
 
@@ -84,7 +86,7 @@ def add_landmark():
     return render_template("admin/add_landmark.html")
 
 
-# Admin
+# ADMIN - Admin
 @app.route("/admin")
 @login_required
 @admin_access
@@ -92,7 +94,7 @@ def admin():
     return render_template("admin/admin.html")
 
 
-# Group UPDATE
+# ADMIN - Group
 @app.route("/edit_group/<int:group_id>", methods=["GET", "POST"])
 @login_required
 @admin_access
@@ -100,14 +102,13 @@ def edit_group(group_id):
     group = Groups.query.get_or_404(group_id)
     if request.method == "POST":
         group.name = request.form.get("name")
-        group.size=request.form.get("size")
+        group.size = request.form.get("size")
         db.session.commit()
         return redirect(url_for("groups"))
     return render_template("admin/edit_group.html", group=group)
 
 
-
-# Landmark UPDATE
+# ADMIN - Landmark
 @app.route("/edit_landmark/<int:landmark_id>", methods=["GET", "POST"])
 @login_required
 @admin_access
@@ -115,18 +116,18 @@ def edit_landmark(landmark_id):
     landmark = Map_data.query.get_or_404(landmark_id)
     if request.method == "POST":
         landmark.landmark_name = request.form.get("landmark_name")
-        landmark.modal_link=request.form.get("modal_link"),
-        landmark.main_image=request.form.get("main_image"),
-        landmark.body_text=request.form.get("body_text"),
-        user_id=session["user"],
-        landmark.longitude=request.form.get("longitude"),
-        landmark.latitude=request.form.get("latitude")
+        landmark.modal_link = request.form.get("modal_link"),
+        landmark.main_image = request.form.get("main_image"),
+        landmark.body_text = request.form.get("body_text"),
+        user_id = session["user"],
+        landmark.longitude = request.form.get("longitude"),
+        landmark.latitude = request.form.get("latitude")
         db.session.commit()
         return redirect(url_for("landmarks"))
     return render_template("admin/edit_landmark.html", landmark=landmark)
 
 
-# Users UPDATE
+# ADMIN - Users
 @app.route("/edit_user/<int:user_id>", methods=["GET", "POST"])
 @login_required
 @admin_access
@@ -134,15 +135,14 @@ def edit_user(user_id):
     user = Users.query.get_or_404(user_id)
     if request.method == "POST":
         user.access = request.form.get("access") == 'on'
-        user.longitude=request.form.get("longitude")
-        user.latitude=request.form.get("latitude")
-
+        user.longitude = request.form.get("longitude")
+        user.latitude = request.form.get("latitude")
         db.session.commit()
         return redirect(url_for("users"))
     return render_template("admin/edit_user.html", user=user)
 
 
-# Groups RETRIEVE
+# ADMIN - Groups
 @app.route("/groups")
 @login_required
 @admin_access
@@ -151,7 +151,7 @@ def groups():
     return render_template("admin/groups.html", groups=groups)
 
 
-# Landmarks RETRIEVE
+# ADMIN - Landmarks
 @app.route("/landmarks")
 @login_required
 @admin_access
@@ -160,7 +160,7 @@ def landmarks():
     return render_template("admin/landmarks.html", landmarks=landmarks)
 
 
-# Users RETIREVE
+# ADMIN - Users
 @app.route("/users")
 @login_required
 @admin_access
@@ -169,7 +169,7 @@ def users():
     return render_template("admin/users.html", users=users)
 
 
-# Users ADMIN DELETE
+# ADMIN - DELETE User
 @app.route("/delete_user/<int:user_id>")
 @login_required
 @admin_access
@@ -180,7 +180,7 @@ def delete_user(user_id):
     return redirect(url_for("users"))
 
 
-# Group DELETE
+# ADMIN - DELETE Group
 @app.route("/delete_group/<int:group_id>")
 @login_required
 @admin_access
@@ -191,7 +191,7 @@ def delete_group(group_id):
     return redirect(url_for("groups"))
 
 
-# Landmark DELETE
+# ADMIN - DELETE Landmark
 @app.route("/delete_landmark/<int:landmark_id>")
 @login_required
 @admin_access
@@ -202,36 +202,31 @@ def delete_landmark(landmark_id):
     return redirect(url_for("landmarks"))
 
 
-# --------------- ERROR HANDLERS
-
-# Invalid URL
+# ERROR HANDLERS - Forbidden
 @app.errorhandler(403)
 def page_not_found(e):
     return render_template("error_handlers/403.html"), 403
 
 
-# Invalid URL
+# ERROR HANDLERS - Invalid URL
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("error_handlers/404.html"), 404
 
 
-# Internal server error
+# ERROR HANDLERS - Internal server error
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template("error_handlers/500.html"), 500
 
 
-# --------------- LOADING
-
-
-# Build Landmark JSON
+# LOADING - Build Landmark JSON
 @app.route("/landmark_json")
 @login_required
 def landmark_json():
     map_data = Map_data.query.all()
     count = Map_data.query.count()
-    
+
     all_landmarks = []
     for x in range(count):
         landmark_id = map_data[x].landmark_id
@@ -240,14 +235,14 @@ def landmark_json():
         main_image = map_data[x].main_image
         body_text = map_data[x].body_text
         longitude = map_data[x].longitude
-        latitude= map_data[x].latitude
-        dict = {"landmark_id" : landmark_id, 
-              "landmark_name" : landmark_name, 
-              "modal_link" : modal_link,
-              "main_image" : main_image,
-              "body_text" : body_text,
-              "longitude" : longitude,
-              "latitude" : latitude}
+        latitude = map_data[x].latitude
+        dict = {"landmark_id": landmark_id,
+                "landmark_name": landmark_name,
+                "modal_link": modal_link,
+                "main_image": main_image,
+                "body_text": body_text,
+                "longitude": longitude,
+                "latitude": latitude}
         all_landmarks.append(dict)
 
     with open('fitnesstracker/static/json/landmark_data.json', 'w') as outfile:
@@ -256,69 +251,78 @@ def landmark_json():
     return render_template("loading/landmark_json.html")
 
 
-# Map Link - get sum of distance traveled
+# LOADING - Map Link get sum of distance traveled
 @app.route("/map_link", methods=["GET"])
 @login_required
 def map_link():
-    # Check is this is a new user with no activity posted
+    # Check if this is a new user with no activity posted yet
     is_new = Activity_log.query.filter_by(user_id=session["user"]).count()
     if is_new == 0:
-        flash('You need to log your first activity before viewing the map')
+        flash('You will need to log an activity before viewing the map')
         return render_template("logged_in/post_activity.html")
     update = Users.query.get_or_404(session["user"])
+
     # get sum total of all activity for a user
-    total_distance = Activity_log.query.with_entities(
-             func.sum(Activity_log.distance).label("mySum")).filter_by(user_id=session["user"]).first()
-    
+    total_distance = Activity_log.query. \
+        with_entities(func.sum(Activity_log.distance).label("mySum")). \
+        filter_by(user_id=session["user"]).first()
+
     lap_distance = 130
     # calculate current distance
     round_down = math.floor(total_distance[0])
     carry_decimal = total_distance[0] - round_down
-    current_distance = round((round_down % lap_distance) + carry_decimal,1)
+    current_distance = round((round_down % lap_distance) + carry_decimal, 1)
+
     # calculate number of laps
     laps_calc = total_distance[0] / lap_distance
     laps = math.floor(laps_calc)
 
-    # load the JSON files containing the map reference data 
-    landmarks = json.load(open("fitnesstracker/static/json/map_landmarks.json"))
-    zones = json.load(open("fitnesstracker/static/json/map_zones.json"))
-    coordinates = json.load(open("fitnesstracker/static/json/map_coordinates.json"))
+    # load the JSON files containing the map reference data
+    landmarks = json. \
+        load(open("fitnesstracker/static/json/map_landmarks.json"))
+    zones = json. \
+        load(open("fitnesstracker/static/json/map_zones.json"))
+    coordinates = json. \
+        load(open("fitnesstracker/static/json/map_coordinates.json"))
+
+    # Create coordinates variable to be update with users data
     longitude = 0
     latitude = 0
     flash("current distance {}" .format(current_distance))
 
     json_obj = update.unlocked_zones
-    
+    # Once the second if statement is true it sets switch to off
+    # so that it doesn't get tried again
     switch = 'on'
 
-    for x in range(1,len(zones)):
-        ref = str(x)
-        # Get the ref for which lankmark you near.   and 
-        if (current_distance >= zones[ref][0] and current_distance <= zones[ref][1]):
-            longitude = coordinates[ref][0]
-            latitude = coordinates[ref][1]
+    for x in range(1, len(zones)):
+        mile = str(x)
+        # Get the mile for which lankmark you near
+        if (current_distance >= zones[mile][0] and
+                current_distance <= zones[mile][1]):
+            longitude = coordinates[mile][0]
+            latitude = coordinates[mile][1]
             update.total_distance = total_distance[0]
             update.current_distance = current_distance
             update.laps = laps
             update.longitude = longitude
             update.latitude = latitude
-            
+
         if switch == 'on':
-            if (current_distance >= landmarks[ref][0] and current_distance <= landmarks[ref][1]):
-                
-                landmark_num = landmarks[ref][2]
+            if (current_distance >= landmarks[mile][0] and
+                    current_distance <= landmarks[mile][1]):
+
+                landmark_num = landmarks[mile][2]
                 json_obj[landmark_num] = 'yes'
                 update.unlocked_zones = json_obj
                 switch = 'off'
-            
+
         db.session.commit()
-    
-            
-            
+
     return render_template("loading/map_link.html", update=update)
 
 
-# Set up
+# LOADING - Set up
 @app.route("/set_up", methods=["GET", "POST"])
 def set_up():
     if "user" in session:
@@ -330,21 +334,20 @@ def set_up():
         access = user_data.access
         session["access"] = access
 
-        # As json column can not have a default value, detect if this is a new account and 
+        # As json column can not have a default value, detect
+        # if this is a new account and
         # complete set up by adding this default to the users account
         is_new = Activity_log.query.filter_by(user_id=user_id).count()
         print(is_new)
         if is_new == 0:
             setup = Users.query.get_or_404(user_id)
-            setup.unlocked_zones = {
-            "L1": "no",
-            "L2": "no",
-            "L3": "no",
-            "L4": "no",
-            "L5": "no",
-            "L6": "no",
-            "L7": "no"
-            }
+            setup.unlocked_zones = {"L1": "no",
+                                    "L2": "no",
+                                    "L3": "no",
+                                    "L4": "no",
+                                    "L5": "no",
+                                    "L6": "no",
+                                    "L7": "no"}
             db.session.commit()
             flash("Account set up!")
             return render_template("loading/set_up.html", user_data=user_data)
@@ -354,16 +357,16 @@ def set_up():
     return redirect(url_for("login"))
 
 
-# Build User JSON
+# LOADING - Build User JSON
 @app.route("/user_json")
 @login_required
 def user_json():
-    # identify all the users who share the same group as the session user in order to retrieve only their data
+    # identify all the users who share the same group as
+    # the session user in order to retrieve only their data
     group = Users.query.filter_by(user_id=session["user"]).all()
-    group_name=group[0].group_name
+    group_name = group[0].group_name
     count = Users.query.filter_by(group_name=group_name).count()
     the_data = Users.query.filter_by(group_name=group_name).all()
-    
     all_users = []
     for x in range(count):
         user_id = the_data[x].user_id
@@ -373,15 +376,15 @@ def user_json():
         current_distance = the_data[x].current_distance
         total_distance = the_data[x].total_distance
         longitude = the_data[x].longitude
-        latitude= the_data[x].latitude
-        dict = {"id" : user_id, 
-              "first" : first_name, 
-              "last" : last_name,
-              "icon_num" : icon_num,
-              "current": current_distance,
-              "total" : total_distance,
-              "longitude" : longitude,
-              "latitude" : latitude}
+        latitude = the_data[x].latitude
+        dict = {"id": user_id,
+                "first": first_name,
+                "last": last_name,
+                "icon_num": icon_num,
+                "current": current_distance,
+                "total": total_distance,
+                "longitude": longitude,
+                "latitude": latitude}
         all_users.append(dict)
 
     with open('fitnesstracker/static/json/user_data.json', 'w') as outfile:
@@ -389,21 +392,18 @@ def user_json():
     return render_template("loading/user_json.html")
 
 
-# --------------- LOGGED IN
-
-
-# Comments RETRIEVE & CREATE
+# LOGGED IN - Comments
 @app.route("/chat", methods=["GET", "POST"])
 @login_required
 def chat():
     group = Users.query.filter_by(user_id=session["user"]).all()
     # Get the group name this user is part of
-    group_name=group[0].group_name
+    group_name = group[0].group_name
     comments = Chat_log.query.filter_by(group_name=group_name).all()
 
     get_chat = db.session.query(Users, Chat_log).join(Chat_log). \
         filter(Users.group_name == group_name).all()
-    
+
     if request.method == "POST":
         group = Users.query.filter_by(user_id=session["user"]).all()
 
@@ -418,22 +418,22 @@ def chat():
     return render_template("logged_in/chat.html", get_chat=get_chat)
 
 
-# Activity UPDATE
+# LOGGED IN - Edit Activity
 @app.route("/edit_activity/<int:entry_id>", methods=["GET", "POST"])
 @login_required
 def edit_activity(entry_id):
     activity = Activity_log.query.get_or_404(entry_id)
     if request.method == "POST":
-        activity.distance=request.form.get("distance")
-        activity.activity_type=request.form.get("activity_type")
-        activity.commute=request.form.get('commute') == 'on'
+        activity.distance = request.form.get("distance")
+        activity.activity_type = request.form.get("activity_type")
+        activity.commute = request.form.get('commute') == 'on'
 
         db.session.commit()
         return redirect(url_for("view_activity"))
     return render_template("logged_in/edit_activity.html", activity=activity)
 
 
-#Comments UPDATE
+# LOGGED IN - Edit Comments
 @app.route("/edit_comment/<int:comment_id>", methods=["GET", "POST"])
 @login_required
 def edit_comment(comment_id):
@@ -445,7 +445,7 @@ def edit_comment(comment_id):
     return render_template("logged_in/edit_comment.html", comment=comment)
 
 
-# Map view
+# LOGGED IN - Map view
 @app.route("/map", methods=["GET", "POST"])
 @login_required
 def map():
@@ -453,15 +453,15 @@ def map():
     zones = Users.query.filter(Users.user_id == session["user"]).first()
     # Change Python Dict to a json object
     unlocked_status = zones.unlocked_zones
-    
-    json_object = json.dumps(unlocked_status) 
+
+    json_object = json.dumps(unlocked_status)
     landmarks = Map_data.query.all()
-    
-    
-    return render_template("logged_in/map.html", data=data, json_object=json_object, landmarks=landmarks)
+
+    return render_template("logged_in/map.html", data=data,
+                           json_object=json_object, landmarks=landmarks)
 
 
-# Activity CREATE
+# LOGGED IN - Post Activity
 @app.route("/post_activity", methods=["GET", "POST"])
 @login_required
 def post_activity():
@@ -480,24 +480,26 @@ def post_activity():
     return render_template("logged_in/post_activity.html")
 
 
-# Profile
+# LOGGED IN - Profile
 @app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
-    
+
     if "user" in session:
         # swap the session value from email to user_id
-        user_data = Users.query.filter(Users.user_id == session["user"]).first() 
-        # load the JSON files containing the icon images data 
+        user_data = Users.query.filter(Users.
+                                       user_id == session["user"]).first()
+        # load the JSON files containing the icon images data
         icons = json.load(open("fitnesstracker/static/json/user_icons.json"))
         num_str = str(user_data.icon_num)
         icon = icons[num_str]
-        return render_template("logged_in/profile.html", user_data=user_data, icon=icon, num_str=num_str)
+        return render_template("logged_in/profile.html",
+                               user_data=user_data, icon=icon, num_str=num_str)
 
     return redirect(url_for("login"))
 
 
-# Register a new group CREATE
+# LOGGED IN - Register a new group
 @app.route("/register_group", methods=["GET", "POST"])
 @login_required
 def register_group():
@@ -522,11 +524,11 @@ def register_group():
     return render_template("logged_in/register_group.html")
 
 
-# Settings UPDATE
+# LOGGED IN Settings
 @app.route("/settings", methods=["GET", "POST"])
 @login_required
 def settings():
-    # load the JSON files containing the icon images data 
+    # load the JSON files containing the icon images data
     icons = json.load(open("fitnesstracker/static/json/user_icons.json"))
     settings = Users.query.get_or_404(session["user"])
     num_str = str(settings.icon_num)
@@ -541,18 +543,23 @@ def settings():
         flash("Your changes have been saved")
         return redirect(url_for("settings"))
 
-    return render_template("logged_in/settings.html", settings=settings, groups=groups, icon_nums=icon_nums, icons=icons, num_str=num_str)
+    return render_template("logged_in/settings.html", settings=settings,
+                           groups=groups, icon_nums=icon_nums,
+                           icons=icons, num_str=num_str)
 
 
-# Activity RETRIEVE
+# LOGGED IN - View Activity
 @app.route("/view_activity")
 @login_required
 def view_activity():
-    activities = Activity_log.query.filter(Activity_log.user_id == session["user"]).order_by(Activity_log.date).all()
-    return render_template("logged_in/view_activity.html", activities=activities)
+    activities = Activity_log.query.
+    filter(Activity_log.user_id == session["user"]).
+    order_by(Activity_log.date).all()
+    return render_template("logged_in/view_activity.html",
+                           activities=activities)
 
 
-# Activity DELETE
+# LOGGED IN - DELETE Activity
 @app.route("/delete_activity/<int:entry_id>")
 @login_required
 def delete_activity(entry_id):
@@ -562,7 +569,7 @@ def delete_activity(entry_id):
     return redirect(url_for("view_activity"))
 
 
-# Users SELF DELETE
+# LOGGED IN - DELETE User own account
 @app.route("/delete_self/<int:user_id>")
 @login_required
 def delete_self(user_id):
@@ -574,7 +581,7 @@ def delete_self(user_id):
     return redirect(url_for("home"))
 
 
-# Comments DELETE
+# LOGGED IN - DELETE Comments
 @app.route("/delete_comment/<int:comment_id>")
 @login_required
 def delete_comment(comment_id):
@@ -584,7 +591,7 @@ def delete_comment(comment_id):
     return redirect(url_for("chat"))
 
 
-# Logout
+# LOGGED IN - Logout
 @app.route("/logout")
 def logout():
     # remove user from session cookie
@@ -592,16 +599,14 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
-# --------------- PUBLIC
 
-
-# Landing page 
+# PUBLIC - Landing page
 @app.route("/")
 def home():
     return render_template("public/landing_page.html")
 
 
-# Log In
+#  PUBLIC - Log In
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -617,7 +622,7 @@ def login():
                         flash("Welcome, {}".format(session["user"]))
                         return redirect(url_for("set_up"))
             else:
-                #invalid password
+                # invalid password
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
@@ -629,7 +634,7 @@ def login():
     return render_template("public/login.html")
 
 
-# Register - Users CREATE
+#  PUBLIC - Register New User
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
