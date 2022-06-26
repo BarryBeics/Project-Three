@@ -122,7 +122,7 @@ fetch('https://api.maptiler.com/data/b92719af-8d5b-4006-9631-3d8b13eaa1c6/featur
 
 async function getUsers() {
   // load users JSON File
-    const response = await fetch("static/JSON/user_data.json");
+    const response = await fetch("static/json/user_data.json");
     const user_data = await response.json();
   
   // Loop JSON to get users data
@@ -158,7 +158,7 @@ var icon_landmark = new LandmarkIcon({ iconUrl: 'static/images/markers/a-red-fla
 
   async function getLandmarks() {
      // load JSON File
-      const response = await fetch("static/JSON/landmark_data.json");
+      const response = await fetch("static/json/landmark_data.json");
       const landmark_data = await response.json();
     
       // Loop JSON to get landmark data
