@@ -408,7 +408,6 @@ def chat():
     group = Users.query.filter_by(user_id=session["user"]).all()
     # Get the group name this user is part of
     group_name = group[0].group_name
-    comments = Chat_log.query.filter_by(group_name=group_name).all()
 
     get_chat = db.session.query(Users, Chat_log).join(Chat_log). \
         filter(Users.group_name == group_name).all()

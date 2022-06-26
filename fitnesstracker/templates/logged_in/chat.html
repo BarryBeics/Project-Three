@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
+
+<div class="main">
 <div class="row">
     <div class="col-3 link-text"><a href="{{ url_for('map') }}"><i class="fa-solid fa-circle-left" aria-hidden="true">
                 Map</i>
         </a> </div>
-    <div class="col-9">
+    <div class="col-6">
         <h3 class="d-flex justify-content-center">Chat</h3>
     </div>
 </div>
@@ -19,12 +21,13 @@
     <div class="col-6 col-md-4 ">
         <p>{{ chat_log.date|datetimeformat }}</p>
     </div>
-    <!-- Hide buttons for non admin users -->
+    <!-- Reveal the edit & delete buttons for the users comments only -->
     {% if users.user_id == session["user"] %}
-    <div class="col-6 col-md-2 d-none d-sm-block"><a
+    <div class="col-6 col-md-2 d-none d-sm-block chat"><a
             href="{{ url_for('edit_comment', comment_id=chat_log.comment_id) }}">Edit</a></div>
     <div class="col-6 col-md-2 d-none d-sm-block"><a data-bs-toggle="modal"
             data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </a></div>
+            {% endif %}
 </div>
 
 <div class="row">
@@ -39,7 +42,7 @@
     <div class="col-6 d-block d-sm-none btn-delete"><a data-bs-toggle="modal"
             data-bs-target="#modal-{{ chat_log.comment_id }}"> Delete </a></div>
 </div>
-{% endif %}
+
 
 <!-- Confirmation Modal -->
 <div class="modal" id="modal-{{ chat_log.comment_id }}" tabindex="-1">
@@ -84,5 +87,5 @@
     </div>
 </form>
 
-
+</div>
 {% endblock %}
