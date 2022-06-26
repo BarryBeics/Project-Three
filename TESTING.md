@@ -10,8 +10,13 @@
 - <a href="#defensive">5. Defensive design</a>
 - <a href="#bugs">6. Bugs</a>
 
+## Admin Login details
+email: admin@codeinstitute.com
+password: admin
 
+for non admin users simply create an account using the register page
 <span id="code"></span>
+
 
 ## Code Validation
 <hr>

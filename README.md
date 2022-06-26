@@ -405,8 +405,7 @@ Click on **Open app** in the right corner of your Heroku account. The app wil op
 
 #### Code
 
-exmaple - research what was used barry!!
-- [Flask error handling - Python on the web - Learning Flask ep. 18](https://www.youtube.com/watch?v=mBKKZN1MMBM)
+- [Flask Migrate - How To Migrate Database With Flask - Flask Fridays #11](https://www.youtube.com/watch?v=ca-Vj6kwK7M)
 - [W3Schools: HTML Input Pattern Attribute](https://www.w3schools.com/tags/att_input_pattern.asp)
 - [W3Schools: HTML Input Attributes](https://www.w3schools.com/html/html_form_attributes.asp)
 
