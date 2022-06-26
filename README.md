@@ -324,7 +324,7 @@ The testing process can be found [here](TESTING.md).
 5. Change the current working directory to the one where you want the cloned directory
 6. Type git clone and paste the URL from the clipboard 
   ```
-  $ git clone https://github.com/aleksandracodes/CI_PP4_Workout_Planner
+  $ git clone https://github.com/BarryBeics/Project-Three
   ```
 7. Press Enter to create your local clone
 
