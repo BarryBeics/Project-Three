@@ -343,3 +343,49 @@ See below the input fields for an example of front end validation:
 <span id="bugs"></span>
 
 ## Bugs
+
+1. When testing the forms I discoved the Edit group form failed in one permutation, that was when the group size was changed but the group name was not I got the folloing error.
+<details><summary>Edit Group</summary>
+<img src="readme-docs/testing/bugs/group_id.png">
+</details>
+
+It was fixed by adding 
+```
+return redirect(url_for("edit_group", group_id=group_id))
+```
+
+But this then threw up another problem in that is didn't handle nothing being changed.
+
+this was fixed with the following code which checked if the value in groupo size remained the same.
+
+```
+# Check if the group size has been change
+    size_change = Groups.query.filter(
+        Groups.size == request.form.get("size")).all()
+
+    if existing_group:
+        if request.method == "POST":
+            if size_change:
+                flash("No change!")
+                return redirect(url_for("edit_group", group_id=group_id))
+
+            group.size = request.form.get("size")
+            db.session.commit()
+            flash("Group size updated!")            
+            return redirect(url_for("edit_group", group_id=group_id))
+```
+
+
+2. When chekcing over naming conventions I decided to change my folder that hold the JSON file from
+JSON to json I updated my routes.py folder and when checking the site in the browser all was fine.
+Later I discovered the map markers where all missing from the map. 
+
+It turns out the reason it was file was the browser had cached the data for the map and once update 
+the markers disapeared.
+
+I discovered by adding console logs to my map_build.js file that I had over looked the 2 references 
+in the file which still used the uppercase JSON.
+
+3. When building the project I needed to make changes to my schema but had trouble updating the database
+both locally and on heroku. To resolve this issue I had to install Flask Migrate to which I followed thie video 
+[Flask Migrate - How To Migrate Database With Flask - Flask Fridays #11](https://www.youtube.com/watch?v=ca-Vj6kwK7M)
