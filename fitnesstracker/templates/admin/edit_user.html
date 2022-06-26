@@ -47,11 +47,11 @@
                     <br>
                     <label for="access"> {% if user.access == false %} This user does not have admin access! {% endif %}</label>
                     
-                    <label for="access"> {% if user.access == true %} User has admin access? {% endif %}</label><br>
+                    <label for="access"> {% if user.access != False %} User has admin access? {% endif %}</label><br>
                     <label for="access"> {% if user.access == false %} Grant access? {% endif %}</label>
-                    <input type="checkbox" id="yes" name="access" {% if user.access == true %} checked {% endif %}>
+                    <input type="checkbox" id="yes" name="access" {% if user.access != False %} checked {% endif %}>
                     <label for="yes">Yes</label><br>
-                    <p>{% if user.access == true %} Uncheck to remove access! {% endif %}</p>
+                    <p>{% if user.access != False %} Uncheck to remove access! {% endif %}</p>
                     
                 </div>
             </div>

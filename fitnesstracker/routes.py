@@ -104,15 +104,27 @@ def edit_group(group_id):
     # Check group name to see if user already exisits in db
     existing_group = Groups.query.filter(
         Groups.name == request.form.get("name")).all()
+    # Check if the group size has been change
+    size_change = Groups.query.filter(
+        Groups.size == request.form.get("size")).all()
 
     if existing_group:
-        flash("Group already exists")
-        return redirect(url_for("edit_group"))
+        if request.method == "POST":
+            if size_change:
+                flash("No change!")
+                return redirect(url_for("edit_group", group_id=group_id))
+
+            group.size = request.form.get("size")
+            db.session.commit()
+            flash("Group size updated!")            
+            return redirect(url_for("edit_group", group_id=group_id))
+
     if request.method == "POST":
         group.name = request.form.get("name")
         group.size = request.form.get("size")
         db.session.commit()
-        return redirect(url_for("groups"))
+        flash("Group data updated!")
+        return redirect(url_for("edit_group", group_id=group_id))
     return render_template("admin/edit_group.html", group=group)
 
 
