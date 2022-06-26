@@ -3,76 +3,79 @@
 
 
 <div class="row">
-    <div class="col-12 col-md-6 intro main">
-            <h1>
-                START SOMETHING NEW
-            </h1>
-            <p>A platform for corporate wellness, a launchpad for your health and fitness</p>
-        </div>
-    <div class="col-12 col-md-6">
-        <!-- register -->
-        {% if session.user %}
+  <div class="col-12 col-md-6 intro text-center main">
+    <h1>
+      SOCIAL MOTIVATION FITNESS
+    </h1>
+    <p>A platform for you and you friends to share and motivate each others</p>
+  </div>
+  <div class="col-12 col-md-6 block">
+    <p class="main">Why not get involved today?
+      <!-- register -->
+      {% if session.user %}
 
-        {% else %}
-            <a href="{{ url_for('register') }}" class="btn btn-warning">
-                Register <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i></a>
-        {% endif %}
-    </div>
+      {% else %}
+      <a href="{{ url_for('register') }}" class="btn btn-warning">
+        Register <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i></a>
+      {% endif %}
+    </p>
+  </div>
 </div>
-
-<div class="row">
-<div class="col-12 main">
-    <h3>HOW IT WORKS</h3>
-    <p>Getting started is quick and easy.</p>
-    <div class="row text-center">
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="dashboard"> <i class="fa-solid fa-link"></i></div>
-        <h3>SIGN UP</h3>
-        <p>Join the platform along with a sporting group or friends.</p>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div>
-          <div class="dashboard"> <i class="fa-solid fa-person-walking"></i></div>
-          <h3>EXERCISE</h3>
-          <p>Get out there and be active.</p>
-          <p>Then log your activity.</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div>
-          <div class="dashboard"> <i class="fa-solid fa-map" aria-hidden="true"></i></div>
-          <h3>PROGRESS</h3>
-          <p>See how far you have gone compaired to others in your group</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div>
-          <div class="dashboard"> <i class="fas fa-comment-dots" aria-hidden="true"></i></div>
-          <h3>CHAT</h3>
-          <p>See how far you have gone compaired to others in your group</p>
-        </div>
-      </div>
-      
+<div class="main">
+  <div class="row">
+    <div class="col-12">
+      <h3>HOW IT WORKS</h3>
+      <p>Getting started is quick and easy.</p>
     </div>
-  </div> 
-</div>
+  </div>
 
-<div class="row">
-    <div class="col-12 col-md-6 main">
-            <img src="{{ url_for('static', filename='images/comp-view.png') }}" alt="">
-        </div>
-    <div class="col-12 col-md-6 main">
-       <h3> CREATE YOUR OWN </h3>
-       <h3> FITNESS CHALLENGE </h3> 
-<p> Stay focused and motivated to exercise by creating your own fitness challenge!</p>
+  <div class="row text-center">
 
-<p> Plot start and end points on the map and each time you go running, cycling, swimming etc. you'll advance along the path. </p> 
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="dashboard"> <i class="fa-solid fa-link"></i></div>
+      <h3>SIGN UP</h3>
+      <p>Join the platform along with a sporting group or friends.</p>
     </div>
-</div>
 
+    <div class="col-12 col-sm-6 col-md-3">
+      <div>
+        <div class="dashboard"> <i class="fa-solid fa-person-walking"></i></div>
+        <h3>EXERCISE</h3>
+        <p>Get out there and be active. Then log your activity.</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div>
+        <div class="dashboard"> <i class="fa-solid fa-map" aria-hidden="true"></i></div>
+        <h3>PROGRESS</h3>
+        <p>See how far you have gone compaired to others in your group</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div>
+        <div class="dashboard"> <i class="fas fa-comment-dots" aria-hidden="true"></i></div>
+        <h3>CHAT</h3>
+        <p>Give each other encouragement in the group chat</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6 text-center  block">
+      <img src="{{ url_for('static', filename='images/comp-view.png') }}" alt="">
+    </div>
+    <div class="col-12 col-md-6  block">
+
+      <h3> MAPPED FITNESS CHALLENGE </h3>
+      <p> Stay focused and motivated to exercise by completing this fitness challenge!</p>
+
+      <p> Work you way around the map and each time you go running, cycling, swimming etc. you'll advance along the
+        path. </p>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

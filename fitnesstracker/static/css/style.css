@@ -173,7 +173,7 @@ a,
   width: 30px;
 }
 .intro h1 {
-  font-size: 150px;
+  font-size: 6em;
 }
 
   .footer {
@@ -215,6 +215,10 @@ a,
   padding: 20px;
 }
 
+img {
+  width: 60%;
+}
+
 }
 
 /* ------------- Media Queries  ----------- All Mobile & Nexus 7 Tablet */
@@ -237,9 +241,11 @@ a,
 
 .dashboard {
   font-size: 5.45em;
-  margin: -34px;
 }
 
+.block {
+  padding: 40px;
+}
 .center {
   display: block;
   margin-left: auto;
