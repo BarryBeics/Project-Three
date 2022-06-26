@@ -223,8 +223,6 @@ This site was tested on the following browsers with no visible issues for the us
 
 ## Testing user stories
 
-### 1.2 User stories 
-
 **First-time visitor goals:**
 1. As a first time visitor, I want to be able to visit the website on any device. 
     - The first time visitor can visite the website on a computer, laptop, tablet and phone.
@@ -320,7 +318,67 @@ All the goals of the first time visitors and site members also apply for the adm
 
 ## Defensive design
 
+1. The user is not able to break the site by clicking on buttons. 
 
+**Answer 1:** All buttons on the website work. The buttons on the website consist buttons that lead to other pages or submit buttons to add, edit or delete something from the database.
+
+2. The signup form: 
+    - 2.1 The first & last name fields have to be between 2-15 characters and only must contain letters and numbers.
+    - 2.2 The password has to be between 5-15 characters, only must contain letters and numbers and Can't be 
+     entrily numeric.
+    - 2.3 The email field resetrics a none email format from being submitted.
+        
+3. The add and edit content forms:
+    - 3.1 The name feilds have restricted to between set character ranges and only must contain letters and/or numbers
+      where required.
+        - The validation of a feild when it needs to be unique is done using python to query the database to check
+          to see if they value allready exists.
+    
+4. Both register ane user edit email fields required that the email must be in the following order: characters followed by a @ symbol, followed by more characters and then a “.”.
+
+**Answer 2 + 3 + 4:** 
+The validation of all input fields is done with front end validation and by using the validate functionality of html5. 
+
+- The input fields between a number of characters. This is done minlength, maxlength and the pattern attribute. 
+- The input fields have a number of criteria. These criterias where set by the pattern attribute.
+- The html type attribute is used to set for example numbers, text or email.
+- The required functionality is used to make the input fields required. 
+
+See below the input fields for an example of front end validation:
+    
+    ```
+     <!-- last name -->
+    <div class="mb-3">
+    <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <label for="last_name">Last Name</label>
+    <input type="text" name="last_name" minlength="2" maxlength="15"
+    pattern="^[a-zA-Z0-9]{2,15}$" class="form-control" id="last_name"
+    aria-describedby="last_name" required>
+    </div>
+
+    <!-- email -->
+    <div class="mb-3">
+    <i class="fa-solid fa-at" aria-hidden="true"></i>
+    <label for="email" class="form-label">Email address</label>
+    <input id="email" name="email" type="email" class="form-control"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+    </div>
+
+    <!-- password -->
+    <div class="mb-3">
+    <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+    <label for="password" class="form-label">Password</label>
+    <input type="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
+      name="password" class="form-control" id="password" required>
+    <label for="password" class="form-label">Password criteria:</label>
+    <p><i class="fa-solid fa-check"></i> Can't be entrily numeric</p>
+    <p><i class="fa-solid fa-check"></i> Please keep safe as it will be encrypted</p>
+    </div>
+    ``` 
+
+5. A user, group, comment, landmark, & activity log can't be deleted by just one click. If someone clicks on the delete button, there wil be a pop up with a confirmation if someone is sure to delete the record.
+
+**Answer 5:** If someone clicks on the delete button, a modal (from bootstrap) will pop up with the text: Are you sure you want to delete said item. If the user clicks again on delete the user, group, comment, landmark, & activity will be deleted from the database.
 
 
 <span id="bugs"></span>
