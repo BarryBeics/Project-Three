@@ -7,22 +7,20 @@
 <!-- Internal Navigation Buttons -->
 <div class="main">
 <div class="d-md-block">
-    <ul id="nav" class="main-list-inline main-menucontainer">
-        <li class="col-4-xs list-inline-item main-menuitem">
-            <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal"
-                    aria-hidden="true"></i><span>Leaderboard</span></a>
-        </li>
-        <li class="col-4-xs list-inline-item main-menuitem">
-            <a href="" class="hvr-push"><i class="fas fa-bell" aria-hidden="true"></i>
-                <div><span>Notifications</span></div>
-            </a>
-        </li>
-        <li class="col-4-xs  list-inline-item main-menuitem">
-            <a href="{{ url_for('chat') }}" class="hvr-push"><i class="fas fa-comment-dots" aria-hidden="true"></i>
-                <div><span>Comments</span></div>
-            </a>
-        </li>
-    </ul>
+  <ul id="nav" class="main-list-inline main-menucontainer">
+    <li class="col-4-xs list-inline-item main-menuitem">
+      <a href="{{ url_for('post_activity') }}" class="hvr-push"><i class="fa-solid fa-plus"
+          aria-hidden="true"></i><span>Post Activity</span></a>
+    </li>
+    <li class="col-4-xs list-inline-item main-menuitem">
+      <h3>MAP VIEW</h3>
+    </li>
+    <li class="col-4-xs  list-inline-item main-menuitem">
+      <a href="{{ url_for('chat') }}" class="hvr-push"><i class="fas fa-comment-dots" aria-hidden="true"></i>
+          <div><span>Comments</span></div>
+      </a>
+  </li>
+  </ul>
 </div>
 <div id="map"></div>
 

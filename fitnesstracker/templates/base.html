@@ -13,7 +13,7 @@
   <script src="https://kit.fontawesome.com/ce58c24f18.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-  <title>Fitness Tracker</title>
+  <title>Community Fitness Tracker</title>
 </head>
 
 <body>
@@ -65,7 +65,7 @@
                 <a class="nav-link active" aria-current="page" href="{{ url_for('register') }}"> <i
                     class="fas fa-power-off" aria-hidden="true"></i> Register</a>
                 {% endif %}
-                {% if session.access == True %}
+                {% if session.access != False %}
                 <hr>
                 <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}"> <i class="fas fa-gear"
                     aria-hidden="true"></i> Admin</a>
@@ -98,7 +98,6 @@
   </section>
   <footer class="footer">
     <div class="container">
-
 
       {% if session.access == True %}
       <div class="d-md-block">
@@ -135,10 +134,10 @@
             </a>
           </li>
           <li class="col-4-xs  list-inline-item footer-menuitem">
-            <a href="" class="hvr-push"><i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
-              <div><span>Leaderboards</span></div>
+            <a href="{{ url_for('chat') }}" class="hvr-push"><i class="fas fa-comment-dots" aria-hidden="true"></i>
+                <div><span>Comments</span></div>
             </a>
-          </li>
+        </li>
         </ul>
       </div>
       {% endif %}

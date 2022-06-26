@@ -43,7 +43,7 @@
                         <label for="icon_num" class="form-label">Choose your Icon:</label><br>
                         <p>Which icon you would like to use</p>
                         {% for key, value in icons.items() %}
-                        <div class="grid icon">
+                        <div class="settings-grid icon">
                             <input type="radio" id="{{ key }}" name="icon_num" value="{{ key }}" {% if key == num_str %}
                                 checked {% endif %}>
                             <img src="{{ url_for('static', filename='images/markers/' + value  + '.png') }}" alt="">

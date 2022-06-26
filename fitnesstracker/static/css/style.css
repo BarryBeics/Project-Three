@@ -39,16 +39,62 @@ h2,
 h3,
 h4,
 a,
+.main-menuitem a,
+.main-menuitem a i,
+body,
+hr,
 .offcanvas-title,
 p,
 label, .fa-user:before {
   color: #2e5266;
 }
 
-
-.offcanvas {
-  background-color: #50A5B1;
+.footer,
+.btn-delete,
+.flashes h4
+{
+background-color: #2e5266;
 }
+
+.header,
+.btn-edit {
+  background: #50A5B1;
+ }
+
+ .how-it-works i,
+.footer-menuitem a,
+.footer-menuitem a i {
+  color: #50A5B1;
+}
+
+.box-style,
+ .card {
+  background-color: rgba(80,165,177, 0.5);
+}
+
+.box-style {
+  border: 1px solid #2e5266;
+  padding: 5px;
+}
+
+.panel.label,
+.btn-delete,
+a:not([href]):not([class]) {
+  color:#FCFAF9;
+}
+
+.selected:before,
+.link-text i:hover,
+.flashes h4 {
+   color: #F0C808;
+}
+
+.main {
+  background-color: rgba(248, 246, 246, 0.8);
+}
+
+
+/* ------------------------------------------------ */
 
 p {
   padding-top: 5px;
@@ -59,6 +105,7 @@ p {
   font-size: 0.9em;
   margin-bottom: 0rem;
 }
+
 .form-label {
   margin: 0.5rem;
 }
@@ -71,76 +118,6 @@ p {
   margin: 25px;
 }
 
-.panel.label,
-.btn-delete,
-a:not([href]):not([class]) {
-  color:#FCFAF9;
-}
-
-.header,
-.btn-edit {
-  background: #50A5B1;
- }
-
- .card {
-  background-color: rgba(80,165,177, 0.5);
-}
-
-.main-menuitem a,
-.main-menuitem a i,
-body,
-hr {
-   color: #2e5266;
-}
-
-
-.how-it-works i,
-.footer-menuitem a,
-.footer-menuitem a i {
-  color: #50A5B1;
-}
-
-
-.selected:before,
-.link-text i:hover,
-.flashes h4 {
-   color: #F0C808;
-}
-
-.hvr-underline-from-center:before,
-.radio-toolbar label:hover {
-   background-color: #F0C808;
-}
-
-.popover-header {
-   background-color: #F0C808;
-}
-
-
-.data_dark p {
-  color: #859583;
-}
-
-.data-block {
-  border: solid 1px #197b7b;
-}
-
-.box-style {
-  border: 1px solid #2e5266;
-  background: rgba(80,165,177, 0.5);
-  padding: 5px;
-}
-
-.footer,
-.btn-delete,
-.flashes h4
-{
-background-color: #2e5266;
-}
-
-
-
-
 .mob i {
   font-size: 1em;
 }
@@ -151,42 +128,34 @@ html {
     min-height: 100%;
 }
 
-
 a,
 .subtle a{
   text-decoration: none;
 }
 
-
 .how-it-works i {
   font-size: 100px;
-}
-
-.how-it-works {
-  margin-left: auto;
-  margin-right: auto;
-  width: 8em;
 }
 
 .icon img {
   height: 30px;
   width: 30px;
 }
+
 .intro h1 {
   font-size: 6em;
 }
 
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px; /* Set the fixed height of the footer here */
-    
-  }
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */  
+}
 
-  .flashes h4 {
-    line-height: 2;
-  }
+.flashes h4 {
+  line-height: 2;
+}
 
 .flash {
   margin-top: 80px;
@@ -195,61 +164,56 @@ a,
 
 .main {
   margin-top: 20px;
-  background-color: rgba(248, 246, 246, 0.8);
 }
 
-.form-box {
-  max-width: 315px;
-  min-height: 530px;
+/* ------------- */
+
+.title,
+.value,
+.data span {
+   font-size: 1.6em;
 }
 
-/* ------------- Media Queries  ----------- All Mobile & Nexus 7 Tablet */
-
-@media only screen and (max-width: 576px) {
-
-#map {
-  height: 300px;
+.list-inline-item:not(:last-child) {
+  margin: 0;
 }
 
-.main {
-  padding: 20px;
+#nav {
+  z-index: 1;
 }
 
-img {
-  width: 60%;
+ol, ul {
+  padding-left: 0rem;
 }
 
+.col-4-xs {
+  width: 32%;
 }
-
-/* ------------- Media Queries  ----------- All Mobile & Nexus 7 Tablet */
-
-@media only screen and (min-width: 577px) {
-
-#map {
-  height: 500px;
-}
-
-.main {
-  padding: 30px;
-}
-}
+/* ------------- stuff you recongnises -----*/
 
 .btn-delete,
 .btn-edit {
   text-align:center;
 }
 
+.how-it-works,
 .dashboard {
   font-size: 5.45em;
 }
 
-.grid {
+.dashboard {
+  margin: -34px;
+}
+
+.settings-grid {
   display: inline-block;
   padding: 10px;
 }
+
 .block {
   padding: 40px;
 }
+
 .center {
   display: block;
   margin-left: auto;
@@ -266,12 +230,23 @@ img {
   padding: 5px;
 }
 
-.title,
-.value,
-.data span {
-   font-size: 1.6em;
+.comment {
+  padding: 12px;
 }
-/* ------------- Internal navigation -----*/
+
+
+
+
+
+
+
+
+
+
+
+/* ------------- Internal navigation icons -----*/
+
+
 
 .footer-menuitem a i,
 .main-menuitem a i {
@@ -284,17 +259,8 @@ img {
   font-size: 10px;
 }
 
-.list-inline-item:not(:last-child) {
-  margin: 0;
-}
-
 .menucontainer {
   font-size: 0;
-}
-
-#mob-nav,
-#nav {
-  z-index: 1;
 }
 
 .footer-menuitem,
@@ -304,18 +270,43 @@ img {
   text-transform: uppercase;
 }
 
-ol, ul {
-  padding-left: 0rem;
-}
-
-.col-4-xs {
-  width: 32%;
-}
 
 .footer-menuitem a,
 .main-menuitem a {
   text-decoration: none;
 }
+
+/* ------------- Media Queries  ----------- small devices */
+
+@media only screen and (max-width: 576px) {
+
+  #map {
+    height: 300px;
+  }
+  
+  .main {
+    padding: 20px;
+  }
+  
+  img {
+    width: 60%;
+  }
+  
+  }
+  
+  /* ------------- Media Queries  ----------- For everthing apart rom the small devices */
+  
+  @media only screen and (min-width: 577px) {
+  
+  #map {
+    height: 500px;
+  }
+  
+  .main {
+    padding: 30px;
+  }
+  }
+
 
 /* ------------- CSS for loader -----*/
 
@@ -339,6 +330,30 @@ ol, ul {
 
 
 
-.comment {
-  padding: 12px;
+
+/* ------------- REDUNDANT ?? -----*/
+.hvr-underline-from-center:before,
+.radio-toolbar label:hover {
+   background-color: #F0C808;
+}
+
+.form-box {
+  max-width: 315px;
+  min-height: 530px;
+}
+
+.offcanvas {
+  background-color: #50A5B1;
+}
+
+.popover-header {
+  background-color: #F0C808;
+}
+
+.data_dark p {
+  color: #859583;
+}
+
+.data-block {
+  border: solid 1px #197b7b;
 }
