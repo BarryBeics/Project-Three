@@ -223,7 +223,98 @@ This site was tested on the following browsers with no visible issues for the us
 
 ## Testing user stories
 
+### 1.2 User stories 
 
+**First-time visitor goals:**
+1. As a first time visitor, I want to be able to visit the website on any device. 
+    - The first time visitor can visite the website on a computer, laptop, tablet and phone.
+
+2. As a first time visitor, I want to be able to navigate easily through the website, so I can find everything easily. 
+    - The first time visitor can navigate through the website using the hamburger menu in the header and footer icon.
+      Where nessarey there are internal back arrows to assist with the flow of the site navigation.
+
+3. As a first time visitor, I want to be able to easily understand what the application is about.
+    - The landing page summerises what the site is about in a few short sentences. Also the runner in the background
+      image is there to give the site an sporty feel which the user can relate to.
+
+4. As a first time visitor, I want to have it simply explained how it works before committing to registering.
+    - There is a 4 point how it works on the landing page with icons to quickly and easily express whats the site is about before needing to log in or register.
+
+5. As a first time visitor, I want the registration & login process to be intuative.
+    - The registration & login screens are clean and minimual with only essential supporting text.
+
+
+**Site member goals:** 
+
+All the goals of first-time visitors also apply for site members. There are additional user stories to the site members because they have more access to the website. See the additional user stories below. 
+
+1. As a site member, I want to login to my profile, so only I have control of the data I share. 
+    - The employs a secure login feature with the ability to restric all none logged in users from shared data.
+
+2. As a site member, I want to record my sporting activities easily and quickly. 
+    - The is a clean minalmal form for loggin activity easily and quickly.
+
+3. As a site member, I want to edit my activities, so I can update information if I have made an error.
+    - The site offers the ability to view all activities and edit them with the same clean minalmlist form.
+
+4. As a site member, I want to delete my activities, so I have complete control over what I choose to share. 
+    - From the list activities page the user can view all there activities and choose to delete any of them, they 
+      will be prompted to confirm they are sure so no data is acidently deleted.
+
+5. As a site member, I want to see my fellow group member comments.
+    - The chat page only loads the comments of fellow group members making it easy to see what has been said in 
+      your group.
+
+6. As a site member, I want to post my own comments.
+    - At the bottom of the comments feed the users are provided with a clean minalmalist form for posting there 
+      own comments.
+
+7. As a site member, I want to edit my comments, so I can update information if I have made an error.
+    - Next to the users comments is an edit button so they can make any changes they require to the comment.
+
+8. As a site member, I want to delete my comments, so I have complete control over what I choose to share.
+    - Also along side the edit button the user can delete there own comments only.
+
+9. As a site member, I want to create my own group name.
+    - Users are provided the option to create there own unique group name from the link in the main navigation.
+
+10. As a site member, I want to be able to edit my account details.
+    - The settings page gives the user the option to change there email, user icon and which group they are part of.
+
+11. As a site member, I want to logout from my profile, so I can ensure nobody else can change my data.
+    - There is a log out button which ends the session to ensure nobody else can access the users data.
+
+12. As a site member, I want to be able delete my account should I wish at any time.
+    - Should the user want to delete there account this can be done from the delete button on the bottom of the profile 
+    page, they will be prompted to confirm they are sure so as to avaoid mistakenly deleting theit account.
+
+**Admin goals:**
+
+All the goals of the first time visitors and site members also apply for the admin. The admin has additional user stories to manage the categories of the recipes. 
+1. As an admin, I want to add landmarks
+    - Admin users can add all the landmark details using the add landmarks pags.
+
+2. As an admin, I want to edit landmarks, so I can easily correct any errors. 
+    - The admin page provides a link to a list of all landmark from which there is a edit button for making changes
+      to any of the landmark data.
+
+3. As an admin, I want to delete landmarks, should they are no become longer relevant. 
+    - Also from the list of landmarks there is the option to delete a landmark and in keeping with the site format
+      the admin user is prompted to confirm they know that deleting the data is non reversable.
+
+4. As an admin, I want to be able edit users, so I can change there access level where appropirate. 
+    - The admin user is provided with a list of all users and a like to the edit user form where they can make a 
+      user and admin and change therr longitue and latitude coordinates.
+
+5. As an admin, I want to be able to delete users, should it be required. 
+    - The admin user from this list can choose to delete any user simply but clicking the delete button, they will 
+      be prompted to confrim this action so no users are deleted by accident.
+
+6. As an admin, I want to be able edit group name, should there be a need. 
+    - The admin user is able to manage the groups created by users, they can edit both the size and name of the group.
+
+7. As an admin, I want to be able to delete group names, should it be required. 
+    - There is the option for the admin user to delete any of the groups, they will be prompted to confirm this action.
 
 <span id="defensive"></span>
 
