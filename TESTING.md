@@ -139,10 +139,11 @@ The W3C Jigsaw CSS Validation Service was used to validate the CSS of the websit
 ## JavaScript Validation
 <hr>
 
-JSHint JS Validation Service was used to validate the Javascript files. No errors were found.
+JSLint JS Validation Service was used to validate the Javascript files. No errors were found.
+There are 8 warnings but any atempt to shorted the 80 character breaks the code.
 
-<details><summary>script.js</summary>
-<img src="readme-docs/testing/js/script.png">
+<details><summary>map_build.js</summary>
+<img src="readme-docs/testing/js/map_build.png">
 </details>
 
 ## PEP8 Validation
@@ -169,48 +170,6 @@ PEP8 Validation Service was used to check the code for PEP8 requirements. All th
  
 The responsive design tests were carried out manually whilst building the site with [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/)
  
-### 2.1. Mobiles ###
-
-Notes:
-- iPhone5, Galaxy S5/S6/S7 & Xperia Z3/Z3 :   Render fail, box breaks onto next line not as intended.
-
- 
-All the errors found have now been fixed as shown below.         
- 
-|        | iPhone 5 | iPhone 6/7 Plus | Galaxy S5/S6/S7 | Xperia Z3/Z3 | Google Pixel | Nexus 4 | Nexus 5/6 |
-|--------|----------|-----------------|-----------------|--------------|--------------|---------|-----------|
-| Render |  pass    |  pass           |  pass           |  pass        |  pass        |  pass   |  pass     |
-| Images |  pass    |  pass           |  pass           |  pass        |  pass        |  pass   |  pass     |
-| Links  |  pass    |  pass           |  pass           |  pass        |  pass        |  pass   |  pass     |
-      
-### 2.2. Tablets ###
-
-Notes:
-- iPad Pro :   Padding of half & third boxes needs increasing to display properly.
-                                   
-- Nexus 7:   Render fail, box breaks onto next line not as intended.
- 
-All the errors found have now been fixed as shown below.    
- 
-|        | iPad Mini | iPad Pro | Kindle Fire | Nexus 7 | Nexus 9 | Galaxy Tab 10 |
-|--------|-----------|----------|-------------|---------|---------|---------------|
-| Render |  pass     |  pass    |  pass       |  pass   |  pass   |  pass         |
-| Images |  pass     |  pass    |  pass       |  pass   |  pass   |  pass         |
-| Links  |  pass     |  pass    |  pass       |  pass   |  pass   |  pass         |
- 
-### 2.3. Desktops ###
-
-Notes:
-- All Sizes Desktop :   Padding of half & third boxes needs increasing to display properly.
- 
-All the errors found have now been fixed as shown below.
- 
-|        | 13" Desktop | 15" Desktop | 19" Desktop | 20" Desktop | 22" Desktop | 23" Desktop |
-|--------|-------------|-------------|-------------|-------------|-------------|-------------|
-| Render |  pass       |  pass       |  pass       |  pass       |  pass       |  pass       |
-| Images |  pass       |  pass       |  pass       |  pass       |  pass       |  pass       |
-| Links  |  pass       |  pass       |  pass       |  pass       |  pass       |  pass       |
-
 
 <span id="browser"></span>
 

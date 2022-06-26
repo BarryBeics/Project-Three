@@ -119,12 +119,12 @@ In this site there is a main background image for the running woman to convay th
 
 - #### Defensive design 
 
-    - The user is not able to break the site by clicking on buttons. 
-    - The signup form: 
-        - The first and last names has to be between 2-15 characters and only must contain letters and numbers. 
-        - The password has to be between 5-15 characters and must contain at least one number, and one uppercase and lowercase letter.
-        - The email must be in the following order: characters followed by a @ symbol, followed by more characters and then a “.”.
-    - A nothing can't be deleted by just one click. If someone clicks on the delete button, there wil be a pop up with a confirmation if someone is sure to delete the item.
+- The user is not able to break the site by clicking on buttons. 
+- The signup form: 
+- The first and last names has to be between 2-15 characters and only must contain letters and numbers. 
+- The password has to be between 5-15 characters and must contain at least one number, and one uppercase and lowercase letter.
+- The email must be in the following order: characters followed by a @ symbol, followed by more characters and then a “.”.
+- A nothing can't be deleted by just one click. If someone clicks on the delete button, there wil be a pop up with a confirmation if someone is sure to delete the item.
 
 ### Wireframes
 
@@ -140,7 +140,7 @@ Wireframe - [View](WIREFRAMES.md)
 #### Database
 
 - The backend consists of Python built with the Flask framework with a database of a Postgres for the deployed Heroku version(production)
-- Two database models contain all fields stored in the database and mimics the structure of what is actually stored in the Postgres database
+- Five database models contain all fields stored in the database and mimics the structure of what is actually stored in the Postgres database
 
 <details><summary>See Entity Relationship Diagram</summary>
 <img src="readme-docs/erd.png">
@@ -148,24 +148,25 @@ Wireframe - [View](WIREFRAMES.md)
 
 ### Structure
 
-I key aspect of the design was to maitain a balance between clean design and intuative navigation for all devices sizes.
+A key aspect of the design was to maitain a balance between clean design and intuative navigation for all devices sizes.
 
 - The website consists of the following sections:
   - Landing page with explanation of what this site is about for first time visitors.
   - Login page for returning user to log in.
   - Register page allowing a new user to sign up.
-  - Profile page which confirms they are logged in and auto loads the map view.
+  - Profile which provides a summary of their settings and an option to delete the account.
   - Map link and user json pages gathers data and provide a loading symbol while this is done.
-  - .
-  - .
-  - .
-  - .
-  - .
+  - Set up checks if its a new user, prompts them to log their first activity and populates the db with a record of the 
+    user progress.
+  - landmark json loads after when landmarks are created or edited to update the json file for the map data.
+  - Admins pages to edit & delete groups, landmarks & users.
+  - Chat page for group members to chat among them selfs based of the group they are in.
+  - Regoster a group allowing users to create there own groups.
+  - Setting allowing users to change there email and icon.
+  - Map view showing where each fellow group member has got to on ther journey so far. Also users can click a
+    landmark flag to unveil details ablit the landmark only when they have reached that point. Also the can click on other users icons to see their stats.
+  - Logout allowing users to leave the site.
   - 404 error page.
-
-  ### Structure
-
-I key aspect of the design was to maitain a balance between clean design and intuative navigation for all devices sizes.
 
 
 The following models were created to represent the database model structure for the website:
@@ -288,7 +289,7 @@ For the Mobile I used [Miro](https://miro.com/). This allowed me to create a moc
 - Validation:
   - [WC3 Validator](https://validator.w3.org/) was used to validate the html in the project
   - [Jigsaw W3 Validator](https://jigsaw.w3.org/css-validator/) to validate the css in the project
-  - [JShint](https://jshint.com/) for JavaScript quality
+  - [JSlint](https://jslint.com/) for JavaScript quality
   - [PEP8](http://pep8online.com/) to check code against Python conventions
   - [Lighthouse](https://developers.google.com/web/tools/lighthouse/) for performance, accessibility, progressive web apps, SEO analysis of the project code
   
@@ -395,7 +396,9 @@ Click on **Open app** in the right corner of your Heroku account. The app wil op
 
 <h1>6. Credits</h1>
 
+### Liabary 
 
+- Top render the map and the icons I made use of the [leaflet.js](https://leafletjs.com/)
 
 #### Images
 - Picture of the running woman taken from [here](https://pixabay.com/photos/running-woman-fitness-runner-6252827/)
