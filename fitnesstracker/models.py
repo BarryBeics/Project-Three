@@ -75,7 +75,6 @@ class Activity_log(db.Model):
     commute = db.Column(db.Boolean, default=False, nullable=False)
     date = db.Column(db.DateTime, default=datetime.datetime.now,
                      nullable=False)
-    strava_activity_id = db.Column(db.String(4), unique=True)
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string

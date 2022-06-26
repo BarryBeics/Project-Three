@@ -56,27 +56,25 @@ You can visit the deployed website [here](https://baz-project-three.herokuapp.co
 1. As a first time visitor, I want to be able to visit the website on any device. 
 2. As a first time visitor, I want to be able to navigate easily through the website, so I can find everything easily. 
 3. As a first time visitor, I want to be able to easily understand what the application is about.
-4. As a first time visitor, I want to have it simply explained how it work before committing to registering.
-6. As a first time visitor, I want the registration & login process to be intuative.
+4. As a first time visitor, I want to have it simply explained how it works before committing to registering.
+5. As a first time visitor, I want the registration & login process to be intuative.
 
 **Site member goals:** 
 
 All the goals of first-time visitors also apply for site members. There are additional user stories to the site members because they have more access to the website. See the additional user stories below. 
 
-4. As a site member, I want to login to my profile, so only I have control of the data I share. 
-1. As a site member, I want to record my sporting activities easily and quickly. 
-2. As a site member, I want to edit my activities, so I can update information if I have made an error.
-3. As a site member, I want to delete my activities, so I have complete control over what I choose to share. 
-1. As a site member, I want to see my fellow group member comments.
-1. As a site member, I want to post my own comments.
-2. As a site member, I want to edit my comments, so I can update information if I have made an error.
-3. As a site member, I want to delete my comments, so I have complete control over what I choose to share.
-3. As a site member, I want to search and see how the sum of my activties comparis with other group members.
-3. As a site member, I want to create my own group name.
-3. As a site member, I want to be able to edit my account details.
-5. As a site member, I want to logout from my profile, so I can ensure nobody else can change my data. 
-5. As a site member, I want to be able delete my account should I wish at any time.
-
+1. As a site member, I want to login to my profile, so only I have control of the data I share. 
+2. As a site member, I want to record my sporting activities easily and quickly. 
+3. As a site member, I want to edit my activities, so I can update information if I have made an error.
+4. As a site member, I want to delete my activities, so I have complete control over what I choose to share. 
+5. As a site member, I want to see my fellow group member comments.
+6. As a site member, I want to post my own comments.
+7. As a site member, I want to edit my comments, so I can update information if I have made an error.
+8. As a site member, I want to delete my comments, so I have complete control over what I choose to share.
+9. As a site member, I want to create my own group name.
+10. As a site member, I want to be able to edit my account details.
+11. As a site member, I want to logout from my profile, so I can ensure nobody else can change my data. 
+12. As a site member, I want to be able delete my account should I wish at any time.
 
 **Admin goals:**
 
@@ -84,13 +82,12 @@ All the goals of the first time visitors and site members also apply for the adm
 1. As an admin, I want to add landmarks
 2. As an admin, I want to edit landmarks, so I can easily correct any errors. 
 3. As an admin, I want to delete landmarks, should they are no become longer relevant. 
-2. As an admin, I want to be able edit users, so I can change there access level where appropirate. 
-3. As an admin, I want to be able to delete users, should it be required. 
-2. As an admin, I want to be able edit group name, shold there be a need. 
-3. As an admin, I want to be able to delete group names, should it be required. 
+4. As an admin, I want to be able edit users, so I can change there access level where appropirate. 
+5. As an admin, I want to be able to delete users, should it be required. 
+6. As an admin, I want to be able edit group name, should there be a need. 
+7. As an admin, I want to be able to delete group names, should it be required. 
 
 <span id="ux-design"></span>
-
 
 
 <span id="ux-design"></span>
@@ -118,7 +115,7 @@ In this project, icons are used that are provided by Font Awesome. The Icons tha
 
 
 **Images:**
-In thisblah balh balh.
+In this site there is a main background image for the running woman to convay they site is for acctive people. On the landing page I made a graphic to illustrate that the site works on multiple devices. Then the site admin is able to include images of the landmark data that appear in the modal from the map view.
 
 - #### Defensive design 
 
@@ -179,9 +176,6 @@ The following models were created to represent the database model structure for 
 ##### Chat Log Model
 - The chat model contains every comment made on the site.
 - The data is retrived by filtering only comments from fellow groups members of the logged in user.
-
-##### Notifications Model
-- TBC
 
 ##### Groups Model
 - The groups model contains the name and size of each group.
@@ -251,7 +245,12 @@ For the Mobile I used [Miro](https://miro.com/). This allowed me to create a moc
 <span id="features-future"></span>
 
 ### 2.2 Features left to implement in the future 
-- TBC
+
+  - Allow users to upload their own icon.
+  - Allow admins to upload images of landmarks.
+  - Allow admins to upload video drone footage of these landmarks.
+  - Notification to users when they reach certain distances.
+  - Stava API integration so that users activity can be posted automatically.
 
 
 ##### Back to [top](#table-of-contents)
@@ -276,7 +275,6 @@ For the Mobile I used [Miro](https://miro.com/). This allowed me to create a moc
 - [Balsamiq](https://balsamiq.com/) to create the projects wireframes
 - [Bootstrap v5.0.2](https://getbootstrap.com/). This project uses the Bootstrap library for UI components (Buttons, Card, Footer, Modal, Pagination, Navbar)
 - [Lucidchart.com](https://lucidchart.com) used for the entity relationship diagram.
-- [Favicon.io](https://favicon.io) for making the site favicon
 - [Chrome dev tools](https://developers.google.com/web/tools/chrome-devtools/) was used for debugging of the code and checking site for responsiveness
 - [Font Awesome](https://fontawesome.com/) - Icons from Font Awesome were used throughout the site
 - [Git](https://git-scm.com/) was used for version control within VSCode to push the code to GitHub
@@ -293,7 +291,7 @@ For the Mobile I used [Miro](https://miro.com/). This allowed me to create a moc
   - [JShint](https://jshint.com/) for JavaScript quality
   - [PEP8](http://pep8online.com/) to check code against Python conventions
   - [Lighthouse](https://developers.google.com/web/tools/lighthouse/) for performance, accessibility, progressive web apps, SEO analysis of the project code
-  - [Wave Validator](https://wave.webaim.org/) to evaluate accessibility
+  
 
 ##### Back to [top](#table-of-contents)
 
@@ -398,10 +396,8 @@ Click on **Open app** in the right corner of your Heroku account. The app wil op
 <h1>6. Credits</h1>
 
 
-find the nessary reference material
+
 #### Images
-
-
 - Picture of the running woman taken from [here](https://pixabay.com/photos/running-woman-fitness-runner-6252827/)
 
 #### Code
