@@ -243,6 +243,10 @@ img {
   font-size: 5.45em;
 }
 
+.grid {
+  display: inline-block;
+  padding: 10px;
+}
 .block {
   padding: 40px;
 }
